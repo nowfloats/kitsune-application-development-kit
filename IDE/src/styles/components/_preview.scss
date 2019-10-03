@@ -1,0 +1,262 @@
+#preview {
+	height: calc(100vh - #{$header-height});
+	width: 100%;
+	display: block;
+	margin: 0 auto;
+	background: $color-white;
+	position: relative;
+	top: $header-height;
+}
+
+.preview-container {
+	background: $color-ebony-clay-light;
+	overflow-y: auto;
+
+	.preview-content {
+		display: flex;
+
+		aside {
+			width: $preview-sidebar;
+			background-color: $color-dove-gray;
+			padding: 20px;
+			color: $color-white;
+			position: relative;
+			top: $header-height;
+
+			.Select {
+				margin-bottom: 20px;
+				margin-top: 5px;
+				outline: 0 !important;
+
+				.Select-control,
+				.Select-value {
+					border: none !important;
+					outline: 0 !important;
+				}
+
+				.Select-menu-outer {
+					border-left: 0;
+					border-right: 0;
+					background-color: transparent;
+				}
+			}
+		}
+
+		#preview {
+			width: calc(100% - #{$preview-sidebar});
+		}
+	}
+}
+
+.preview-header {
+	background-color: $color-emperor;
+	border-bottom: 1px solid $color-flamingo;
+	display: flex;
+	justify-content: space-between;
+	height: $header-height;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+}
+
+.preview-left {
+	display: inline-flex;
+
+	.preview-branding {
+		width: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		img {
+			height: 75%;
+		}
+	}
+
+	.preview-timestamp {
+		margin-left: 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		user-select: none;
+		cursor: default;
+
+		img {
+			width: 12px;
+		}
+
+		span {
+			margin-left: 5px;
+			color: $color-dusty-gray;
+			font-size: 12px;
+		}
+	}
+}
+
+.preview-center {
+	display: inline-flex;
+	align-items: center;
+}
+
+.preview-responsive {
+	width: 100px;
+	padding: 0 20px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-left: 30px;
+
+	img {
+		height: 25px;
+		margin-right: 10px;
+		cursor: pointer;
+	}
+}
+
+.preview-button {
+	display: inline-flex;
+	align-items: center;
+	height: 30px;
+	padding: 10px;
+	background: $color-ebony-clay;
+	border-top: 2px dotted $color-ebony-clay-darker;
+	border-bottom: 2px dotted $color-ebony-clay-darker;
+	border-right: 2px dotted $color-ebony-clay-darker;
+	cursor: pointer;
+
+	&:first-child {
+		border-left: 2px dotted $color-ebony-clay-darker;
+		border-top-left-radius: 3px;
+		border-bottom-left-radius: 3px;
+	}
+
+	&:last-child {
+		border-top-right-radius: 3px;
+		border-bottom-right-radius: 3px;
+	}
+
+	&.customer-select {
+		cursor: default;
+	}
+
+	> img {
+		height: 12px;
+		position: relative;
+		top: 1px;
+	}
+
+	> span {
+		margin-left: 5px;
+		white-space: nowrap;
+		color: $color-pale-sky;
+	}
+
+	.preview-dropdown {
+		display: flex;
+		align-items: center;
+		margin-left: 10px;
+		width: auto;
+
+		.Select-control {
+			height: $preview-header-content-height;
+			background-color: rgb(58, 68, 93) !important;
+			border: .2px solid $color-ebony-clay-darker;
+
+			.Select-value {
+				line-height: 21px;
+				color: rgb(182, 200, 212) !important;
+
+				.Select-value-label {
+					color: rgb(182, 200, 212) !important;
+					line-height: 12px;
+				}
+			}
+		}
+
+		.Select-menu-outer {
+			top: 22px;
+		}
+	}
+}
+
+.preview-right {
+	display: inline-flex;
+	align-items: center;
+
+	.uneditable-dataset {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		span {
+			border: 1px solid $color-white;
+			color: $color-white;
+			background: $color-emperor;
+			text-transform: uppercase;
+			padding: 7px 10px;
+			font-size: 12px;
+			cursor: pointer;
+		}
+
+		img {
+			margin-left: 15px;
+			height: 20px;
+			cursor: pointer;
+		}
+	}
+
+	.editable-dataset {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		* {
+			margin-right: 10px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+
+		label {
+			color: $color-white;
+			font-size: 14px;
+		}
+
+		input {
+			padding: 5px 7px;
+			text-transform: uppercase;
+			background: $color-emperor;
+			color: $color-white;
+			border: 1px solid $color-white;
+		}
+
+		button {
+			padding: 6px 25px;
+			background: $color-flamingo;
+			border: 0;
+			color: $color-white;
+			cursor: pointer;
+		}
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.preview-user {
+		width: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		img {
+			width: 30px;
+			border-radius: 50%;
+		}
+	}
+
+	.preview-button:last-child {
+		border-right: 0;
+	}
+}

@@ -1,0 +1,4 @@
+OptimizedPath,UrlPatternRegex,PageType
+"/escalates.html","([a-zA-Z0-9\\-\\.,\\%]+)/-/-",DEFAULT
+"/pages.html",pages/([a-zA-Z0-9\\-\\.\\%]+)/([a-zA-Z0-9\\-\\.\\%]+),DEFAULT
+"/catch-all.html","([a-zA-Z0-9\\-\\.,\\%]+)/([a-zA-Z0-9\\-\\.,\\%]+)/([a-zA-Z0-9\\-\\.,\\%]+)",DETAILS\

@@ -1,0 +1,190 @@
+@import '../variables';
+@import '../base';
+
+.skeleton{
+	width: 100%;
+	height: 100%;
+	font-size: 16px;
+
+	[class*=' col-']  {
+		padding-left: 25px;
+		padding-right: 25px;
+
+		@include for-phone-only {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+
+		@include for-tablet-portrait-up {
+			padding-left: 35px;
+			padding-right: 35px;
+		}
+
+		@include for-tablet-landscape-up {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
+
+	@include for-tablet-portrait-up {
+		display: flex;
+	}
+
+	.sidebar {
+		width: $sidebar-width-phone-only;
+		height: 100vh;
+		background: $alto;
+		position: fixed;
+		display: none;
+
+		@include for-tablet-portrait-up {
+			width: $sidebar-width + 0.4rem;
+			padding: 0px;
+			position: static;
+			display: block;
+		}
+
+		&:empty::after {
+			content:"";
+			display:block;
+			width: 100%;
+			height: 100%;
+			border-radius: $border-radius*2;
+			box-shadow: 0 10px 45px rgba(0,0,0, .1);
+
+			background-image:
+				($sidebar-avatar-skeleton),
+				($desc-line-skeleton),
+				($desc-line-2-skeleton),
+				($img-skeleton),
+				($img-2-skeleton),
+				($sidebar-skeleton)
+		;
+
+			background-size:
+				($sidebar-avatar-size) ($sidebar-avatar-size),
+				($desc-line-1-width) ($desc-line-height),
+				($desc-line-2-width) ($desc-line-height),
+				($img-size) ($img-size),
+				($img-2-size) ($img-2-size),
+				100% 100%
+		;
+
+			background-position:
+				($sidebar-avatar-position),
+				($desc-line-1-position),
+				($desc-line-2-position),
+				($img-position),
+				($img-2-position),
+				0 0;
+
+			background-repeat: no-repeat;
+			animation: loading 1.5s infinite;
+		}
+
+	}
+
+	@keyframes loading {
+		to {
+			background-position:
+				$sidebar-avatar-position,
+				$desc-line-1-position,
+				$desc-line-2-position,
+				$img-position,
+				$img-2-position,
+				0;
+		}
+	}
+
+	.ske-navbar {
+		width: 100%;
+		height: $top-nav-height-phone-only;
+		position: relative;
+		background: $alto;
+
+		@include for-tablet-portrait-up {
+			height: $top-nav-height;
+		}
+
+		@include for-medium-desktop-up {
+			background-size: 100%;
+			background-attachment: fixed;
+			background-position: 66px -80px;
+		}
+
+		@include for-tablet-landscape-up {
+			flex-direction: row;
+		}
+
+		&:empty::after {
+			content:"";
+			display:block;
+			width: 100%;
+			height: 100%;
+			border-radius: $border-radius*2;
+			box-shadow: 0 10px 45px rgba(0,0,0, .1);
+
+			background-image:
+				//animation blur
+					($nav-desc-line-skeleton),
+					($navbar-skeleton)
+		;
+
+			background-size:
+				$nav-desc-line-1-width $nav-desc-line-height,
+				100% 100%
+		;
+
+			background-position:
+					$nav-desc-line-1-position,
+				0 0                           //card
+		;
+
+			background-repeat: no-repeat;
+			animation: navloading 1.5s infinite;
+		}
+
+		@keyframes navloading {
+			to {
+				background-position:
+					$nav-desc-line-1-position,
+					0;
+			}
+		}
+
+
+	}
+
+	.container-fluid {
+		padding-right: 35px;
+		padding-left: 35px;
+
+		@include for-phone-only {
+			padding-right: 30px;
+			padding-left: 30px;
+		}
+
+		@include for-tablet-portrait-up {
+			padding-right: 50px;
+			padding-left: 50px;
+		}
+	}
+
+	.content {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		flex-direction: column;
+
+		.cards-holder {
+			width: 100%;
+			height: 100%;
+
+			.cards-row {
+				padding-top: 4em;
+			}
+		}
+
+	}
+
+}

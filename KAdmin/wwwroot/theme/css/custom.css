@@ -1,0 +1,36 @@
+/**
+ *
+ * Apply Here your Custom CSS
+ *
+*/
+
+body {
+	
+}
+
+.login-page .login-content .description {
+    font-size: 2em;
+    font-weight: 100;
+    color:#FFF;
+}
+
+.sidebar-menu > footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0px 20px;
+}
+
+.sidebar-menu footer > div{
+    height: 50px;
+    background: url('../../images/practo_logo.svg') no-repeat;
+}
+
+.sidebar-menu-inner .logo-env {
+    padding-left: 20px !important;
+}
+
+.preview-btn, .preview-btn:hover {
+    background: #28328c;
+    color: #fff;
+}

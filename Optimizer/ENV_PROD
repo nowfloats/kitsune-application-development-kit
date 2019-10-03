@@ -1,0 +1,31 @@
+MONGO_PROD_URI=[[KIT_CLOUD_MONGO_CONNECTION_STRING]]
+KEYWORDSAPI=[[KIT_KEYWORD_EXTRACTOR_API]]
+KITSUNE_ENV=PROD
+KSEARCH=/k-search/{keyword}?v=v1
+KSCRIPTTAG=<script>var keywordData = {keywords};addKitsuneAssests(keywordData);</script>
+KITSUNEMETATAG=<meta name="keywords" content="{keywords}">
+KITSUNEOPTIMIZERSQS=https://sqs.ap-south-1.amazonaws.com/748469861505/kitsune_optimizer_queue
+OPTIMIZERLOCALSTORAGE=./temp
+AWS_REGION=ap-south-1
+CURRENT_WORKING_DIRECTORY=/cwd
+KITSUNECSSASSETS=https://s3.ap-south-1.amazonaws.com/kitsune-resources/static/dev/kitsune-CSSAsset.min.css
+KITSUNEJSASSETS=https://s3.ap-south-1.amazonaws.com/kitsune-resources/static/dev/kitsune-JSAsset.min.js
+KITSUNECSSASSETSTAG=<link rel="stylesheet" type="text/css" href="{basePath}/kitsune-CSSAsset.min.css">
+KITSUNEJSASSETSTAG=<script type="text/javascript" src="{basePath}/kitsune-JSAsset.min.js"></script>
+COLLECTION_KitsuneProjects=new_KitsuneProjects
+COLLECTION_KitsuneResources=new_KitsuneResources
+COLLECTION_KitsuneBuildStatus=new_KitsuneBuildStatus
+LOG_GROUP_NAME=Kitsune_Optimizer_Service
+KITSUNE_API_LINK=http://api2.kitsune.tools
+KITSUNE_WEBENGAGE_API_PATH=/api/Event/v1/Register
+BUILD_TIMEOUT=2
+OPTIMIZED_MESSAGE_API=http://api2.kitsune.tools/api/project/v1/OptimizedValue?ProjectId=
+ASYNC_EACH_LIMIT=1000
+KEYWORDS_SLA_TIME=30000
+PROJECT_SETTINGS_API=http://api2.kitsune.tools/api/Project/v1/ProjectConfig?level=demo&projectId=
+PROJECT_SETTINGS_CLIENT_ID=[[CLIENT_ID]]
+PNG_COMPRESSION_QUALITY=70-80
+AWS_ACCESS_KEY_ID=[[KIT_CLOUD_AWS_ACCESS_KEY]]
+AWS_SECRET_ACCESS_KEY=[[KIT_CLOUD_AWS_SECRET_KEY]]
+ASSET_CDN_LINK=//kitsune-cdn-demo.com/
+USE_STATIC_ASSET_DOMAIN_MASK_KEY=enable_static_asset_cdn_domain_mask

@@ -1,0 +1,17 @@
+syntax = "proto3";
+package routing;
+
+message Route {
+    string pattern = 1;
+    string filepath = 2;
+    string filetype = 3;
+    string resourceId = 4;
+    bool isStatic = 5;
+}
+
+message Node {
+    bool root = 1;
+    string segment = 2;
+    Route route = 3;
+    repeated Node children = 4;
+}

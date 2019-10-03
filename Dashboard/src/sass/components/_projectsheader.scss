@@ -1,0 +1,131 @@
+@import "../variables";
+@import '../base';
+
+.project-header {
+	display: flex;
+	align-items: center;
+
+	.projects-count {
+		.border-right {
+			border-right: 2px solid $alto;
+		}
+		span {
+			border-right: 1px solid $alto-light;
+			padding: 4px 1em 4px 0;
+
+			@include for-tablet-portrait-up {
+				border-right-width: 2px;
+			}
+
+			&.live-sites{
+				border-right: 0;
+			}
+		}
+	}
+
+	.search {
+		display: flex;
+		position: relative;
+		padding: 0 0 0 1em;
+		width: 3.5em;
+
+		input {
+			outline: 0;
+			width: 0;
+			padding: 0;
+			border: 0;
+			transition: all 0.2s ease;
+		}
+
+		input.active {
+			border-bottom: 1px solid #848484 !important;
+			width: 100%;
+			padding-right: 20px;
+			margin-right: 1em;
+			color: $abbey;
+			background: transparent;
+		}
+
+		button {
+			outline: 0;
+			border: 0;
+			box-shadow: none;
+			margin-right: 1em;
+
+			&:first-child {
+				background: url("../../assets/icons/magnify.svg") no-repeat center top;
+				padding: 0.7em;
+			}
+
+			&:last-child {
+				background: url("../../assets/icons/close_black.svg") no-repeat center center;
+				padding: 0;
+				background-size: 1.5em;
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 0;
+			}
+
+		}
+
+		button.active {
+			padding: 0.6em;
+		}
+
+		@include for-phone-only {
+			display: none;
+		}
+
+	}
+
+	.search.active{
+		width: 70%;
+		border: 0 !important;
+
+		@include for-tablet-landscape-up {
+			width: 40%;
+		}
+
+		@include for-desktop-up {
+			width: 25%;
+		}
+	}
+
+	.sort-container{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.sort-by {
+			color: $black;
+			cursor: pointer;
+			display: none;
+			padding-left: 1em;
+			border-left: 2px solid $alto-light;
+
+			i {
+				width: 1.4rem;
+				height: 1.4rem;
+				background: url("../../assets/icons/arrow-down.svg") no-repeat center;
+				background-size: contain;
+				transition: all 0.2s ease-in-out;
+			}
+
+			i.ascen {
+				transform: rotate(180deg);
+			}
+
+			&:hover {
+				text-decoration: none;
+			}
+
+			&.active {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+		}
+	}
+}

@@ -1,0 +1,156 @@
+/* The container */
+.kt-radio-label {
+    display: block;
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 5rem;
+    cursor: pointer;
+    font-size: 2rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &.disabled {
+        opacity: 0.5;
+        font-weight: 300;
+        cursor: default;
+    }
+}
+
+/* Hide the browser's default radio button */
+.kt-radio-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+
+    :disabled {
+        cursor: default;
+    }
+}
+
+/* Create a custom radio button */
+.kt-radio-checkmark {
+    position: absolute;
+    top: 0.25rem;
+    left: 0;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    background-color: $color-santas-gray;
+
+    &.disabled {
+        background-color: $color-gray;
+    }
+}
+
+// Create a container for the content
+.kt-radio-content {
+    opacity: 1;
+    font-weight: 500;
+
+    &.disabled {
+        opacity: 0.6;
+        font-weight: 300;
+    }
+}
+
+/* On mouse-over, add a grey background color */
+.kt-radio-label:hover input:not(:checked) {
+    ~.kt-radio-checkmark:not(.disabled) {
+        background-color: $color-athens-gray;
+    }
+
+    ~.kt-radio-content:not(.disabled) {
+        opacity: 0.9;
+    }
+}
+
+/* When the radio button is checked, add a background */
+.kt-radio-label input:checked {
+    ~.kt-radio-checkmark {
+        background-color: $color-flamingo;
+    }
+
+    ~.kt-radio-content {
+        opacity: 1;
+        font-weight: 700;
+    }
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.kt-radio-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.kt-radio-label input:checked~.kt-radio-checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.kt-radio-label .kt-radio-checkmark:after {
+    top: 0.25rem;
+    left: 0.25rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: white;
+}
+
+.fa {
+    display: unset;
+
+    +span {
+        white-space: nowrap;
+    }
+}
+
+.fa-folder,
+.fa-folder-open {
+    color: $color-golden-tainoi;
+}
+
+.fa-file {
+    color: $color-raven;
+}
+
+.fa-code {
+    color: $color-hot-cinnamon;
+}
+
+.fa-css3,
+.fa-css3-alt,
+.fa-sass,
+.fa-less {
+    color: $color-amethyst;
+}
+
+.fa-file-code,
+.fa-js-square {
+    color: $color-mantis;
+}
+
+.fa-cogs {
+    color: $color-raven;
+}
+
+.fa-file-image-o,
+.fa-font {
+    color: $color-shuttle-gray;
+}
+
+.fa-image,
+.fa-file-image {
+    color: $color-curious-blue;
+}
+
+.fa-docker {
+    color: $color-piction-blue;
+}
+
+.fa-file-pdf {
+    color: $color-flamingo;
+}

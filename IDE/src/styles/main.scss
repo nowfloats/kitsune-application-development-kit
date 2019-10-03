@@ -1,0 +1,40 @@
+/*Fonts*/
+@import "base/fonts";
+@import url(https://use.fontawesome.com/releases/v5.8.2/css/all.css);
+/*Base Styles*/
+@import "base/_typography";
+@import "~bulma";
+@import "~animate.css";
+
+@import "base/_variables";
+@import "base/_mixins";
+@import "base/_content";
+@import "base/_layout";
+@import "base/_buttons";
+
+/*Theme Styles*/
+@import "themes/_default";
+
+/*Component Styles*/
+@import "components/_login";
+@import "components/_header";
+@import "components/_sidebar";
+@import "components/_editor";
+@import "components/_footer";
+@import "components/_tab";
+@import "components/_contextMenu";
+@import "components/_loader";
+@import url(https://unpkg.com/react-select@1.2.0/dist/react-select.css);
+@import "components/_modals";
+@import "../../node_modules/react-redux-toastr/src/styles/index";
+@import "../../node_modules/kt-contexify/dist/ReactContexify.min.css";
+@import "components/pageStates";
+@import "components/schema";
+@import "components/_preview";
+@import "components/_toastr";
+@import "components/_tooltips";
+@import "components/_webform";
+@import "components/architecture";
+@import "components/treeview";
+@import "components/shared";
+

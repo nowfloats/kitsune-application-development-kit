@@ -1,0 +1,10 @@
+diff a/Kitsune/Kitsune.API2/DataHandlers/Mongo/MongoConnector-WebsiteCollection.cs b/Kitsune/Kitsune.API2/DataHandlers/Mongo/MongoConnector-WebsiteCollection.cs	(rejected hunks)
+@@ -100,7 +100,7 @@
+                 var kitsuneUserCollection = _kitsuneDatabase.GetCollection<UserModel>(KitsuneUserCollectionName);
+ 
+ 
+-                var isAuthorized = kitsuneUserCollection.Find(x => x._id == requestModel.DeveloperId).FirstOrDefault() != null;
++                var isAuthorized = kitsuneUserCollection.Find(x => x._id == requestModel.DeveloperId).Limit(1).FirstOrDefault() != null;
+                 if (!isAuthorized)
+                     return new CommonAPIResponse()
+                     {

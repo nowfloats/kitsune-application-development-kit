@@ -1,0 +1,35 @@
+@import '../../../variables';
+
+.stage2footer-container {
+	padding: 2em 2em 2em 3em;
+	background: $white;
+	border-radius: 0 0 $border-radius $border-radius;
+	border-top: 2px solid #f5f3f3;
+	display: flex;
+	justify-content: space-between;
+
+	section {
+		span {
+			padding: 0.2em;
+
+			&:first-child,
+			&:nth-child(2n) {
+				font-size: 20px;
+			}
+
+			&:nth-child(2n) {
+				color: $silverChalice;
+			}
+
+			&:last-child {
+				display: block;
+				padding-bottom: 0;
+			}
+		}
+	}
+
+	.position-for-loader{
+		padding: 0.2em 3.8em !important;
+		position: relative !important;
+	}
+}

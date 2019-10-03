@@ -1,0 +1,193 @@
+﻿@using KitsuneAdminDashboard.Web.IRazorPageExtensions
+@{
+    ViewData["Title"] = "Settings";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/style.css")" />
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/helper.css")" />
+}
+
+
+<div id="wrapper" class="toggled">
+
+    @Html.Partial("~/Views/Shared/Sidebar.cshtml")
+
+    @Html.Partial("~/Views/Shared/Modal.cshtml")
+
+    <div id="app" v-cloak v-on:keyup.esc="hideAllModals()">
+
+        <div class="container-fluid">
+
+            <div class="row pd-t0">
+                <k-header></k-header>
+            </div>
+
+        </div>
+
+        <div class="container-fluid p-5">
+            <div class="card col-md-12 col-xs-12">
+
+                <div class="row px-4 pb-5 mt-4 mb-3">
+                    <div class="col-md-6 col-xs-12">
+                        <h6>GENERAL SETTINGS</h6>
+                    </div>
+
+                    <div class="col-md-3 col-xs-3" :class="{'offset-md-3': isReadOnly}">
+                        <button class="btn kitsune-btn-primary px-5 float-right"
+                                v-on:click="editOrSaveUserData()">
+                            {{getSaveOrEditBtnText}}
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-xs-3" v-if="!isReadOnly">
+                        <button v-on:click="cancelEdit()" class="btn kitsune-btn-secondary px-4 float-right">Cancel</button>
+                    </div>
+                </div>
+
+                <form class="ml-4" v-on:submit.prevent>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label settings-form-label">Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="px-3 custom-input" autocomplete="off" autofocus
+                                   v-model="inputname"
+                                   placeholder="Name"
+                                   ref="nameInput"
+                                   :class="{'form-control-plaintext': isReadOnly, 'form-control': !isReadOnly}"
+                                   :disabled="isReadOnly">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label settings-form-label">Email</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="px-3 custom-input" placeholder="Email" autocomplete="off"
+                                   v-model="inputemail"
+                                   :class="{'form-control-plaintext': isReadOnly, 'form-control': !isReadOnly}"
+                                   :disabled="isReadOnly" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label settings-form-label">Phone Number</label>
+                        <div class="col-sm-8">
+                            <input type="tel" class="px-3 custom-input" placeholder="Phone" autocomplete="off"
+                                   v-model="inputphone"
+                                   :class="{'form-control-plaintext': isReadOnly, 'form-control': !isReadOnly}"
+                                   :disabled="isReadOnly" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label settings-form-label">Password</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="px-3 form-control-plaintext custom-input" placeholder="Password" autocomplete="off"
+                                   v-model="inputpassword"
+                                   :disabled="isReadOnly" />
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button"
+                                    class="btn kitsune-btn-primary px-3 float-right"
+                                    v-if="!isReadOnly"
+                                    v-on:click="onChangePasswordClick()">
+                                Change Password
+                            </button>
+                        </div>
+                    </div>
+
+                    <!--<div class="form-group row">
+                                    <label class="col-sm-3 col-form-label settings-form-label">Status</label>
+                         <div class="col-sm-8">
+                         <input type="text" readonly class="px-3 form-control-plaintext custom-input" placeholder="Status" autocomplete="off"
+                             v-model="status"
+                             :disabled="true" />
+                         </div>
+                </div>-->
+                    <!-- <div class="form-group row">
+                                    <div class="col-sm-3">
+                                        <a class="btn px-5 kitsune-btn-primary kitsune-btn-primary-filled no-outline white-color" href="Home/LogOut">LOGOUT</a>
+                                    </div>
+                                </div>
+                -->
+                </form>
+
+                @Html.Partial("~/Views/Settings/_modals.cshtml")
+            </div>
+        </div>
+
+        <div class="container-fluid p-5" v-if="webactionList.length > 0">
+            <div class="card col-md-12 col-xs-12">
+
+                <div class="row px-4 pb-5 mt-4 mb-3">
+                    <div class="col-md-6 col-xs-12">
+                        <h6>INBOX SETTINGS</h6>
+                    </div>
+                </div>
+
+                <div class="col-sm-8">
+                    <fieldset v-for="action in webactionList" class="mb-5 px-2">
+                        <label>{{getFormattedWebationName(action.Name)}}</label>
+                        <template v-if="action.WebsiteConfig && isEmailConfiguredForWebAction(action.WebsiteConfig)">
+                            <div v-for="config in action.WebsiteConfig" v-if="config.WebsiteId === customerData.websiteId" class="pb-2">
+                                <input type="text" v-model="config.Configuration.NotificaitonEmail" 
+                                       class="px-3 custom-input form-control"
+                                       autocomplete="off" 
+                                       autofocus
+                                       v-if="activeWebActionForUpdate && activeWebActionForUpdate.ActionId === action.ActionId"
+                                       v-bind:readonly="!activeWebActionForUpdate || activeWebActionForUpdate.ActionId != action.ActionId" />
+                                <p class="webaction-configure-email" v-else>{{config.Configuration.NotificaitonEmail}}</p>
+                            </div>
+                            <button class="btn kitsune-btn-secondary" v-on:click="editWebActionConfig(action)" v-if="!activeWebActionForUpdate">Edit</button>
+                            <button class="btn kitsune-btn-primary-filled" 
+                                    v-if="activeWebActionForUpdate && activeWebActionForUpdate.ActionId === action.ActionId"
+                                    v-on:click="updateWebAction">Save</button>
+                        </template>
+                        <div v-else>
+                            <button class="btn kitsune-btn-secondary" v-on:click="configureWebActionEmail(action)">Configure</button>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid p-5">
+            <div class="card p-3">
+                <div class="row px-4 my-3">
+                    <div class="col-md-10 col-xs-12">
+                        <h6>META INFORMATION</h6>
+                    </div>
+                </div>
+                <div class="row px-4 py-2">
+                    <div class="col-md-10 col-xs-12">
+                        <p>Sitemap.xml</p>
+                        <p class="meta-url">{{getSiteMapUrl}}</p>
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                        <button class="kitsune-btn-secondary px-3 float-right" v-on:click="openWindowWithUrl(getSiteMapUrl)">View</button>
+                    </div>
+                </div>
+                <div class="row px-4 py-2">
+                    <div class="col-md-10 col-xs-12">
+                        <p>Robots.txt</p>
+                        <p class="meta-url">{{getRobotsTxtUrl}}</p>
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                        <button class="kitsune-btn-secondary px-3 float-right" v-on:click="openWindowWithUrl(getRobotsTxtUrl)">View</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @Html.Partial("~/Views/Shared/HelpModal.cshtml")
+    </div>
+
+    @Html.Partial("~/Views/Shared/Header.cshtml")
+</div>
+
+<!--JS files-->
+@section scripts {
+    <script src="/k-admin/js/libs/moment.min.js"></script>
+
+    <script src="@this.AddFileVersionToPath("/k-admin/js/modal.js")"></script>
+    <script src="@this.AddFileVersionToPath("/k-admin/js/settings.js")"></script>
+}

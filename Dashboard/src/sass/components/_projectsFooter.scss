@@ -1,0 +1,32 @@
+@import "../variables";
+@import "../base";
+
+.project-card-footer{
+	min-height: 62px;
+}
+
+.project-status {
+	min-height: 61.78px;
+}
+
+.upload-action {
+	.upload-info {
+		padding: 0.4em 1.4em;
+		p {
+			color: $kitsune-orange;
+			margin-bottom: 0.5rem;
+			font-size: 0.9em;
+
+			&:last-child {
+				max-width: 80%;
+				margin-bottom: 0.2rem;
+				font-size: 0.8em;
+				overflow: hidden;
+				-ms-text-overflow: ellipsis;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				color: #000000;
+			}
+		}
+	}
+}

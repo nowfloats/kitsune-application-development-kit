@@ -1,0 +1,94 @@
+﻿@using KitsuneAdminDashboard.Web.IRazorPageExtensions
+@{
+    ViewData["Title"] = "CallTrackerLog";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/style.css")" />
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/helper.css")" />
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/calltracker/main.css")" />
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/calltracker/advancesearch.css")" />
+
+    <link rel="stylesheet" href="/k-admin/css/libs/flatpickr.css">
+}
+
+<div id="wrapper" class="toggled">
+    @Html.Partial("~/Views/Shared/Sidebar.cshtml")
+
+    <div class="container-fluid" id="app" v-cloak>
+
+        <div class="row pd-t0">
+            <k-header></k-header>
+        </div>
+
+        <div class="tracker-container" v-if="vmnEnabled && !isFetching" v-cloak>
+
+            <div class="vmn-filters">
+                <label class="mb-0">Contact Number  : </label>
+
+                <select class="base-input no-outline"
+                        v-on:change="selectedVMNChangeHandler"
+                        v-model="selectedVirtualMobileNumber">
+                    <option value="">All</option>
+                    <option :value="virtualMobileNumber" v-for="virtualMobileNumber in virtualMobileNumbers">
+                        {{virtualMobileNumber.orignalNumber}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="vmn-disabled" v-if="showWarning">
+                <span>
+                    Latest call tracking logs for {{selectedVirtualMobileNumber.orignalNumber}} aren't available since you've disabled the call tracker.
+                </span>
+                <i v-on:click="closeVMNWarning"
+                   class="fa fa-close close-warning"
+                   title="close"></i>
+            </div>
+
+            <advanced-search :update-filters="updateFilters"></advanced-search>
+
+            <div class="tables-container">
+
+                <calls-detail :missed-calls-count="missedCallsCount"
+                              :connected-calls-count="connectedCallsCount"
+                              :total-calls-count="totalCallsCount">
+                </calls-detail>
+
+                <tracker-log :calls-log="filteredLogs"></tracker-log>
+
+            </div>
+
+        </div>
+
+        <div class="zeroth-case" v-if="!vmnEnabled && !isFetching" v-cloak>
+            <img src="/k-admin/images/calltracker_zeroth_case.svg" alt="No call tracker logs available" />
+            <p style="cursor: pointer;" v-on:click="genericHelpModal.modalShowStatus = true">
+                Did you know that you can track all calls made to your website ? Please contact your developer for more details.
+            </p>
+        </div>
+
+        @Html.Partial("~/Views/Shared/HelpModal.cshtml")
+
+    </div>
+
+    @Html.Partial("~/Views/Shared/Modal.cshtml")
+    @Html.Partial("~/Views/CallTracker/_callTrackerLog.cshtml")
+    @Html.Partial("~/Views/CallTracker/_advancedSearch.cshtml")
+    @Html.Partial("~/Views/CallTracker/_callCounts.cshtml")
+    @Html.Partial("~/Views/Shared/Header.cshtml")
+
+</div>
+
+<!--JS files-->
+@section scripts {
+    <script src="/k-admin/js/libs/flatpickr.min.js"></script>
+    <script src="/k-admin/js/libs/vueflatpickr.min.js"></script>
+    <script src="/k-admin/js/libs/vue-paginate.min.js"></script>
+    <script src="/k-admin/js/libs/moment.min.js"></script>
+
+    <script src="@this.AddFileVersionToPath("/k-admin/js/modal.js")"></script>
+    <script src="@this.AddFileVersionToPath("/k-admin/js/calltracker/advancedsearch.js")"></script>
+    <script src="@this.AddFileVersionToPath("/k-admin/js/calltracker/callsdetail.js")"></script>
+    <script src="@this.AddFileVersionToPath("/k-admin/js/calltracker/calltrackerlog.js")"></script>
+    <script src="@this.AddFileVersionToPath("/k-admin/js/calltracker/main.js")"></script>
+}

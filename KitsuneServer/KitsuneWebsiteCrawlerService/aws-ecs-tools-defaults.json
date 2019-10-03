@@ -1,0 +1,23 @@
+
+{
+    "region" : "ap-south-1",
+    "profile" : "default",
+    "configuration" : "Release",
+    "tag"           : "kitsune_crawler:latest",
+    "cluster"       : "KitsuneServices",
+    "launch-type"   : "EC2",
+    "task-definition-name" : "KItsuneCrawler",
+    "task-definition-network-mode" : "bridge",
+    "task-definition-task-role"    : "arn:aws:iam::949868548106:role/ecsTaskExecutionRole",
+    "container-name"               : "app",
+    "container-memory-hard-limit"  : 8000,
+    "container-memory-soft-limit"  : 2000,
+    "container-port-mapping"       : "",
+    "container-environment-variables" : "",
+    "skip-image-push"                 : false,
+    "cluster-service"                 : "KitsuneCrawler",
+    "desired-count"                   : 4,
+    "deployment-minimum-healthy-percent" : 50,
+    "deployment-maximum-percent"         : 200,
+    "vstoolkit-deployment-mode"          : "DeployService"
+}

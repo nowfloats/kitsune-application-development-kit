@@ -1,0 +1,40 @@
+@import "../base";
+@import "../variables";
+
+.ball-loader{
+	width: $dot-width + 0px;
+	height: ($dot-width / 3) - 10px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.ball-loader-ball{
+	will-change: transform;
+	height:($dot-width / 3) - 10px;
+	width: ($dot-width / 3) - 10px;
+	border-radius: 50%;
+	background-color: $white;
+	position: absolute;
+	animation: grow 0.5s ease-in-out infinite alternate;
+
+	&.ball1{
+		left:0;
+		transform-origin: 100% 50%;
+	}
+	&.ball2{
+		left:50%;
+		transform: translateX(-50%) scale(1);
+		animation-delay: 0.15s;
+	}
+	&.ball3{
+		right:0;
+		animation-delay: 0.3s;
+	}
+}
+
+@keyframes grow{
+	to{
+		transform: translateX(-50%) scale(0);
+	}
+}

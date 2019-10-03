@@ -1,0 +1,32 @@
+image: golang
+
+pipelines:
+  branches:
+    master:
+       - step:
+          name: Prepare
+          script:
+            - echo "Hit that deploy!"
+            
+       - step:
+          caches:
+            - nodeglobal
+            - nodecache
+            - go
+          name: Deploy
+          deployment: production
+          trigger: manual
+          script:
+            - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD
+            - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD
+            - apt-get update
+            - curl -sL https://deb.nodesource.com/setup_10.x | bash
+            - apt-get -y install nodejs
+            - npm config set cache node_cache
+            - npm i -g serverless
+            - make deploy-prod -i
+definitions:
+  caches:
+    nodecache: node_cache
+    go: ~/gocode
+    nodeglobal: /usr/lib/node_modules

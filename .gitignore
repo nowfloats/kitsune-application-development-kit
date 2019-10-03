@@ -1,0 +1,11 @@
+**/bin
+**/obj
+**/Publish
+KitsuneServer/packages/
+IDE/my_known_hosts
+IDE/bitbucket-pipelines.yml
+IDE/package-lock-x.json
+IDE/yarn.lock
+KitsuneServer/.vs/
+PublishService/deploy.bat
+Dashboard/my_known_hosts

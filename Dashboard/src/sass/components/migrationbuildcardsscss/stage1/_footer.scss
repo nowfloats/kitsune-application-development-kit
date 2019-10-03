@@ -1,0 +1,26 @@
+@import '../../../variables';
+
+.footer-container {
+	color: $tundora;
+	background: $white;
+	padding: 2em 2em 2em 3em;
+	border-radius: 0 0 $border-radius $border-radius;
+	display: flex;
+	justify-content: space-between;
+
+	ul {
+		li {
+			margin-right: 3em;
+			display: inline-flex;
+			flex-direction: column;
+			font-size: 14px;
+		}
+	}
+
+	.percentage {
+		font-size: 30px;
+		opacity: 0.3;
+	}
+
+
+}

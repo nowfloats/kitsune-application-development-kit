@@ -1,0 +1,196 @@
+@import "../variables";
+@import "../base";
+
+.fourNotFour {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: $mercury;
+	background-image: url("../../assets/icons/fourNotFour.svg"), url("../../assets/icons/login-bg-img.svg");
+	background-repeat: no-repeat, no-repeat;
+	background-position: center 10%, bottom -30px left -70px;
+	background-size: 14rem 13rem, 200%;
+	height: 100%;
+
+	@include for-phone-only {
+		@media screen and (orientation: landscape){
+			background-position: center top, bottom -50px left -50px;
+			background-size: 11rem 8rem, 110%;
+		}
+
+		@media screen and (min-height: 600px) {
+			background-size: 15rem 18rem, 110%;
+		}
+	}
+
+	@include for-tablet-portrait-up {
+		background-position: center 10%, bottom -50px left -105px;
+		background-size: 27rem 23rem, 160%;
+
+		@media screen and (orientation: landscape){
+			background-position: center top, bottom -50px left -50px;
+			background-size: 11rem 12rem, 110%;
+		}
+	}
+
+	@include for-tablet-landscape-up {
+		background-position: center 10%, bottom -80px left -130px;
+		background-size: 38rem 35rem, 165%;
+
+		@media screen and (orientation: landscape){
+			background-position: center top, bottom -50px left -50px;
+			background-size: 20rem 22rem, 110%;
+		}
+
+		@media screen and (min-height: 767px) and (orientation: landscape){
+			background-position: center top, bottom -50px left -50px;
+			background-size: 20rem 30rem, 110%;
+		}
+	}
+
+	@include for-desktop-up {
+		background-position: center 10%, bottom -135px left -30px;
+		background-size: 26rem 18rem, 110%;
+
+		/*@media screen and (orientation: landscape){
+			background-position: center top, bottom -50px left -50px;
+			background-size: 30rem 36rem, 110%;
+		}*/
+	}
+
+	@include for-desktop-up-1300 {
+		background-position: center 10%, bottom -150px left -30px;
+		background-size: 20rem 22rem, 110%;
+	}
+
+	& > h1 {
+		text-align: center;
+		font-weight: $font-weight-normal;
+		font-size: 1.3em;
+		color: $scorpion;
+		margin-bottom: $padding-alpha;
+
+		@include for-phone-only {
+			@media screen and (orientation: landscape){
+				font-size: 1.2em;
+				margin-bottom: $padding-alpha/2;
+			}
+		}
+
+		@include for-tablet-portrait-up {
+			font-size: 2.2em;
+
+			@media screen and (orientation: landscape){
+				font-size: 1em;
+				margin-bottom: $padding-alpha/2;
+			}
+		}
+
+		@include for-tablet-landscape-up {
+			font-size: 2.8em;
+
+			@media screen and (orientation: landscape){
+				font-size: 1.7em;
+				margin-bottom: $padding-alpha/2;
+			}
+		}
+
+		@include for-desktop-up {
+			font-size: 2.2em;
+
+			@media screen and (orientation: landscape){
+				font-size: 2.5em;
+				margin-bottom: $padding-alpha;
+			}
+		}
+
+		@include for-desktop-up-1300 {
+			font-size: 1.7em;
+		}
+	}
+
+	& > h2 {
+		text-align: center;
+		font-weight: $font-weight-thin;
+		font-size: 0.9em;
+		color: $tundora;
+		margin-bottom: $padding-beta/2;
+
+		@include for-phone-only {
+			@media screen and (orientation: landscape){
+				font-size: 0.8em;
+				margin-bottom: $padding-alpha;
+			}
+		}
+
+		@include for-tablet-portrait-up {
+			font-size: 1.5em;
+
+			@media screen and (orientation: landscape){
+				font-size: 0.7em;
+				margin-bottom: $padding-alpha;
+			}
+		}
+
+		@include for-tablet-landscape-up {
+			font-size: 2em;
+			margin-bottom: $padding-beta;
+
+			@media screen and (orientation: landscape){
+				font-size: 1em;
+				margin-bottom: $padding-alpha;
+			}
+		}
+
+		@include for-desktop-up {
+			font-size: 1.4em;
+			padding-bottom: $padding-beta/2;
+
+			@media screen and (orientation: landscape){
+				font-size: 1.6em;
+				margin-bottom: $padding-alpha;
+			}
+		}
+
+		@include for-desktop-up-1300 {
+			font-size: 1em;
+		}
+	}
+
+	& > button {
+		@include for-phone-only {
+			@media screen and (orientation: landscape){
+				font-size: 0.7em;
+			}
+		}
+
+		@include for-tablet-portrait-up {
+			font-size: 1.2em;
+
+			@media screen and (orientation: landscape){
+				font-size: 0.7em;
+			}
+		}
+
+		@include for-tablet-landscape-up {
+			font-size: 1.5em;
+
+			@media screen and (orientation: landscape){
+				font-size: 0.9em;
+			}
+		}
+
+		@include for-desktop-up {
+			font-size: 1.2em;
+
+			@media screen and (orientation: landscape){
+				font-size: 1.3em;
+			}
+		}
+
+		@include for-desktop-up-1300 {
+			font-size: 1em;
+		}
+	}
+}

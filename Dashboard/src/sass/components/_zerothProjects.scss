@@ -1,0 +1,80 @@
+@import "../base";
+@import "../variables";
+
+.zeroth-projects {
+	color: $dustyGrey;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@include for-desktop-up {
+		margin-bottom: 4rem;
+	}
+
+	.zeroth-projects-button {
+		position: relative;
+	}
+
+	.zerothcase-title {
+		font-weight: $font-weight-light;
+		margin-bottom: 0.5rem;
+		text-align: center;
+		font-size: 1.8em;
+		line-height: 1.3;
+		color: $black;
+
+		@include text-gradient-animation($silver-chalice, $tundora);
+
+		@include for-tablet-portrait-up {
+			font-size: 3em;
+
+			@media screen and (orientation: landscape){
+				font-size: 2.5rem;
+				margin-bottom: .5rem;
+			}
+		}
+
+		@include for-tablet-landscape-up {
+			font-size: 3.5em;
+
+			@media (max-height: 600px) {
+				font-size: 2.7em;
+			}
+		}
+
+		@include for-desktop-up {
+			font-size: 4em;
+		}
+
+	}
+
+	.zeroth-create-button{
+		width: 20px;
+		height: 20px;
+		background: $kitsune-orange url("../../assets/icons/plus.svg") no-repeat center;
+		background-size: 17px;
+		border: none;
+		border-radius: 50%;
+		font-size: 1.2em;
+		padding: .2rem .4rem;
+		color: $white;
+
+		@include for-tablet-landscape-up {
+			font-size: .8em;
+		}
+	}
+
+	.ana-link {
+		color: $kitsune-orange;
+	}
+
+	.zeroth-subtitle {
+		font-size: 0.7rem;
+
+		@include for-tablet-portrait-up {
+			font-size: 1.1rem;
+		}
+	}
+
+}

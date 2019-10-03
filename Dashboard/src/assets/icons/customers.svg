@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="30px" viewBox="0 0 42 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 41.1 (35376) - http://www.bohemiancoding.com/sketch -->
+  <title>people-social-group-user</title>
+  <desc>Created with Sketch.</desc>
+  <defs></defs>
+  <g id="Project-Kitsune-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Dashboard" transform="translate(-34.000000, -736.000000)" fill="#FFFFFF">
+      <g id="Project-Dashboard" transform="translate(-1.000000, -2.000000)">
+        <g id="Side-menu">
+          <g id="Customers" transform="translate(24.000000, 738.500000)">
+            <g id="people-social-group-user" transform="translate(10.000000, 0.000000)">
+              <g id="ic_supervisor_account_24px" transform="translate(1.500000, 0.000000)">
+                <path d="M29.725,14.5 C32.554,14.5 34.8295,12.18 34.8295,9.32142857 C34.8295,6.46285714 32.554,4.14285714 29.725,4.14285714 C26.896,4.14285714 24.6,6.46285714 24.6,9.32142857 C24.6,12.18 26.896,14.5 29.725,14.5 Z M14.35,12.4285714 C17.753,12.4285714 20.4795,9.65285714 20.4795,6.21428571 C20.4795,2.77571429 17.753,0 14.35,0 C10.947,0 8.2,2.77571429 8.2,6.21428571 C8.2,9.65285714 10.947,12.4285714 14.35,12.4285714 Z M29.725,18.6428571 C25.9735,18.6428571 18.45,20.5485714 18.45,24.3392857 L18.45,29 L41,29 L41,24.3392857 C41,20.5485714 33.4765,18.6428571 29.725,18.6428571 Z M14.35,16.5714286 C9.5735,16.5714286 0,18.995 0,23.8214286 L0,29 L14.35,29 L14.35,24.3392857 C14.35,22.5785714 15.0265,19.4921429 19.2085,17.1514286 C17.425,16.7785714 15.703,16.5714286 14.35,16.5714286 Z" id="Shape"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

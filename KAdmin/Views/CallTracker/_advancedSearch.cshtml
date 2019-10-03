@@ -1,0 +1,46 @@
+﻿<template id="advancedSearch">
+    <div class="advanced-search-container">
+
+        <div class="row">
+            <div class="search col-md-custom-6">
+                <label class="label-width">Caller Number : </label>
+                <input v-model="filters.mobileNumber" class="base-input outline-none second-width no-outline" type="number" />
+                @*<img class="search-icon" src="/k-admin/images/search.svg" />*@
+            </div>
+
+            <div class="select-column col-md-custom-6">
+                <label class="label-width">Status : </label>
+                <select v-model="filters.status" class="base-input outline-none second-width pd-5 no-outline">
+                    <option value="">All</option>
+                    <option value="connected">Connected</option>
+                    <option value="missed">Missed</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="date col-md-custom-6">
+                <label class="label-width">Date : </label>
+                <div class="date-containers second-width">
+                    <flat-pickr class="base-input pd-5 no-outline" placeholder="Date" v-model="filters.startDate" :config="configStartDate"></flat-pickr>
+                    <label>to</label>
+                    <flat-pickr class="base-input pd-5 no-outline" placeholder="Date" v-model="filters.endDate" :config="config"></flat-pickr>
+                </div>
+            </div>
+
+            <div class="date col-md-custom-6">
+                <button v-on:click="clearAdvanceSearch"
+                        class="kitsune-btn-secondary no-outline no-outline-focus"
+                        v-if="showClearButton">reset</button>
+            </div>
+
+        </div>
+
+
+        @*<div class="row action-kbtns">
+            <button v-on:click="clearAdvancedPropertiesSearch" class="btn kitsune-btn-secondary px-5">Reset</button>
+            <button v-on:click="searchForAdvancedProperties" class="btn kitsune-btn-primary px-5">Search</button>
+        </div>*@
+    </div>
+</template>

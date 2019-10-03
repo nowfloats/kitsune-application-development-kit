@@ -1,0 +1,175 @@
+@import "../variables";
+@import "../icons";
+@import "../base";
+
+.user-dropdown {
+	width: $update-container-width-phone-only;
+	height: 100vh;
+	background-color: transparentize($white, .02);
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 105;
+	box-shadow: 0px 2px 5px 0px transparentize($black, .76);
+
+	@include for-tablet-portrait-up {
+		height: initial;
+		font-size: .9em;
+		font-weight: $font-weight-medium;
+		background-color: $white;
+		box-shadow: 0px 2px 5px 0px transparentize($black, .76);
+		position: absolute;
+		top: 42px;
+		right: -22px;
+		z-index: 106;
+		border-radius: $border-radius;
+	}
+
+	.user-details {
+		display: flex;
+		flex-direction: column;
+		padding: $user-dropdown-padding-alpha $user-dropdown-padding-beta $user-dropdown-padding-alpha*.67;
+
+		.user-avatar {
+			width: 70px;
+			height: 70px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 1rem;
+			border-radius: 50%;
+			box-shadow: 0 3px 6px 0 transparentize($black, .86);
+
+			img {
+				width: 70px;
+				height: auto;
+				border-radius: 50%;
+			}
+		}
+
+		h2 {
+			font-size: 1.4em;
+			padding-bottom: .2rem;
+		}
+
+		span {
+			display: inline-block;
+			color: $kitsune-orange;
+			padding: 0 0 .2rem;
+			font-size: .8rem;
+			width: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+}
+
+.user-menu {
+	li {
+		border-top: .5px solid $alto;
+		padding: $padding-alpha*.9 $user-dropdown-padding-beta;
+		padding-left: $padding-beta;
+		position: relative;
+		cursor: pointer;
+		font-weight: 400;
+
+		span {
+			font-size: .9rem;
+			color: $emperor;
+		}
+
+		a {
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		&:hover {
+			background-color: transparentize($black, .9);
+		}
+	}
+}
+
+.user-copyright {
+	width: 100%;
+	padding: 5px;
+	background-color: $wild-sand;
+	font-size: .7rem;
+	color: $nobel;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+
+	@include for-tablet-portrait-up {
+		padding: .45rem;
+		position: unset;
+		background-color: $wild-sand;
+		font-size: .7rem;
+		color: $nobel;
+		text-align: center;
+	}
+}
+
+.user-dropdown::before {
+	display: none;
+
+	@include for-tablet-portrait-up {
+		display: block;
+		content: '';
+		width: 0;
+		height: 0;
+		border-left: 15px solid transparent;
+		border-right: 15px solid transparent;
+		border-bottom: 15px solid $white;
+		position: absolute;
+		top: -11px;
+		right: 20px;
+	}
+}
+
+.profile-header {
+	height: $updates-header-height;
+	padding: $padding-alpha*1.2 $padding-alpha $padding-alpha $padding-alpha*2.7;
+	color: $dove-gray;
+	font-weight: $font-weight-medium;
+	background: url("../../assets/icons/account-dark.svg") no-repeat $padding-alpha 17px;
+	background-size: $updates-icon-width auto;
+	box-shadow: 0px 2px 5px 0px transparentize($black, .76);
+	box-sizing: unset;
+
+	.back-arrow-profile {
+		@include updates-back-arrow
+	}
+
+	@include for-tablet-portrait-up {
+		display: none;
+		background-position: $padding-alpha;
+		background-size: $updates-icon-width*1.2 auto;
+	}
+}
+#profile-wallet {
+	display: inline-block ;
+	border: 1px solid $alto ;
+	background-color: $wild-sand;
+	color: $dove-gray ;
+	margin-bottom: 1rem ;
+	margin-left: 1.8rem ;
+	padding: .2rem;
+	line-height: 1.5;
+
+	span {
+		&span:first-child {
+			margin-left: .3rem;
+		}
+	}
+
+	button {
+		color: $kitsune-orange ;
+		background: $white;
+		box-shadow: 0 1px 2px 0 transparentize($black, .85);
+	}
+
+	@include for-tablet-landscape-up {
+		display: none;
+	}
+}

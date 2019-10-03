@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  kitsune.api2:
+    image: kitsune.api2
+    build:
+      context: ./Kitsune.API2
+      dockerfile: Dockerfile

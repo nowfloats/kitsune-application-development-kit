@@ -1,0 +1,140 @@
+﻿@using KitsuneAdminDashboard.Web.IRazorPageExtensions
+
+@{
+    ViewData["Title"] = "Inbox";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/helper.css")" />
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/js/vue-form-generator/vfg.css")" />
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/schema/main.css")" />
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/webaction/webaction.css")" />
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/common/imageprocessor.css")" />
+}
+
+<div id="wrapper" class="toggled">
+
+    @Html.Partial("~/Views/Shared/Sidebar.cshtml")
+
+    <div class="container-fluid" id="app" v-cloak>
+
+        <div class="row pd-t0">
+            <k-header></k-header>
+        </div>
+        <!-- Header Start -->
+        <section class="row">
+            <div class="col-md-12 col-lg-6">
+                <h4 v-on:click="gotoInbox" class="cursor-pointer">INBOX</h4>
+            </div>
+            <div class="col-md-12 col-lg-6 float-right" v-show="!showTable">
+                <input class="form-control p-3" v-model="searchQuery" type="text" placeholder="Search Inbox">
+            </div>
+        </section>
+        <!-- Header end -->
+        <!-- webactions cards start-->
+        <div class="row" v-if="!showTable">
+            <div class="col-md-12 col-lg-6 mb-3 webaction-card" v-for="webaction in filterWebactions" v-if="showWebactions">
+                <div class="card p-3" :title="processDescription(webaction.Description)">
+                    <div class="col-xs-12 my-3 details-container">
+                        <h5>{{formatPropertyName(webaction.DisplayName)}}</h5>
+                        <span>{{processDescription(webaction.Description, true)}}</span>
+                    </div>
+                    <div class="col-xs-12">
+                        @*<span class="inbox-stats-count">120 Users</span>*@
+                        <button v-on:click="selectedWebactionChange(webaction)" class="btn kitsune-btn-secondary float-right invisible">Manage</button>
+                    </div>
+                </div>
+            </div>
+            <div class="zeroth-case" v-if="!showWebactions">
+                <img src="/k-admin/images/inbox_zeroth_case.png" alt="No inbox data available" />
+                <p style="cursor: pointer;" v-on:click="genericHelpModal.modalShowStatus = true">No Data Available</p>
+            </div>
+        </div>
+        <!-- webactions cards end-->
+        <!-- todo : beadcrumbs and  back -->
+
+        <div class="container-fluid schema-outer-container mt-5" v-if="showTable">
+
+            <div class="row">
+                <div class="col-md-8 col-12" v-if="showTable">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item cursor-pointer" v-on:click="gotoInbox">inbox</li>
+                        <li class="breadcrumb-item cursor-pointer" v-on:click="breadcrumbsHistoryJump(-1)">home</li>
+                        <li class="breadcrumb-item cursor-pointer" v-for="(point, index) in history" v-on:click="breadcrumbsHistoryJump(index)">
+                            {{point.displayName}}
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="save-btn-container col-md-4 col-12">
+                    <!--<div>
+                    <button v-if="showTable && !isBase" v-on:click="backButton" class="btn">back</button>
+                </div>-->
+                    <div>
+                        <button class="btn kitsune-btn-secondary"
+                                v-if="showTable && !areFieldsEditable && !isBase"
+                                v-on:click="togglePropertiesButtons">
+                            Edit All
+                        </button>
+
+                        <button v-if="showTable && areFieldsEditable && !isBase" v-on:click="togglePropertiesButtons" class="btn btn-default btn-icon icon-left kitsune-btn-secondary">
+                            cancel
+                            <i class="entypo-cancel"></i>
+                        </button>
+
+                        <button v-if="showTable && areFieldsEditable" v-on:click="addOrUpdateData" class="btn btn-green btn-icon icon-left kitsune-btn-primary">
+                            save
+                            <i class="entypo-floppy"></i>
+                        </button>
+
+                        <button type="button" style="display:none" id="uploadFileInit" class="btn btn-primary" data-toggle="modal" data-target="#fileupload">
+                            upload file
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div v-if="showTable" class="row">
+                <div class="schema-container" id="schemaContainer">
+                    <vue-form-generator :schema="schema" :model="currentWebactionData"></vue-form-generator>
+                </div>
+            </div>
+        </div>
+
+        <!-- upload modal -->
+        @Html.Partial("~/Views/Shared/_upload.cshtml")
+
+        <!-- Update Confimation Modal -->
+        @Html.Partial("~/Views/Webaction/_UpdateConfirmation.cshtml")
+
+        <!-- Delete Confirmation Modal -->
+        @Html.Partial("~/Views/Webaction/_DeleteConfirmation.cshtml")
+
+
+        @Html.Partial("~/Views/Shared/HelpModal.cshtml")
+
+    </div>
+    @Html.Partial("~/Views/Shared/Header.cshtml")
+    @Html.Partial("~/Views/Shared/Modal.cshtml")
+</div>
+
+
+
+
+<!-- built files will be auto injected -->
+@section scripts {
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/modal.js")"></script>
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/vue-form-generator/vfg.js")"></script>
+
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/webaction/waschema.js")"></script>
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/webaction/helper.js")"></script>
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/webaction/webaction.js")"></script>
+
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/dropzone.min.js")"></script>
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/jquery.Jcrop.min.js")"></script>
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/caman.min.js")"></script>
+
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/dropzone.js")"></script>
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/imageprocessor.js")"></script>
+}

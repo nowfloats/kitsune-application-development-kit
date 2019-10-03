@@ -1,0 +1,40 @@
+﻿<!-- Need Help Start -->
+<k-modal v-cloak
+         modal-title="Having Issues ?"
+         save-text="Save changes"
+         size="lg"
+         v-if="genericHelpModal.modalShowStatus"
+         :close-modal="resetAndHideGenericHelpModal">
+    <div slot="modal-body">
+        <div class="container">
+            <form>
+                <div class="form-group">
+                    <label style="color: black">Subject</label>
+                    <input type="text" readonly v-model="genericHelpModal.supportEmailForm.subject" class="form-control-plaintext" placeholder="enter the subject" />
+                </div>
+                <div class="form-group">
+                    <label style="color: black" class="generic-support-modal-label">Message</label>
+                    <textarea class="form-control textarea-no-resize" v-model="genericHelpModal.supportEmailForm.message" rows="6" placeholder="enter your message"></textarea>
+                </div>
+                <div class="form-group" v-if="!isGenericSupportEmailFormValid()">
+                    <label class="modal-error-label">please enter a message</label>
+                </div>
+                <div class="form-group" v-if="!genericHelpModal.supportEmailForm.image">
+                    <input type="file" id="image-file-input" accept="image/*" class="input-file-upload" v-on:change="genericHelpModalProcessUploadedFile" />
+                    <label for="image-file-input" class="modal-btn-action">Upload an image</label>
+                </div>
+                <div class="form-group" v-else>
+                    <label class="label-attached-image">Attached Image: {{genericHelpModal.supportEmailForm.image.name}}</label>
+                    <span v-on:click="genericHelpModal.supportEmailForm.image = null"><i class="fa fa-times"></i></span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div slot="modal-footer">
+        <button class="modal-btn-save modal-footer-btn" v-on:click="sendGenericSupportEmail" v-if="isGenericSupportEmailFormValid()">
+            Send Email
+        </button>
+        <button class="modal-btn-cancel modal-footer-btn" v-on:click="resetAndHideGenericHelpModal">Cancel</button>
+    </div>
+</k-modal>
+<!-- Need Help End -->

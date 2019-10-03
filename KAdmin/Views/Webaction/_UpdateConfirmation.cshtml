@@ -1,0 +1,13 @@
+﻿<k-modal modal-title="Pending Changes"
+         save-text="yes"
+         size="md"
+         v-if="modalShowStatus.update"
+         :save-action="saveUnsavedChanges"
+         :cancel-action="discardUnsavedChanges"
+         :close-modal="hideAllModals">
+    <div slot="modal-body">
+        <div class="container">
+            You might be having unsaved changes for {{modelNameForUpdate}}. Do you want to save any pending changes?
+        </div>
+    </div>
+</k-modal>

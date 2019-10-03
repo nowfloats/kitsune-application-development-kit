@@ -1,0 +1,330 @@
+@import "../variables";
+@import "../base";
+
+.billing-container {
+	box-sizing: border-box;
+	background-color: $alabaster;
+
+	.section-title {
+		padding: $padding-alpha/2 0;
+		font-weight: $font-weight-normal;
+	}
+
+	.title {
+		width: 100%;
+		font-weight: bold;
+
+
+		& span {
+			color: $silver;
+
+			&.active {
+				color: $kitsune-orange;
+				border: none;
+			}
+
+			&:hover {
+				text-decoration: underline;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.billing-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex-direction: column;
+		width: 100%;
+		height: $main-content-height-phone;
+		overflow-y: auto;
+		overflow-x: hidden;
+
+		@include for-tablet-portrait-up {
+			height: $main-content-height;
+		}
+
+		@include for-desktop-up {
+			flex-direction: row;
+			align-items: flex-start;
+		}
+	}
+
+	.usage {
+		width: 100%;
+		margin-bottom: $padding-beta/2;
+		border-right: $border-radius;
+		border-radius: $border-radius;
+
+		@include for-desktop-up {
+			width: calc(100% - #{$transaction-width} - #{$padding-beta/2});
+			margin-bottom: 0;
+			height: $billing-section-height;
+		}
+
+		.billing-tab-container {
+			.billing-tab {
+				background-color: $silver-chalice;
+				padding: .5rem;
+				font-weight: $font-weight-normal;
+				font-size: .9rem;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+				border: none;
+				z-index: 1;
+
+				&:hover {
+					text-decoration: none;
+				}
+
+				&.active, &:focus {
+					background-color: $white;
+					outline: 0;
+					box-shadow: 0 0 5px 0 transparentize($black, .86);
+					border: none;
+				}
+			}
+		}
+
+		.select-duration {
+			position: relative;
+			padding: .4rem 0 .1rem;
+			background-color: $white;
+			border-radius: 0 $border-radius 0 0 ;
+			z-index: 2;
+			box-shadow: 0 2px 5px 0 transparentize($black, .76);
+
+			&.hide {
+				display: none;
+			}
+
+			&.row {
+				margin-left: 0;
+				margin-right: 0;
+			}
+		}
+
+		.content-section {
+			@include for-desktop-up {
+				height: 84%;
+			}
+
+			.billing-graph {
+				width: 100%;
+				min-height: 350px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				padding: $padding-alpha 0 0 $padding-alpha;
+				background-color: $white;
+				border-radius: $border-radius;
+				position: relative;
+				box-shadow: 0 2px 5px 0 transparentize($black, .76);
+
+				@include for-desktop-up {
+					height: 100%;
+					min-height: unset;
+				}
+			}
+		}
+
+		.billing-message {
+			font-size: 1.2em;
+			color: $grey;
+
+			@include for-tablet-portrait-up {
+				font-size: 1.5em;
+			}
+		}
+
+		.storage {
+			position: relative;
+			height: 70vh;
+			padding: $padding-alpha;
+			border-radius: 0 $border-radius $border-radius;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			z-index: 2;
+			background-color: $white;
+			box-shadow: 0 2px 5px 0 transparentize($black, .76);
+
+			@include for-desktop-up {
+				height: $billing-section-height*0.93;
+			}
+		}
+	}
+
+	.transaction-invoice {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 100%;
+
+		@include for-desktop-up {
+			max-width: 400px;
+			height: $billing-section-height;
+		}
+
+		.transaction {
+
+			.transaction-header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				border-radius: $border-radius $border-radius 0 0;
+				position: relative;
+				z-index: 1;
+				background-color: $white;
+				padding: $padding-alpha;
+				box-shadow: 0 2px 5px 0 transparentize($black, .76);
+
+				p {
+					&:last-child {
+						margin-right: 1rem;
+					}
+				}
+			}
+
+			.transaction-content {
+				width: 100%;
+				max-height: 70vh;
+				background-color: $white;
+				border-radius: $border-radius;
+				box-shadow: 0 2px 5px 0 transparentize($black, .76);
+				overflow-y: auto;
+				position: relative;
+
+				@include for-desktop-up {
+					height: $billing-section-height * .54;
+				}
+
+				.transactions {
+					display: flex;
+					justify-content: space-between;
+					padding: $padding-alpha/1.5 $padding-alpha;
+
+					&:nth-child(odd) {
+						background-color: $alabaster;
+					}
+
+					p {
+						font-size: .8em;
+						font-weight: $font-weight-normal;
+						color: transparentize($boulder, .4);
+						cursor: pointer;
+
+						&.debit {
+							color: $kitsune-orange;
+						}
+
+						&:last-child {
+							font-size: .7em;
+							font-weight: $font-weight-normal;
+						}
+					}
+				}
+			}
+
+			.transactions-zeroth {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				height: $billing-section-height * .5;
+				font-size: 1.2em;
+				color: $grey;
+			}
+		}
+
+		.invoice {
+			justify-content: flex-end;
+
+			.invoice-title {
+				margin-top: 2.5em;
+				margin-bottom: $padding-alpha/2;
+				font-weight: $font-weight-normal;
+			}
+
+			.invoice-body {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-direction: column;
+				background-color: $white;
+				padding: $padding-alpha;
+				box-shadow: 0 2px 5px 0 transparentize($black, .76);
+				border-radius: $border-radius;
+				min-height: 25vh;
+				margin-bottom: $padding-alpha;
+
+				@include for-tablet-portrait-up {
+					padding: $padding-alpha*2;
+					flex-direction: row;
+					min-height: unset;
+				}
+
+				@include for-desktop-up {
+					padding: $padding-alpha;
+					margin-bottom: 0;
+				}
+
+				@include for-medium-desktop-up {
+					padding: $padding-alpha
+				}
+
+				.invoice-select {
+					width: 100%;
+
+					@include for-tablet-portrait-up {
+						width: 30%;
+					}
+				}
+
+				.invoice-select-year {
+					width: 100%;
+
+					@include for-tablet-portrait-up {
+						width: 80px;
+						margin-left: -2rem;
+					}
+				}
+
+				.invoice-btn {
+					padding: 0.4rem $padding-alpha*0.8 0.4rem $padding-alpha*1.7;
+					background: url("../../assets/icons/invoice-download.png") no-repeat left 7px center;
+					transition: all 100ms ease-in-out;
+
+					&:hover {
+						color: $kitsune-orange;
+						transform: translateY(-1px);
+						box-shadow: 0 1px 5px 0 transparentize($kitsune-orange, .5);
+					}
+				}
+
+				.loading {
+					padding: $padding-alpha;
+					position: relative;
+					width: 104px;
+				}
+
+				.link-not-found {
+					color: $red;
+					font-size: .7em;
+					line-height: 1.15;
+
+					@include for-tablet-portrait-up {
+						width: 140px;
+					}
+				}
+			}
+		}
+	}
+
+	.zeroth-image {
+		width: 50px;
+		margin: -1em 0 .8em;
+	}
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="11px" viewBox="0 0 13 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46 (44423) - http://www.bohemiancoding.com/sketch -->
+    <title>Enter key icon submit action web form</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="IDE" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Project-webform-builder-IDE---All" transform="translate(-18.000000, -225.000000)" fill="#FFFFFF" fill-opacity="0.30">
+            <g id="IDE" transform="translate(-8.000000, -165.000000)">
+                <g id="Language--/-Schema" transform="translate(8.000000, 203.000000)">
+                    <g id="All-Languages" transform="translate(0.000000, 1.000000)">
+                        <g id="Left-bar">
+                            <g id="Webforms" transform="translate(9.000000, 175.000000)">
+                                <g id="Enter-key-icon-submit-action-web-form" transform="translate(9.000000, 11.000000)">
+                                    <g id="Capa_1">
+                                        <path d="M12.5,0 L4.5,0 C4.2245,0 4,0.2245 4,0.5 L4,5 C4,6 3,6 3,6 L0.5,6 C0.2245,6 0,6.2245 0,6.5 L0,10.5 C0,10.7755 0.2245,11 0.5,11 L12.5,11 C12.7755,11 13,10.7755 13,10.5 L13,0.5 C13,0.2245 12.7755,0 12.5,0 Z M10.5,5.5 C10.5,6.218 9.832,7.5 8.5,7.5 L6.707,7.5 L7.6035,8.3965 C7.799,8.592 7.799,8.908 7.6035,9.1035 C7.506,9.201 7.378,9.25 7.25,9.25 C7.122,9.25 6.994,9.201 6.8965,9.1035 L5.1465,7.3535 C4.951,7.158 4.951,6.842 5.1465,6.6465 L6.8965,4.8965 C7.092,4.701 7.408,4.701 7.6035,4.8965 C7.799,5.092 7.799,5.408 7.6035,5.6035 L6.707,6.5 L8.5,6.5 C9.199,6.5 9.5,5.741 9.5,5.5 L9.5,4.5 C9.5,4.2235 9.7235,4 10,4 C10.2765,4 10.5,4.2235 10.5,4.5 L10.5,5.5 Z" id="Shape"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

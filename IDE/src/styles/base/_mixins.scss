@@ -1,0 +1,141 @@
+@import "bourbon";
+
+@mixin media-min-width($width) {
+	@media (min-width: $width) {
+		@content;
+	}
+}
+@mixin media-max-width($width) {
+	@media (max-width: $width) {
+		@content;
+	}
+}
+@mixin media-min-height($height) {
+	@media (min-height: $height) {
+		@content;
+	}
+}
+@mixin media-max-height($height) {
+	@media (max-height: $height) {
+		@content;
+	}
+}
+
+@mixin node-type($typeName, $node-color-hex, $node-color-rgba) {
+	&.node-#{$typeName} {
+		border: 1px solid $node-color-hex;
+		color: $node-color-hex;
+
+		&:hover {
+			background: $node-color-rgba;
+		}
+	}
+}
+
+//Gradient shorthand
+@mixin gradient($top, $bottom) {
+	background: $top; /* Old browsers */
+	background: -moz-linear-gradient(top, $top 0%, $bottom 100%); /* FF3.6+ */
+	background: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0%, $top),
+		color-stop(100%, $bottom)
+	); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(
+		top,
+		$top 0%,
+		$bottom 100%
+	); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, $top 0%, $bottom 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, $top 0%, $bottom 100%); /* IE10+ */
+	background: linear-gradient(to bottom, $top 0%, $bottom 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+// Border radius shorthand
+@mixin border-radius($radius) {
+	border-radius: $radius;
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	-o-border-radius: $radius;
+}
+
+@mixin waves($no-of-waves) {
+	@for $i from 1 through $no-of-waves {
+		$offset: -100px * $i * 4;
+
+		.wave-#{$i} {
+			@include wave-animation($i, $wave-top-position, 10s + $i * 2);
+			background-image: url("../images/wave-#{$i}.svg");
+
+			@include media-min-width(900px) {
+				top: $wave-top-position;
+			}
+		}
+
+		@keyframes wave-#{$i} {
+			0% {
+				margin-left: $offset;
+			}
+			100% {
+				margin-left: -1600px + $offset;
+			}
+		}
+	}
+
+	@keyframes swell {
+		0%,
+		100% {
+			transform: translate3d(0, -25px, 0);
+		}
+		50% {
+			transform: translate3d(0, 5px, 0);
+		}
+	}
+}
+
+@mixin wave-animation($wave-no, $wave-top-position, $duration) {
+	position: absolute;
+	top: $wave-top-position;
+	width: 6400px;
+	height: 198px;
+	animation: wave-#{$wave-no} $duration cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite,
+		swell $duration ease -1.25s infinite;
+	background-repeat: repeat-x;
+}
+
+@mixin webform-field-icon($width, $url) {
+	&:before {
+		content: "";
+		width: $width;
+		height: 18px;
+		background: url($url) no-repeat center;
+		background-size: contain;
+		vertical-align: middle;
+		opacity: 0.6;
+	}
+}
+
+@mixin webform-field-icon-fb($url) {
+	&:before {
+		content: "";
+		width: 13px;
+		height: 18px;
+		background: url($url) no-repeat center;
+		background-size: contain;
+		vertical-align: middle;
+		position: absolute;
+		left: 13px;
+		top: 10px;
+	}
+}
+
+@mixin tab-image($url) {
+	content: "";
+	width: 10px;
+	height: 10px;
+	background: url($url) no-repeat center;
+}

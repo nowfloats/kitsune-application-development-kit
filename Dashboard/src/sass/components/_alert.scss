@@ -1,0 +1,78 @@
+@import "../variables";
+
+.alert-item {
+	border-radius: 0.2rem;
+
+	&.user-alert {
+		color: $white;
+		background: -webkit-linear-gradient(left, $atomic-tangerine , $vermilion);
+		background: -o-linear-gradient(right, $atomic-tangerine, $vermilion);
+		background: -moz-linear-gradient(right, $atomic-tangerine, $vermilion);
+		background: linear-gradient(to right, $atomic-tangerine , $vermilion);
+	}
+
+	&.user-notify {
+		color: $boulder;
+		background: -webkit-linear-gradient(left, $gallery , $alto);
+		background: -o-linear-gradient(right, $gallery, $alto);
+		background: -moz-linear-gradient(right, $gallery, $alto);
+		background: linear-gradient(to right, $gallery , $alto);
+
+		& > .alert-line {
+			border-top-color: transparentize($boulder, .7);
+		}
+	}
+
+	&.user-read {
+		opacity: 0.3;
+	}
+}
+
+.alert-item-title {
+	padding: $padding-alert $padding-alert $padding-alert/2 $padding-alert;
+	font-weight: $font-weight-bold;
+	font-size: 0.9em;
+}
+
+.alert-item-content {
+	padding: 0 $padding-alert;
+	font-size: 0.7em;
+	line-height: 1.3;
+	margin-bottom: $padding-alert;
+}
+
+.alert-line {
+	border-top: 1px solid transparentize($white, .6);
+	border-bottom: none;
+	margin: 0 0 $padding-alert/2 0;
+}
+
+.alert-item-action {
+	padding: 0 $padding-alert $padding-alert/2;
+
+	a {
+		font-size: .7em;
+		color: inherit;
+		letter-spacing: .7px;
+		font-weight: 600;
+		text-decoration: none;
+		padding: 9px 0;
+
+		&:hover {
+			color: inherit;
+			text-decoration: none;
+		}
+
+		&:focus {
+			color: inherit;
+			outline: 0;
+		}
+	}
+
+	span {
+		font-size: 0.6em;
+		font-weight: $font-weight-medium;
+		float: right;
+		margin-top: 0.1rem;
+	}
+}

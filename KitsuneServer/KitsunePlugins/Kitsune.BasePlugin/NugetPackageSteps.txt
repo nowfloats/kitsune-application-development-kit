@@ -1,0 +1,8 @@
+﻿
+
+https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package
+
+
+nuget pack Kitsune.BasePlugin.nuspec
+
+nuget push Kitsune.BasePlugin.1.0.2.7.nupkg 15361db6-fd29-499e-96d6-93a0315ec87d -Source https://nuget.withfloats.com/api/v2/package

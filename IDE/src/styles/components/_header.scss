@@ -1,0 +1,310 @@
+.header {
+	background-color: $color-emperor;
+	display: flex;
+	justify-content: space-between;
+	height: $header-height;
+	transition: all 500ms ease;
+	user-select: none;
+
+
+	.kitsune-logo {
+		width: 50px;
+		padding: 7px $k-padding-m 0;
+		outline-color: transparent;
+
+		&:focus {
+			outline: 0;
+		}
+
+		img{
+			width:100%;
+		}
+	}
+
+	&-nav {
+		vertical-align: top;
+		display: inline-flex;
+		margin: 0 auto 0 10px;
+		padding: 0;
+		list-style: none;
+
+		.line-separator {
+			display: unset;
+			padding: 0;
+
+			hr {
+				margin: 5px 0;
+				border: none;
+				border-top: 1px solid $color-gallery;
+			}
+		}
+		&>li>p{
+			text-transform: uppercase;
+			font-weight: 600;
+			font-size: 0.75em;
+		}
+		p {
+			display: flex;
+			align-items: center;
+			color: $color-white;
+			text-decoration: none;
+			padding: 0 10px;
+			position: relative;
+			height: 100%;
+			font-size: 14px;
+			cursor: pointer;
+
+			&:focus {
+				outline: 0;
+			}
+		}
+
+		li {
+			position: relative;
+
+			ul {
+				padding: 5px 0;
+				background-color: $color-white;
+			}
+
+			li {
+				display: flex;
+				padding: 0 10px;
+				cursor: pointer;
+
+				p {
+					background-color: $color-white;
+					color: $color-ebony-clay;
+					padding: 2px 10px 2px 5px;
+					min-width: 140px;
+					font-size: 0.75em;
+
+					&.is-mapped {
+						position: relative;
+					}
+
+					.component_selected_icon {
+						color : $color-dusty-gray;
+						position: absolute;
+						right: 0;
+					}
+
+					.component_not_selected_icon {
+						visibility: hidden;
+					}
+
+					strong {
+						font-weight: bold;
+						padding-left: 5px;
+					}
+				}
+				span {
+					color: $color-dusty-gray;
+					font-size: 11px;
+					line-height: 2em;
+					cursor: default;
+				}
+
+				> p:first-child:nth-last-child(2):before {
+					border-left-color: $color-white;
+					margin-top: -5px;
+				}
+
+				&:hover > a:first-child:nth-last-child(2):before {
+					border: 5px solid transparent;
+					border-right-color: $color-flamingo;
+					right: 10px;
+				}
+			}
+
+			&:hover > p {
+				color: $color-flamingo;
+				background-color: $color-white;
+
+				a {
+					color: $color-flamingo;
+				}
+			}
+		}
+
+		> li {
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			&:hover {
+				> ul {
+					left: auto;
+					padding: $k-padding-s 0;
+					min-width: 100%;
+					z-index: 101;
+					@include border-radius(0 0 $k-radius $k-radius);
+				}
+
+				> p:first-child:nth-last-child(2):before {
+					border: 5px solid transparent;
+					border-bottom-color: $color-flamingo;
+					margin-top: -5px;
+				}
+			}
+
+			li {
+
+				ul {
+					border-left: 1px solid $color-silver-chalice;
+				}
+
+				&:hover > ul {
+					left: 100%;
+					top: -1px;
+					padding: $k-padding-s 0;
+					min-width: 100%;
+					z-index: 101;
+					@include border-radius(0 0 $k-radius $k-radius);
+				}
+			}
+
+			> p {
+				&:first-child:nth-last-child(2):before {
+					border-top-color: $color-white;
+				}
+			}
+		}
+
+		ul {
+			position: absolute;
+			white-space: nowrap;
+			z-index: 1;
+			left: -99999em;
+		}
+
+		.header-toggle {
+			a {
+				padding: 0 14px;
+			}
+		}
+	}
+
+	&-actions {
+		display: inline-flex;
+		color: $color-white;
+
+		li {
+			display: flex;
+			align-items: center;
+			padding: 0 15px;
+			justify-content: center;
+			cursor: pointer;
+
+			img {
+				width: 35px;
+				border-radius: 50%;
+			}
+
+			&.profile {
+				position: relative;
+
+				img {
+					border: 1px solid transparentize($color-white, .9);
+				}
+
+				ul {
+					padding: $k-padding-s 0;
+					background-color: $color-white;
+					cursor: default;
+					position: absolute;
+					white-space: nowrap;
+					z-index: 1;
+					visibility: hidden;
+					top: $header-height;
+					right: 0;
+
+					li {
+						border-right: none;
+						padding: 2px;
+
+						a {
+							color: $color-ebony-clay;
+							padding: 2px 20px 2px 10px;
+							min-width: 100px;
+							font-size: 12px;
+							text-decoration: none;
+							text-align: left;
+						}
+					}
+
+					li:hover {
+
+						a {
+							color: $color-flamingo;
+						}
+					}
+				}
+				&:hover {
+					background-color: $color-white;
+
+					> ul {
+						min-width: 100%;
+						z-index: 101;
+						visibility: visible;
+						@include border-radius(0 0 0 $k-radius);
+					}
+				}
+			}
+		}
+
+		.settings {
+			background: url("../images/settings.svg");
+			border: none;
+			background-size: 25px;
+			background-repeat: no-repeat;
+			padding: 15px;
+			background-position: center center;
+		}
+
+		.build {
+			cursor: default;
+			button, .btn {
+				padding: 0 10px;
+				display: flex;
+				align-items: center;
+				border-radius: 3px;
+				font-size: 12px;
+				cursor: pointer;
+				height: 30px;
+				transition: background 200ms ease-in-out;
+				border: 2px solid $color-raven;
+				background: $color-ebony-clay;
+				color: $color-jungle-mist;
+				font-weight: 500;
+				text-transform: uppercase;
+
+				&.disabled,
+				&.disabled:hover {
+					cursor: not-allowed;
+					pointer-events: none;
+					background: $color-ebony-clay;
+					opacity: 0.5;
+				}
+
+				&:hover {
+					background: $color-flamingo-light;
+					color: $color-white;
+					border-color: $color-flamingo-light;
+				}
+
+				&:before {
+					content: "";
+					border-top: 5px solid transparent;
+					border-bottom: 5px solid transparent;
+					border-left: 8px solid #fff;
+					padding-right: 8px;
+				}
+			}
+		}
+	}
+
+}
+
+

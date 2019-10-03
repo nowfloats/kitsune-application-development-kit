@@ -1,0 +1,62 @@
+@import '../variables';
+@import '../main';
+@import '../base';
+
+.project-footer-status-container{
+	display: flex;
+	min-height: 61.78px;
+	font-size: 14px;
+	position: relative;
+	color: $nobel;
+
+	&.border-top{
+		border-top: 1px solid $project-card-border-color;
+	}
+
+	.process-name{
+		color: $dove-gray;
+		position: absolute;
+		padding-bottom: 1em;
+		top: 1em;
+		left: 1.6em;
+		text-transform: lowercase;
+		font-weight: 400;
+
+		&.dots-loading{
+			@include dots-loading('process-name-loader',$dove-gray);
+			@include k-keyframes('process-name-loader',$dove-gray);
+		}
+
+		@include for-tablet-landscape-up{
+			left: 1em;
+		}
+
+		&.process-name-center {
+			top: 1.5rem
+		}
+	}
+
+	.stage-name{
+		font-size: 11px;
+		position: absolute;
+		top: 3.1em;
+		left: 2em;
+		font-weight: 400;
+		max-width: 60%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		@include for-tablet-landscape-up{
+			left: 1.3em;
+		}
+
+	}
+
+	.maximize{
+		top: 1.5em;
+		right: 1em;
+		font-size: 12px;
+		position: absolute;
+	}
+
+}

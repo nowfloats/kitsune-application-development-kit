@@ -1,0 +1,65 @@
+﻿<div class="advanced-search-container">
+
+    <div class="row">
+        <div class="search col-md-custom-6">
+            <label class="label-width">Find : </label>
+            <input v-model="advancedSearch.query" class="base-input outline-none second-width no-outline" type="text" />
+            @*<img class="search-icon" src="/k-admin/images/search.svg" />*@
+        </div>
+
+        <div class="select-column col-md-custom-6">
+            <label class="label-width">Select Field : </label>
+            <select v-model="advancedSearch.field" class="base-input outline-none second-width pd-5 no-outline">
+                <option value="">All</option>
+                <option v-for="column in columnsForSearch" :value="column">
+                    {{ formatPropertyName(column)}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="date col-md-custom-6">
+            <label class="label-width">Date : </label>
+            <div class="date-containers second-width">
+                <flat-pickr class="base-input pd-5 no-outline" placeholder="Date" v-model="advancedSearch.startDate" :config="configStartDate"></flat-pickr>
+                <label>to</label>
+                <flat-pickr class="base-input pd-5 no-outline" placeholder="Date" v-model="advancedSearch.endDate" :config="config"></flat-pickr>
+            </div>
+        </div>
+
+        <div class="gateways col-md-custom-6">
+            <label class="label-width">Select Gateway :</label>
+            <div class="second-width">
+                <select v-model="advancedSearch.gateway" class="base-input pd-5 no-outline">
+                    <option value="">All</option>
+                    <option v-for="gateway in gatewaysEnabled" :value="gateway">
+                        {{formatPropertyName(gateway)}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="gateways col-md-custom-6">
+            <label class="label-width">Payment Status :</label>
+            <div class="second-width">
+                <select v-model="advancedSearch.paymentStatus" class="base-input pd-5 no-outline">
+                    <option value="">All</option>
+                    <option v-for="status in paymentStatus" :value="status">
+                        {{formatPropertyName(status)}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-custom-6">
+            <button v-if="showClearAllButton" v-on:click="resetAdvanceProperty" class="kitsune-btn-primary reset-btn">clear all</button>
+        </div>
+    </div>
+
+</div>

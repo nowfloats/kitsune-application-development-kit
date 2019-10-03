@@ -1,0 +1,74 @@
+@import "../variables";
+
+.uploadAlert {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-top: 1px solid $project-card-border-color;
+	padding: 0.55rem;
+	box-sizing: border-box;
+	min-height: 61.79px;
+
+	.uploadStatus {
+		width: 15%;
+		height: 40px;
+		max-width: 3rem;
+
+		&.success {
+			background: url("../../assets/icons/checkbox-marked-circle.svg") no-repeat center center;
+			background-size: 1.8rem;
+		}
+
+		&.failed {
+			background: url("../../assets/icons/close-circle.svg") no-repeat center center;
+			background-size: 2rem;
+		}
+	}
+
+	.uploadContent {
+		overflow: hidden;
+
+		&.success {
+			width: 85%;
+		}
+
+		&.failed {
+			width: 55%;
+		}
+
+		p {
+			font-size: 1em;
+
+			&:first-child {
+				width: 100%;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				margin-bottom: 0.4rem;
+			}
+
+			&.success {
+				color: $lima;
+			}
+
+			&.failed {
+				color: $red;
+			}
+
+			&:last-child {
+				color: $boulder;
+				font-size: 0.8em;
+				margin-top: 0.2em;
+			}
+		}
+	}
+
+	.uploadAction {
+		width: 30%;
+		max-width: 50px;
+		color: $white;
+		background-color: $red;
+		padding: 0.5rem 0.7rem;
+		border-radius: $border-radius;
+	}
+}

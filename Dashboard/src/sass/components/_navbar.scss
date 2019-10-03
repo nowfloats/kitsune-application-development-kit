@@ -1,0 +1,150 @@
+@import "../_variables";
+@import "../base";
+
+.user-navbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: $top-nav-height-phone-only;
+	position: relative;
+	padding: 0.4rem $padding-alpha*1.2 0.4rem $padding-beta/2;
+	background: url("../../../assets/icons/swirls.svg") no-repeat left bottom;
+
+	@include for-tablet-portrait-up {
+		height: $top-nav-height;
+		padding: 3rem;
+	}
+
+	@include for-medium-desktop-up {
+		background-size: 100%;
+		background-attachment: fixed;
+		background-position: 66px -80px;
+	}
+
+	@include for-tablet-landscape-up {
+		flex-direction: row;
+	}
+
+	.toggle-sidebar {
+		width: 24px;
+		height: 24px;
+		position: absolute;
+		left: -5px;
+		top: auto;
+		background: url("../../assets/icons/menu.svg") no-repeat center;
+		background-size: contain;
+		cursor: pointer;
+		border: none;
+
+		&:focus, &:active {
+			outline: 0
+		}
+	}
+
+	.navbar-container {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+
+		& > section {
+			position: relative;
+			margin: 0 0.7rem;
+		}
+
+		.updates {
+			width: 1.5rem;
+			height: 1.5rem;
+			background: url("../../assets/icons/bell.svg") no-repeat center;
+			background-size: contain;
+			cursor: pointer;
+			border: none;
+			@include prefix((transition: transform 0.22s), webkit moz o);
+
+			&:hover {
+				@include prefix((transform: translateY(-1px)), webkit moz o)
+			}
+
+			&:focus, &:active {
+				outline: 0;
+			}
+
+			@include for-tablet-landscape-up {
+				width: 1.7rem;
+				height: 1.7rem;
+			}
+		}
+
+		.profile {
+			width: 1.4rem;
+			height: 1.4rem;
+			position: relative;
+			background: url("../../assets/icons/account.svg") no-repeat center;
+			background-size: contain;
+			cursor: pointer;
+			border: none;
+			@include prefix((transition: transform 0.22s), webkit moz o);
+
+			&:hover {
+				@include prefix((transform: translateY(-1px)), webkit moz o)
+			}
+
+			@include for-tablet-landscape-up {
+				width: 1.6rem;
+				height: 1.6rem;
+			}
+
+			&:focus, &:active {
+				outline: 0;
+				border: none;
+			}
+		}
+	}
+
+	.add-money-container {
+		height: 1.2rem;
+		border: $add-money-container-border;
+		padding: 0.2rem;
+		color: $white;
+		display: none;
+		box-sizing: border-box;
+		border-radius: $border-radius;
+
+		@include for-tablet-landscape-up {
+			height: 2rem;
+			display: block;
+		}
+
+		span {
+			&:first-child {
+				font-weight: $font-weight-medium;
+				margin: 0 0.3rem;
+				font-size: 0.9rem;
+				span:first-child {
+					font-size: 0.5rem;
+					margin: 0;
+				}
+			}
+		}
+
+		button {
+			height: 100%;
+			background: $white;
+			font-size: 0.7rem;
+			font-weight: $font-weight-bold;
+			color: $dove-gray;
+			border: none;
+			padding: 0.4rem;
+			cursor: pointer;
+			border-radius: $border-radius;
+
+			&:hover {
+				color: $kitsune-orange;
+			}
+
+			&:focus {
+				outline: 0;
+			}
+		}
+	}
+}

@@ -1,0 +1,84 @@
+@import '../variables';
+@import "../base";
+
+.optimize-base-container{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 105;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.optimize-container{
+		display: flex;
+		flex-direction: column;
+		min-width: 600px;
+		position: absolute;
+
+		@include for-phone-only{
+			min-width: 100%;
+		}
+
+		&-header{
+			width: 100%;
+			display: flex;
+			background: $modal-header-gradient;
+			padding: 1.5em 2em;
+			border-radius: $border-radius $border-radius 0 0;
+			position: relative;
+
+			.information{
+				display: flex;
+				flex-direction: column;
+				padding-left: 3.2em;
+				background: url("../../assets/icons/earth.svg") no-repeat left center;
+				background-size: 3em;
+				color: $dove-gray;
+
+				.stage-name{
+					font-size: 24px;
+					padding-bottom: 0.1em;
+				}
+
+				.project-name{
+					font-size: 18px;
+				}
+			}
+
+			.close{
+				position: absolute;
+				top: 0;
+				right: 0;
+				border: 0;
+				outline:0;
+				background: url("../../assets/icons/close_black_hover.svg") no-repeat center center;
+				padding: 1em;
+			}
+
+
+		}
+
+		&-body{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			min-height: 200px;
+			background-color: $white;
+			border-radius: 0 0 $border-radius $border-radius;
+
+			.text-description{
+				font-size: 20px;
+				color: $dove-gray;
+				margin-bottom: 2em;
+			}
+
+		}
+
+	}
+
+}
+

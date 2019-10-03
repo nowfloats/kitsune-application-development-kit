@@ -1,0 +1,42 @@
+@import '../variables';
+
+.multiselect {
+	.multiselect__tags{
+		border: 0;
+		border-radius: 0;
+		border-bottom: 1px solid $alto;
+		padding-left: 0;
+	}
+}
+
+.multiselect__option {
+	background-color: rgba(216,216,216,0.4);
+}
+
+.multiselect__option--highlight,
+.multiselect__option--selected.multiselect__option--highlight,
+.multiselect__option--selected.multiselect__option{
+	background-color: $alto;
+	color: $black
+}
+
+.multiselect__input{
+	font-size: 14px;
+}
+
+.select-customer {
+	.multiselect__content {
+		max-height: 120px;
+		overflow: auto;
+	}
+
+	.multiselect__element {
+		> span:hover {
+			background-color: $silver;
+		}
+	}
+}
+
+.multiselect__select:before {
+	border: $kitsune-orange transparent transparent;
+}

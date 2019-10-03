@@ -1,0 +1,146 @@
+@import '../variables';
+@import "../base";
+
+.live-site {
+	&-body {
+		@include base-modal-body($white, 500px);
+	}
+
+	&-header {
+		@include base-modal-header(.5em $padding-beta/2, 30px, 1.5em);
+		font-size: 1.5rem;
+	}
+
+	&-content {
+		padding: 2em;
+
+		&>.parts {
+			&>span {
+				color: $kitsune-orange;
+				font-size: .7em;
+				text-transform: uppercase;
+				font-weight: $font-weight-medium;
+			}
+
+			&>i {
+				width: .9em;
+				height: .9em;
+				padding: 6px;
+				margin-right: 5px;
+
+				&.domain {
+					background: url("../../assets/icons/publish-orange.svg") no-repeat center;
+					background-size: contain;
+				}
+
+				&.cloud {
+					background: url("../../assets/icons/cloud-orange.svg") no-repeat center;
+					background-size: contain;
+					padding: 7px;
+				}
+
+				&.customer {
+					background: url("../../assets/icons/account-orange.svg") no-repeat center;
+					background-size: contain;
+					padding: 8px;
+				}
+
+				&.project {
+					background: url("../../assets/icons/projects-orange.svg") no-repeat center;
+					background-size: contain;
+				}
+			}
+
+			&>div {		
+				border: 1px dashed $alto;
+				box-shadow: 0 2px 3px 0 transparentize($boulder, .7);
+				border-radius: $border-radius;
+
+				&.type1 {					
+					padding: 1.3em 1em;				
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+				}
+
+				&>div.type2 {
+					padding: 1.3em 1em;
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+
+					&>p.status {
+						padding: .5em 1em;
+						border-radius: $border-radius;
+						font-size: .8em;
+						font-weight: $font-weight-medium;
+						text-transform: uppercase;
+	
+						&.active {
+							color: $pistachio;
+							border: 1px dashed $pistachio;
+							background-color: transparentize($color: $pistachio, $amount: .8);
+						}
+	
+						&.inactive {
+							color: $kitsune-orange;
+							border: 1px dashed $kitsune-orange;
+							background-color: transparentize($color: $kitsune-orange, $amount: .5);
+						}
+					}
+	
+					&>p.url {
+						margin-left: 1em;
+						color: $mine-shaft;
+	
+						&>i.ssl-icon {
+							padding: 6px;
+							background: url("../../assets/icons/lock.svg") no-repeat center;
+							background-size: contain;
+							margin-right: 5px;
+						}
+	
+						&>span.ssl {
+							color: $pistachio;
+							margin-right: -5px;
+						}
+					}
+
+					&+p.sub-info {
+						padding: 10px 1.2em;
+						border-top: 1px dashed $alto;
+					}
+				}
+
+				& .parts-icon {
+					width: 50px;
+					margin-right: 1em;
+
+					&.projects {
+						width: 50px;
+					}
+				}
+			}
+
+			& .sub-info {
+				font-size: .75em;
+				color: $silver;
+			}
+
+			& .sub-info + .sub-info {
+				margin-left: 1em;
+			}
+
+			& .main-info {
+				font-size: .9em;
+				font-weight: $font-weight-medium;
+				color: $mine-shaft;
+				margin-bottom: 10px;
+			}
+
+			&:not(:first-of-type) {
+				margin-top: 1em;
+			}
+		}
+	}
+}

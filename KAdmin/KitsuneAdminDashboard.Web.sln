@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitsuneAdminDashboard.Web", "KitsuneAdminDashboard.Web.csproj", "{BD95FE67-5674-4438-8CF2-F3D0F9859A6D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD95FE67-5674-4438-8CF2-F3D0F9859A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD95FE67-5674-4438-8CF2-F3D0F9859A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD95FE67-5674-4438-8CF2-F3D0F9859A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD95FE67-5674-4438-8CF2-F3D0F9859A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50B6C671-863C-4459-B3FB-18EE5EE08187}
+	EndGlobalSection
+EndGlobal

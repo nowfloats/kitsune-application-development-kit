@@ -1,0 +1,25 @@
+
+{
+    "region" : "ap-south-1",
+    "profile" : "aws-main-prod",
+    "configuration" : "Release",
+    "tag"           : "kitsune_compiler_service:latest-application-type",
+    "cluster"       : "Kitsune-Compiler",
+    "launch-type"   : "EC2",
+    "task-definition-name" : "Kitsune_Compiler_Service",
+    "task-definition-network-mode" : "bridge",
+    "task-definition-task-role"    : "arn:aws:iam::949868548106:role/ecsTaskExecutionRole",
+    "container-name"               : "app",
+    "container-memory-hard-limit"  : 4000,
+    "container-memory-soft-limit"  : 2000,
+    "container-port-mapping"       : "",
+    "container-environment-variables" : "",
+    "skip-image-push"                 : false,
+    "cluster-service"                 : "Kitsune_Compiler",
+    "desired-count"                   : 10,
+    "deployment-minimum-healthy-percent" : 50,
+    "deployment-maximum-percent"         : 200,
+    "placement-strategy"                 : "spread=attribute:ecs.availability-zone,spread=instanceId",
+    "vstoolkit-deployment-mode"          : "DeployService",
+    "docker-build-working-dir"           : ""
+}

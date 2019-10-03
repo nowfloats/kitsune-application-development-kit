@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46 (44423) - http://www.bohemiancoding.com/sketch -->
+    <title>save</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="IDE" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Project-webform-builder-IDE" transform="translate(-1536.000000, -178.000000)" fill-rule="nonzero" fill="#CAD1D6">
+            <g id="IDE" transform="translate(-8.000000, -140.000000)">
+                <g id="Webforms" transform="translate(8.000000, 0.000000)">
+                    <g id="Web-Actions-All">
+                        <g id="Web-forms-drag-build-(+action-bar)" transform="translate(301.000000, 301.000000)">
+                            <g id="forms-info-bar">
+                                <g id="V2" transform="translate(1082.000000, 1.000000)">
+                                    <g id="save" transform="translate(153.000000, 16.000000)">
+                                        <path d="M10.8888889,0 L1.55555556,0 C0.7,0 0,0.7 0,1.55555556 L0,12.4444444 C0,13.3 0.7,14 1.55555556,14 L12.4444444,14 C13.3,14 14,13.3 14,12.4444444 L14,3.11111111 L10.8888889,0 Z M7,12.4444444 C5.67777778,12.4444444 4.66666667,11.4333333 4.66666667,10.1111111 C4.66666667,8.78888889 5.67777778,7.77777778 7,7.77777778 C8.32222222,7.77777778 9.33333333,8.78888889 9.33333333,10.1111111 C9.33333333,11.4333333 8.32222222,12.4444444 7,12.4444444 Z M9.33333333,4.66666667 L1.55555556,4.66666667 L1.55555556,1.55555556 L9.33333333,1.55555556 L9.33333333,4.66666667 Z" id="Shape"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

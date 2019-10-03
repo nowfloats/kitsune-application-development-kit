@@ -1,0 +1,138 @@
+//TODO: Use a proper color palette
+
+/*Gray colors*/
+$color-alto: #D5D5D5;
+$color-alto-light: transparentize($color-alto, 0.95);
+$color-athens-gray: #F7F8FA;
+$color-black: #000;
+$color-blue-bayoux: #516985;
+$color-boulder: #797979;
+$color-cadet-blue: #B3BACA;
+$color-casper: #AEB8CD;
+$color-casper-dark: #B5BDD3;
+$color-comet: #515B71;
+$color-comet-light: #5F6884;
+$color-mystic: #D6DBE8;
+$color-silver-chalce: #9f9f9f;
+$color-bright-gray: #393F4E;
+$color-dove-gray: #2F3545;
+$color-dove-gray-dark: #616161;
+$color-dove-gray-light: #6D6D6D;
+$color-dusty-gray: #959595;
+$color-ebony-clay-darker: #2a3346;
+$color-ebony-clay-dark: #1e222d;
+$color-ebony-clay: #222733;
+$color-ebony-clay-light: #282D3A;
+$color-ebony-clay-lighter: #2F3545;
+$color-emperor: #171A22;
+$color-fiord: #414C61;
+$color-gallery: #ececec;
+$color-gray: #8b8b8b;
+$color-gull-gray: #96ABBA;
+$color-jungle-mist: #B6C8D4;
+$color-light-black: #424242;
+$color-manatee: #858DA2;
+$color-mercury: #e6e6e6;
+$color-mine-shaft: #232c3f;
+$color-mine-shaft-dark: #202020;
+$color-mine-shaft-light: #505869;
+$color-mirage: #141924;
+$color-noble: #B5B5B5;
+$color-oxford-blue: #333A4E;
+$color-pickled-bluewood: #303A51;
+$color-raven: #787D8A;
+$color-river-bed: #3F4758;
+$color-river-bed-dark: #464D61;
+$color-river-bed-light: #444c62;
+$color-santas-gray: #9AA1B1;
+$color-shuttle-gray: #60677A;
+$color-silver: #bfbfbf;
+$color-silver-chalice: #b2b2b2;
+$color-storm-gray: #6B7389;
+$color-transparent-black: transparentize(rgba(0, 0, 0, 0.5), 0.1);
+$color-tundora: #4e4e4e;
+$color-waterloo: #7B8296;
+$color-white: #fff;
+$color-wild-sand: #f5f5f5;
+$color-waterloo: #7B8296;
+$color-gallery: #ececec;
+$color-transparent-black: transparentize(rgba(0, 0, 0, 0.5), 0.1);
+$color-overlay: rgba(55, 57, 66, 0.9);
+$color-pickled-bluewood: #303A51;
+$color-storm-gray: #6B7389;
+$color-shuttle-gray: #60677A;
+$color-cod-gray: #0B0B0B;
+$color-cod-gray-light: #191919;
+$color-heather: #B6BECE;
+$color-slate-gray: #707d92;
+$color-trout: #4B5263;
+$color-turquoise: #50E3C2;
+
+
+/*Other colors*/
+$login-head: #22222E;
+$login-footer: #1c1c25;
+$color-amethyst: #AC5CD1;
+$color-bird-flower: #CFC018;
+$color-cinnabar: #FF0000;
+$color-curious-blue: #33a3dc;
+$color-flamingo: #f06428;
+$color-flamingo-light: #ff5812;
+$color-flush-orange: #FF7700;
+$color-golden-tainoi: #fece62;
+$color-hot-cinnamon: #e36d2e;
+$color-mantis: #72BD4D;
+$color-pastel-green: #86DA5D;
+$color-piction-blue: #36A3E3;
+$color-spring-green: #00ff5c;
+$color-string: $color-mantis;
+$color-number: $color-flush-orange;
+$color-boolean: $color-piction-blue;
+$color-datetime: $color-amethyst;
+$color-kstring: #9a7768;
+$color-object: #6c9cb1;
+$color-array: $color-bird-flower;
+$color-red: #ff0000;
+$color-dark-red: #8B0000;
+$color-vermilion: #f94b00;
+$color-pale-sky: #73757A;
+
+$k-radius: 3px;
+$k-padding-s: 5px;
+$k-padding-m: 2 * $k-padding-s; //10px
+$k-padding-l: 3 * $k-padding-s; //15px
+$k-padding-xl: 4 * $k-padding-s; //20px
+$k-padding-xxl: 5 * $k-padding-s; //25px
+$padding-alpha: 1rem;
+$padding-beta: 4rem;
+
+$header-height: 45px;
+$preview-sidebar: 300px;
+$sidebar-nav-width: 65px;
+$sidebar-nav-tab-width: 35px;
+$sidebar-nav-tab-height: 35px;
+$footer-height: 27px;
+$sidebar-logo-width: 100px;
+$resizer-height: 8px;
+$footer-minheight: 150px;
+$footer-collapsedheight: 26px;
+$playground-minheight: 300px;
+$tab-height: 30px;
+$footer-content-header-height: 38px;
+$footer-content-subheader-height: 26px;
+$preview-header-content-height: 22px;
+
+$tooltip-max-width: 24rem;
+$credits-width: 500px;
+$modal-small: 450px;
+$modal-medium: 600px;
+$modal-large: 800px;
+$filedropper-height: 400px;
+
+//waves
+$wave-top-position: -128px;
+
+//loader
+$loader-bars: 10;
+$durationAll: .8s;
+$loader-duration: - $durationAll / $loader-bars;

@@ -1,0 +1,8 @@
+.idea/
+node_modules/
+temp/
+test.js
+npm-debug.*
+prod/
+logs/
+deploy.bat

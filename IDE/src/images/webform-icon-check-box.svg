@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="15px" viewBox="0 0 14 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>check-box</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Publishing-Site-(Webform-Zeroth-/-welcome)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-1342.000000, -394.000000)">
+        <g id="IDE" transform="translate(-8.000000, -165.000000)" fill="#a0aac1" fill-rule="nonzero">
+            <g id="Webforms" transform="translate(7.000000, 0.000000)">
+                <g id="Webform-Checkbox-field" transform="translate(1.000000, 204.000000)">
+                    <g id="Web-forms-drag-build-(+action-bar)" transform="translate(302.000000, 98.000000)">
+                        <g id="Elements-group" transform="translate(999.000000, 85.000000)">
+                            <g id="Elements">
+                                <g id="check-box" transform="translate(41.000000, 172.400000)">
+                                    <path d="M3.81111111,5.52222222 L2.72222222,6.61111111 L6.22222222,10.1111111 L14,2.33333333 L12.9111111,1.24444444 L6.22222222,7.93333333 L3.81111111,5.52222222 Z M12.4444444,12.4444444 L1.55555556,12.4444444 L1.55555556,1.55555556 L9.33333333,1.55555556 L9.33333333,0 L1.55555556,0 C0.7,0 0,0.7 0,1.55555556 L0,12.4444444 C0,13.3 0.7,14 1.55555556,14 L12.4444444,14 C13.3,14 14,13.3 14,12.4444444 L14,6.22222222 L12.4444444,6.22222222 L12.4444444,12.4444444 Z" id="Shape"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

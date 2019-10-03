@@ -1,0 +1,33 @@
+﻿.wrapper {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-container .title {
+    margin-bottom: 2em;
+}
+
+.message-container .description {
+    font-size: 16px;
+}
+
+.pd-t2 {
+    padding-top: 2em;
+}
+
+.pd-b4 {
+    padding-bottom: 4em !important;
+}
+
+.big-font-size {
+    font-size: 22px;
+}

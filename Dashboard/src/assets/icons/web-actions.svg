@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="23px" viewBox="0 0 26 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 41.1 (35376) - http://www.bohemiancoding.com/sketch -->
+  <title>Enter key icon submit action web form</title>
+  <desc>Created with Sketch.</desc>
+  <defs></defs>
+  <g id="Project-Kitsune-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Dashboard" transform="translate(-41.000000, -414.000000)" fill="#FFFFFF">
+      <g id="Project-Dashboard" transform="translate(-1.000000, -2.000000)">
+        <g id="Side-menu">
+          <g id="Web-Action" transform="translate(20.000000, 416.000000)">
+            <g id="Enter-key-icon-submit-action-web-form" transform="translate(22.000000, 0.333333)">
+              <g id="Capa_1">
+                <path d="M25,0 L9,0 C8.449,0 8,0.449 8,1 L8,10 C8,12 6,12 6,12 L1,12 C0.449,12 0,12.449 0,13 L0,21 C0,21.551 0.449,22 1,22 L25,22 C25.551,22 26,21.551 26,21 L26,1 C26,0.449 25.551,0 25,0 Z M21,11 C21,12.436 19.664,15 17,15 L13.414,15 L15.207,16.793 C15.598,17.184 15.598,17.816 15.207,18.207 C15.012,18.402 14.756,18.5 14.5,18.5 C14.244,18.5 13.988,18.402 13.793,18.207 L10.293,14.707 C9.902,14.316 9.902,13.684 10.293,13.293 L13.793,9.793 C14.184,9.402 14.816,9.402 15.207,9.793 C15.598,10.184 15.598,10.816 15.207,11.207 L13.414,13 L17,13 C18.398,13 19,11.482 19,11 L19,9 C19,8.447 19.447,8 20,8 C20.553,8 21,8.447 21,9 L21,11 Z" id="Shape"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

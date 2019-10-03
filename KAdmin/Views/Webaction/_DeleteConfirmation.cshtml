@@ -1,0 +1,13 @@
+﻿<k-modal modal-title="delete"
+         save-text="yes"
+         size="md"
+         v-if="modalShowStatus.delete"
+         :save-action="deleteConfirm"
+         :cancel-action="hideAllModals"
+         :close-modal="hideAllModals">
+    <div slot="modal-body">
+        <div class="container">
+            are you sure you want to delete {{currentModel}} #{{deleteElementIndex}} ?
+        </div>
+    </div>
+</k-modal>

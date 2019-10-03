@@ -1,0 +1,400 @@
+@import "../variables";
+@import "../base";
+
+.data {
+	display: flex;
+	flex-direction: column;
+	background-color: $alabaster;
+	margin-bottom: 1em;
+	border-radius: $border-radius;
+	box-shadow: 0 1px 2px 0 transparentize($black, .8);
+	border: 1px solid transparentize($alto, .7);
+	position: relative;
+	color: $emperor;
+	font-weight: $font-weight-thin;
+
+	&:hover {
+		background-color: $white;
+	}
+
+	&.header {
+		display: none;
+
+		@include for-tablet-landscape-up {
+			display: flex;
+			background-color: $white;
+			position: sticky;
+			top: 0;
+			color: $dove-gray;
+			text-transform: uppercase;
+			font-size: .7em;
+			z-index: 1;
+			padding: 1.2rem 2em;
+			font-weight: $font-weight-normal;
+			border-bottom: 1px solid transparentize($alto, .7);
+			border-top: 1px solid transparentize($alto, .7);
+		}
+
+		& .count {
+			max-width: 30px;
+		}
+
+		& > .content-main {
+			@include for-tablet-landscape-up {
+				& .live-status-container {
+					position: relative;
+
+					& > span {
+						cursor: pointer;
+					}
+				}
+
+				& .cloud-icon-container {
+					max-width: 60px;
+				}
+
+				& .cloud-container {
+					max-width: 160px;
+				}
+
+				& .name-container {
+					padding-left: 5px;
+				}
+			}
+
+			@include for-desktop-up {
+				& .cloud-container {
+					max-width: 140px;
+				}
+
+				& .name-container {
+					padding-left: 0;
+				}
+			}
+
+			@include for-big-desktop-up {
+				& .live-status-container {
+					max-width: 76px;
+				}
+
+				& .cloud-icon-container {
+					max-width: 76px;
+				}
+
+				& .cloud-container {
+					max-width: 180px;
+				}
+
+				& .ssl-icon-container {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+
+	@include for-tablet-portrait-up {
+		width: 45%;
+	}
+
+	@include for-tablet-landscape-up {
+		border-radius: 0;
+		margin-bottom: 0;
+		flex-direction: row;
+		align-items: center;
+		padding: 1.5em;
+		border: none;
+		width: 100%;
+
+		&:last-of-type {
+			border-radius: 0 0 $border-radius $border-radius;
+		}
+	}
+
+	.project-context-menu {
+		right: 1.5em;
+		top: 6em;
+
+		@include for-tablet-landscape-up {
+			top: 2em;
+			right: 2em;
+		}
+	}
+
+	& > .count {
+		display: none;
+
+		@include for-tablet-landscape-up {
+			display: inline-block;
+			flex-basis: 5%;
+			font-size: .8rem;
+			max-width: 40px;
+		}
+	}
+
+	& .name {
+		font-size: 1rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		&.url {
+			flex-basis: 60%;
+			text-transform: lowercase;
+
+			@include for-big-desktop-up {
+				flex-basis: 50%;
+			}
+
+			&.header {
+				font-size: .7rem;
+				text-transform: uppercase;
+				position: relative;
+				cursor: pointer;
+			}
+		}
+	}
+
+	& .sub-info {
+		font-size: .8rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		&.date {
+			font-size: .6rem;
+			text-transform: lowercase;
+
+			@include for-tablet-landscape-up {
+				font-size: 12px;
+			}
+		}
+
+		&.project-name {
+			flex-basis: 40%;
+
+			&.header {
+				font-size: .7rem;
+				position: relative;
+				cursor: pointer;
+			}
+		}
+	}
+
+	& .content {
+		&-main {
+			display: flex;
+			align-items: flex-start;
+			padding: 10px;
+
+			@include for-tablet-landscape-up {
+				flex-basis: calc(70% - 40px);
+				align-items: center;
+				padding: 0;
+
+				& > div {
+					display: flex;
+					flex-direction: row;
+				}
+			}
+
+			@include for-big-desktop-up {
+				max-width: unset;
+				flex-basis: calc(80% - 40px);
+			}
+
+			& .live-status-container {
+				flex-basis: 40%;
+				max-width: 60px;
+
+				@include for-big-desktop-up  {
+					flex-basis: 45%;
+					max-width: 70px;
+				}
+
+				& > .live-status {
+					width: 14px;
+					height: 14px;
+					border: 2px solid $white;
+					border-radius: 50%;
+					box-shadow: 0 2px 5px 0 transparentize($black, .87);
+					display: inline-block;
+
+					&.active {
+						background-color: $malachite;
+					}
+
+					&.inactive {
+						background-color: $kitsune-orange;
+						opacity: .5;
+					}
+				}
+			}
+
+			& .ssl-icon-container {
+				flex-basis: 10%;
+				max-width: 30px;
+				vertical-align: middle;
+
+				& > .ssl-status {
+					width: 14px;
+					height: 14px;
+					text-align: center;
+					display: inline-block;
+					margin-top: calc(50% - 3px);
+
+					&.active {
+						background: url("../../assets/icons/lock.svg") no-repeat center;
+						background-size: contain;
+					}
+
+					&.inactive {
+						background: transparent;
+					}
+				}
+			}
+
+			& .cloud-icon-container {
+				flex-basis: 45%;
+				max-width: 50px;
+
+				@include for-big-desktop-up {
+					max-width: 70px;
+				}
+
+				& > .cloud-icon {
+					height: 20px;
+					width: 20px;
+					display: inline-block;
+
+					&.aws {
+						background: url("../../assets//icons/AWS.svg") no-repeat center;
+						background-size: contain;
+					}
+
+					&.alicloud {
+						background: url("../../assets//icons/alibaba-cloud.svg") no-repeat center;
+						background-size: contain;
+					}
+
+					&.gcp {
+						background: url("../../assets//icons/GCP.svg") no-repeat center;
+						background-size: contain;
+					}
+
+					&.pingan {
+						background: url("../../assets//icons/pingan.svg") no-repeat center;
+						background-size: contain;
+					}
+
+					&.azure {
+						background: url("../../assets//icons/azure.svg") no-repeat center;
+						background-size: contain;
+					}
+				}
+			}
+
+			& .cloud-container {
+				@include for-tablet-landscape-up {
+					flex-basis: 25%;
+					max-width: 130px;
+				}
+
+				@include for-big-desktop-up {
+					max-width: 170px;
+				}
+			}
+
+			& .name-container {
+				margin-left: 10px;
+
+				@include for-tablet-landscape-up {
+					margin-left: 0;
+					flex-basis: 75%;
+				}
+
+				& > .project-name {
+					margin-top: 5px;
+
+					@include for-tablet-landscape-up {
+						margin-top: 0;
+					}
+				}
+			}
+		}
+
+		&-footer {
+			border-top: 1px solid $alto;
+			padding: 10px 10px 10px 2.5em;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			& .header {
+				position: relative;
+				cursor: pointer;
+				margin-left: 10px;
+			}
+
+			@include for-tablet-landscape-up {
+				border-top: none;
+				margin-top: 0;
+				padding: 0;
+				flex-basis: 30%;
+			}
+
+			@include for-big-desktop-up {
+				flex-basis: 20%;
+			}
+
+			& .kbtn {
+				padding: .3em 1em;
+				font-size: .8em;
+				margin-right: 5px;
+				margin-bottom: -8px;
+			}
+
+			& .context-menu-btn {
+				background: url("../../assets/icons/dots-vertical.svg") no-repeat center;
+				background-size: 1.2em;
+				padding: .8em .4em;
+				outline: none;
+				border: none;
+				transition: background 100ms ease-in-out;
+
+				&:hover{
+					background: $nobel url("../../assets/icons/dots-vertical-light.svg") no-repeat center;
+					background-size: 1.2em;
+				}
+			}
+		}
+	}
+}
+
+.desc {
+	&:after {
+		content: '';
+		position: absolute;
+		width: 14px;
+		height: 14px;
+		background: url('../../assets/icons/arrow-down.svg') no-repeat center;
+		background-size: contain;
+	}
+}
+
+.asc {
+	&:after {
+		content: '';
+		position: absolute;
+		width: 14px;
+		height: 14px;
+		bottom: -1px;
+		background: url('../../assets/icons/arrow-down.svg') no-repeat center;
+		background-size: contain;
+		transform: rotate(180deg);
+	}
+
+	&.menu {
+		&:after {
+			bottom: 4px;
+		}
+	}
+
+}

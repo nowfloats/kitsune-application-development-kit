@@ -1,0 +1,90 @@
+@import "../variables";
+@import "../base";
+
+.upload-section {
+	border-radius: $border-radius;
+	opacity: 0.7;
+	position: relative;
+
+	.active {
+		padding: 0;
+		border: none;
+	}
+
+	.uploadInputSection {
+		margin-bottom: 1rem;
+		border: 2px dashed $white;
+		border-radius: $border-radius*2;
+		padding: 0.5rem;
+		@include prefix((transition: padding 0.3s ease-in-out), webkit moz o);
+
+		&.drag-active {
+			padding: 1rem;
+		}
+
+		.upload-container {
+			display: block;
+			width: $action-container-width-phone;
+			min-height: 250px;
+			position: relative;
+			padding-top: 122px;
+			font-size: 1.5em;
+			color: $mine-shaft;
+			font-weight: $font-weight-thin;
+			border-radius: $border-radius;
+			background: rgba(255,255,255,0.95) url("../../assets/icons/cloud-upload-dark.svg") no-repeat center 2.3em;
+			background-size: 3em;
+			cursor: pointer;
+
+			@include for-tablet-portrait-up {
+				width: $action-container-width;
+			}
+
+			&:focus {
+				outline: 0;
+			}
+
+			.upload-project-name {
+				font-weight: $font-weight-medium;
+				margin-top: 0.5rem;
+				font-size: 1.2rem;
+			}
+		}
+	}
+
+	.select-section {
+		opacity: 1;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		font-size: 0.7rem;
+
+		@include prefix((transition: opacity 0.3s ease-in-out), webkit moz o);
+
+		.underline {
+			text-decoration: underline;
+		}
+
+		.select-folder {
+			color: $mine-shaft;
+			text-transform: uppercase;
+			background-color: $white;
+			padding: 0.4rem;
+			border-right: $border-radius;
+			cursor: pointer;
+
+			&:focus {
+				outline: 0;
+			}
+		}
+	}
+
+	.select-hide {
+		opacity: 0;
+	}
+
+	&:hover {
+		opacity: 0.75;
+	}
+}

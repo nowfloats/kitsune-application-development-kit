@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="33px" height="33px" viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.1 (35376) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_account_circle_24px</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Project-Kitsune-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Web-Action-pop-up" transform="translate(-1480.000000, -90.000000)" fill="#FFFFFF">
+            <g id="Header" transform="translate(18.000000, 62.000000)">
+                <g id="Avatars" transform="translate(1462.000000, 18.000000)">
+                    <g id="ic_account_circle_24px" transform="translate(0.000000, 10.000000)">
+                        <path d="M16.5,0 C7.392,0 0,7.392 0,16.5 C0,25.608 7.392,33 16.5,33 C25.608,33 33,25.608 33,16.5 C33,7.392 25.608,0 16.5,0 Z M16.5,4.95 C19.239,4.95 21.45,7.161 21.45,9.9 C21.45,12.639 19.239,14.85 16.5,14.85 C13.761,14.85 11.55,12.639 11.55,9.9 C11.55,7.161 13.761,4.95 16.5,4.95 Z M16.5,28.38 C12.375,28.38 8.7285,26.268 6.6,23.067 C6.6495,19.7835 13.2,17.985 16.5,17.985 C19.7835,17.985 26.3505,19.7835 26.4,23.067 C24.2715,26.268 20.625,28.38 16.5,28.38 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

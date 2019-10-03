@@ -1,0 +1,109 @@
+@import "../base";
+@import "../variables";
+@import "../icons";
+
+.zeroth-live {
+	width: 100%;
+	height: 100%;
+	color: $dustyGrey;
+	text-align: center;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	align-items: center;
+	box-sizing: border-box;
+
+	@include for-desktop-up {
+		width: $zeroth-live-sites-width-desktop-up;
+	}
+
+	.title {
+		margin-bottom: $padding-alpha;
+		font-size: 3.5em;
+		font-weight: $font-weight-light;
+
+		@include text-gradient-animation($silver-chalice, $tundora);
+
+		@include for-phone-only {
+			font-size: 1.8em;
+		}
+
+		@include for-tablet-portrait-up {
+			@media screen and (orientation: landscape){
+				font-size: 1.8em;
+			}
+		}
+
+		@include for-tablet-landscape-up {
+			@media screen and (orientation: landscape){
+				font-size: 3.5em;
+			}
+		}
+	}
+
+	.subtitle {
+		color: $dove-gray;
+		font-size: .9em;
+	}
+
+	& .new {
+		color: $boulder;
+		font-size: .6em;
+		padding: 8px 1em;
+		border: 1px dashed $silver;
+		background-color: $wild-sand;
+		border-radius: 20px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		& a {
+			color: inherit;
+			text-decoration: underline;
+
+			&:active, &:focus {
+				color: inherit;
+			}
+		}
+
+		@include for-tablet-portrait-up {
+			font-size: .8em;
+			width: 700px;
+		}
+
+		@include for-tablet-landscape-up {
+			width: unset;
+		}
+
+		.ribbon {
+			box-sizing: content-box;
+			width: 50px;
+			border: 8px solid $kitsune-orange;
+			border-left: 0 solid;
+			border-right: 8px solid $wild-sand;
+			color: $white;
+			text-transform: uppercase;
+			display: inline-block;
+			border-radius: 2px;
+			position: relative;
+			margin-right: 10px;
+
+			&>span {
+				z-index: 1;
+				position: absolute;
+				font-size: .5rem;
+				top: -3px;
+				left: 7px;
+
+				@include for-tablet-portrait-up {
+					top: -4px;
+					left: 8px;
+				}
+			}
+
+			@include for-tablet-portrait-up {
+				width: 40px;
+			}
+		  }
+	}
+}

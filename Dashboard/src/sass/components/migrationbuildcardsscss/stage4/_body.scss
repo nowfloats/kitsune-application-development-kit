@@ -1,0 +1,53 @@
+@import '../../../variables';
+@import '../../../base';
+
+.stage4body-container{
+	color: $tundora;
+	display: flex;
+	flex-direction: row;
+	background: $white;
+	padding: 3em 2.8em 2.8em 3em;
+
+	.stage-information {
+		padding-top: 0.2em;
+
+		.stage-name {
+			display: block;
+			font-size: 44px;
+			width: 8em;
+			font-weight: 100;
+			color: $kitsune-orange;
+
+			&.dots-loading{
+				@include dots-loading('stage-name',$kitsune-orange);
+				@include k-keyframes('stage-name',$kitsune-orange);
+			}
+
+		}
+
+		.stage-description {
+			display: block;
+			padding-top: 0.5em;
+			width: 20em;
+			line-height: $line-height-stage-description;
+			font-size: 12px;
+		}
+
+	}
+
+	.stage-progress {
+		width: 100%;
+		padding-top: 3em;
+
+		.processed {
+			padding-bottom: 1em;
+
+			span {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+			}
+		}
+
+	}
+}

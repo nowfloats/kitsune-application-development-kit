@@ -1,0 +1,203 @@
+﻿<template id="sliding-panel">
+    <div>
+        <transition name="slide-fade">
+            <div v-if="level >= 1" class="sliding-overlay">
+                <aside class="reference-sliding-panel level-1">
+                    <sliding-header :class-name="classname" :reference-header-text="getreferenceheadertext" currentlevel="1"></sliding-header>
+                    <sliding-body :checkboxrequired="false"
+                                  :list="classlist"
+                                  :isrenderingobjectdata="false"
+                                  :itemaction="itemaction"></sliding-body>
+                    <sliding-footer :cancelaction="cancelaction"
+                                    :saveaction="saveaction"
+                                    :slidingpanellevel="level"></sliding-footer>
+                </aside>
+            </div>
+        </transition>
+        <transition name="slide-fade">
+            <div v-if="level > 1" class="sliding-overlay">
+                <aside class="reference-sliding-panel level-2">
+                    <sliding-header :class-name="classname" :reference-header-text="getreferenceheadertext" currentlevel="2"></sliding-header>
+                    <sliding-body :checkboxrequired="false"
+                                  :list="itemlist"
+                                  :isrenderingobjectdata="false"
+                                  :itemaction="itemaction"
+                                  :propertiestodisplay="getpropertiestodisplay">
+                    </sliding-body>
+                    <sliding-footer :cancelaction="cancelaction"
+                                    :saveaction="saveaction"
+                                    :slidingpanellevel="level"></sliding-footer>
+                </aside>
+            </div>
+        </transition>
+        <transition name="slide-fade">
+            <div v-if="level > 2" class="sliding-overlay">
+                <aside class="reference-sliding-panel level-3">
+                    <sliding-header :class-name="classname" :reference-header-text="getreferenceheadertext" currentlevel="3"></sliding-header>
+                    <sliding-body :checkboxrequired="true"
+                                  :isrenderingobjectdata="true"
+                                  :propertiestodisplay="getpropertiestodisplay"
+                                  :list="getdataforclassandproperty"
+                                  :itemaction="itemaction"></sliding-body>
+                    <sliding-footer :cancelaction="cancelaction"
+                                    :saveaction="saveaction"
+                                    :slidingpanellevel="level"></sliding-footer>
+                </aside>
+            </div>
+        </transition>
+    </div>
+</template>
+<template id="sliding-panel-header">
+    <div>
+        <div class="sliding-header">
+            <slot name="itemCard"></slot>
+            <p class="sliding-header-title" v-if="className !== undefined">{{getReferenceTitle}}</p>
+            <p class="sliding-header-subtitle" v-if="className !== undefined && !$parent.isforreversereference && getTotalItemCount > 0">
+            We found {{getTotalItemCount}} {{className}}(s) already configured.</p>
+        </div>
+        <div class="reference-panel-back-btn" v-if="currentlevel == $parent.level" v-on:click="$parent.cancelaction()">
+            <div v-bind:class="[currentlevel != 1 ? 'back-icon' : 'close-icon']"></div>
+        </div>
+    </div>
+</template>
+<template id="sliding-panel-body">
+    <div class="sliding-panel-body">
+        <list-component :checkboxrequired="checkboxrequired"
+                        :list="list"
+                        :isrenderingobjectdata="isrenderingobjectdata"
+                        :propertiestodisplay="propertiestodisplay"
+                        :itemaction="itemaction">
+        </list-component>
+    </div>
+</template>
+<template id="sliding-panel-footer">
+    <div class="sliding-footer">
+        <button class="sliding-confirm-btn" v-if="showSaveButton && !isListEmpty && isAnyItemSelected" v-on:click="saveaction">confirm</button>
+    </div>
+</template>
+<template id="sliding-panel-list-pagination">
+    <div class="text-right m-3 sliding-panel-pagination-container">
+        <span class="pagination-title">showing {{currentListPosition}} - {{nextListPosition}} of {{itemcount}}</span>
+        <button title="previous" class="sliding-cancel-btn ml-2 mr-1" v-on:click="getpreviousitems"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+        <button title="next" class="sliding-cancel-btn mr-1" v-on:click="getnextitems"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+    </div>
+</template>
+<template id="list-component">
+    <div>
+        <div class="pagination-list-header">
+            <div class="select-all mt-3 mx-5" v-if="$parent.$parent.ismultiselect && showMultiSelect">
+                <input type="checkbox" v-bind:checked="areAllItemsSelected" v-on:click="selectDeselectAll" />
+                <span v-on:click="selectDeselectAll">{{areAllItemsSelected ? 'deselect all' : 'select all'}}</span>
+            </div>
+            <sliding-pagination v-if="isPaginationRequired()"
+                                :ispaginationrequired="isPaginationRequired"
+                                :currentindex="pagination.currentIndex"
+                                :dividecount="pagination.divideCount"
+                                :itemcount="list.length"
+                                :getnextitems="getNextItems"
+                                :getpreviousitems="getPreviousItems">
+            </sliding-pagination>
+        </div>
+        <div class="list-component">
+            <div v-if="(!checkboxrequired && !isrenderingobjectdata && !showCheckboxes) || 
+                 ($parent.$parent.isforreversereference && $parent.$parent.level === 1 && listRepository && listRepository.length)" class="list-properties">
+                <div class="list-item" v-for="(item, index) in listRepository" v-on:click="itemaction(item, index)">
+                    <span>&#9679;</span>
+                    <span class="property" v-if="$root.schemaName !== item.name">{{item.name}}</span>
+                    <span class="property" v-if="$root.schemaName === item.name">others</span>
+                    <span class="numberOfSelection" v-if="item.matchedProperties > 0">( {{item.matchedProperties + ' ' + $root.referenceData.requestedClassName}}(s) found)</span>
+                </div>
+            </div>
+
+            <!-- START - For Reverse Reference level 2 multi-select-->
+            <div v-if="$parent.$parent.isforreversereference && $parent.$parent.level === 2 && listRepository && listRepository.length" class="list-data">
+                <div class="select-data" v-for="(item, index) in listRepository" v-on:click="onItemSelectedForReference(item, index)">
+                    <input type="checkbox" :id="index" v-bind:checked="isChecked(item)">
+                    <label class="property" :for="'selected-reference-item-'+index"
+                           v-for="propertyName in propertiestodisplay"
+                           v-if="isPropertyValid(item, propertyName) && !isRenderingImageClass && isAnyPropertyPresentToDisplay(item)">
+                        {{getFormattedPropertyName(propertyName)}} : {{getFormattedPropertyValue(item[propertyName])}} ,
+                    </label>
+
+                    <label class="property" :for="'selected-reference-item-'+index"
+                           v-if="!isRenderingImageClass && !isAnyPropertyPresentToDisplay(item) && item._propertyName">
+                        {{getFormattedPropertyName(item._propertyName)}} : {{getFormattedPropertyValue(item[item._propertyName])}} ,
+                    </label>
+
+                    <!-- START OBJECT FULL OBJECT POPOVER -->
+                    <div class="info-icon"
+                         v-tippy="{html: '#item-'+item._kid, interactive: true, theme: 'light', arrow: true, reactive: true}"></div>
+                    <div :id="'item-'+item._kid" class="p-3">
+                        <div v-for="property in Object.keys(item)" v-if="!isSystemProperty(property)">
+                            <div class="text-left popover-property-value" v-if="!isRenderingObect(item[property])">
+                                {{property}} : {{item[property]}}
+                            </div>
+                            <div v-else>{{property}} : (...)</div>
+                        </div>
+                    </div>
+                    <!-- END OBJECT FULL OBJECT POPOVER-->
+                </div>
+            </div>
+            <!-- END - For Reverse Reference level 2 multi-select-->
+
+            <div v-if="!checkboxrequired && isrenderingobjectdata" class="list-properties">
+                <div class="list-item" v-for="item in listRepository" v-on:click="itemaction(item)">
+                    <span class="property" v-for="propertyName in propertiestodisplay" v-if="isPropertyValid(item, propertyName)">
+                        {{propertyName}} : {{item[propertyName]}} ,
+                    </span>
+                </div>
+            </div>
+
+            <!-- level 3 list for forward reference -->
+            <div v-if="checkboxrequired && isrenderingobjectdata" class="list-properties">
+                <div class="list-item" v-for="(item, index) in listRepository"
+                     v-on:click="onItemSelectedForReference(item)"
+                     v-bind:class="{'list-item-selected': (item == selectedItem || isChecked(item)) }">
+                    <template v-if="!$parent.$parent.ismultiselect">
+                        <input type="radio"
+                               :id="'selected-reference-item-'+index"
+                               name="selected-reference-item"
+                               :value="item" v-model="selectedItem"
+                               class="custom-radio" />
+                    </template>
+
+                    <template v-else>
+                        <input type="checkbox"
+                               :value="item"
+                               v-bind:checked="isChecked(item)" />
+                    </template>
+
+
+
+                    <label class="property" :for="'selected-reference-item-'+index" v-for="propertyName in propertiestodisplay"
+                           v-if="isPropertyValid(item, propertyName) && !isRenderingImageClass">
+                        {{propertyName}} : {{getFormattedPropertyValue(item[propertyName])}} ,
+                    </label>
+
+                    <!-- showing image class -->
+                    <label class="property" :for="'selected-reference-item-'+index" v-if="isRenderingImageClass">
+                        <img v-if="item.url && item.url.length > 0" :src="item.url" class="reference-panel-image-thumbnail"
+                             v-on:load="imageDimensions" />
+                        <span v-if="!item.url || item.url.length == 0">no image available</span>
+                    </label>
+
+                    <!-- START Full object popover-->
+                    <div class="info-icon" v-tippy="{html: '#item-'+item._kid, interactive: true, theme: 'light', arrow: true, reactive: true}"></div>
+                    <div :id="'item-'+item._kid" class="p-3">
+                        <div v-for="property in Object.keys(item)" v-if="!isSystemProperty(property)">
+                            <div class="text-left popover-property-value" v-if="!isRenderingObect(item[property])">
+                                {{property}} : {{item[property]}}
+                            </div>
+                            <div v-else>{{property}} : (...)</div>
+                        </div>
+                    </div>
+                    <!-- END Full object popover-->
+                </div>
+            </div>
+
+            <div class="list-properties" v-if="!listRepository || listRepository.length === 0 && !$parent.$parent.isfetchingdata">
+                <div>No data available.</div>
+            </div>
+        </div>
+    </div>
+</template>

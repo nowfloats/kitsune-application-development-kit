@@ -1,0 +1,138 @@
+﻿<template id="modal-template">
+    <transition name="modal">
+        <div class="modal-mask" v-on:click="dismissModal()">
+            <div class="modal-wrapper">
+                <div class="modal-container" 
+                     :class="{'modal-container-sm': size == 'sm', 'modal-container-md': size == 'md', 'modal-container-lg': size == 'lg'}"
+                     v-on:click="preventEvents($event)">
+                    <div class="modal-header">
+                        {{modalTitle}}
+                    </div>
+                    <div class="modal-body">
+                        <slot name="modal-body">
+                        </slot>
+                    </div>
+                    <div class="modal-footer">
+                        <slot name="modal-footer">
+                            <button class="modal-btn-cancel" v-on:click="cancelAction()">
+                                {{cancelText || 'Cancel'}}
+                            </button>
+                            <button class="modal-btn-save" v-on:click="saveAction()" :disabled="isSaveDisabled">
+                                {{saveText || 'Save'}}
+                            </button>
+                        </slot>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </transition>
+</template>
+
+<style>
+
+    .modal-mask {
+        position: fixed;
+        z-index: 4;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .5);
+        display: table;
+        transition: opacity .3s ease;
+    }
+
+    .modal-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .modal-container {
+        margin: 0px auto;
+        padding: 8px 12px;
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+        transition: all .3s ease;
+        font-family: Helvetica, Arial, sans-serif;
+    }
+
+    .modal-container-sm {
+        width: 320px;
+    }
+
+    .modal-container-md {
+        width: 768px;
+    }
+
+    .modal-container-lg {
+        width: 1024px;
+    }
+
+    .modal-header h3 {
+        margin-top: 0;
+        color: #42b983;
+    }
+
+    .modal-body {
+        margin: 5px 0;
+    }
+
+    .modal-btn-save {
+        float: right;
+        background-color: #ED6619;
+        border-radius: 4px;
+        padding: 0.5rem 2rem;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .modal-btn-cancel {
+        float: right;
+        background: none;
+        border-radius: 4px;
+        padding: 0.5rem 2rem;
+        border: none;
+        color: #16325C;
+        border: 1px solid #FFF;
+        cursor: pointer;
+    }
+
+    .modal-btn-cancel:hover {
+        border: 1px solid #16325C;
+    }
+
+    .modal-enter {
+        opacity: 0;
+    }
+
+    .modal-leave-active {
+        opacity: 0;
+    }
+
+    .modal-enter .modal-container,
+    .modal-leave-active .modal-container {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    .modal-header {
+        padding: 0.5rem 1rem;
+    }
+
+    .modal-footer-btn {
+        margin: 4px;
+    }
+
+    .modal-btn-action {
+        background: none;
+        border-radius: 4px;
+        padding: 0.5rem 0.75rem;
+        color: #ED6619;
+        cursor: pointer;
+        border: 1px solid #ED6619;
+        font-size: 0.85rem;
+    }
+
+</style>

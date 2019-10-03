@@ -1,0 +1,417 @@
+.sidebar {
+	background-color: $color-dove-gray;
+	min-width: $sidebar-nav-width;
+	position: relative;
+	transition: all 100ms ease-in-out;
+
+	&.right {
+		position: absolute;
+		right: 0;
+		top: $header-height;
+		z-index: 999;
+		height: calc(100vh - $footer-minheight);
+		min-width: 0;
+
+		&.has-active {
+			min-width: 250px;
+		}
+	}
+
+	&-nav {
+		height: 100%;
+		position: relative;
+		width: $sidebar-nav-width;
+
+		&.left {
+			float: left;
+		}
+		&.right {
+			float: right;
+		}
+		background-color: $color-ebony-clay;
+		padding: $k-padding-m 0;
+
+		> li {
+			min-height: $sidebar-nav-width + 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			cursor: pointer;
+
+			button {
+				background: $color-cod-gray;
+				font-size: 0.875em;
+				font-weight: 600;
+				width: $sidebar-nav-tab-width;
+				height: $sidebar-nav-tab-height;
+				box-shadow: none;
+				border: 1px solid #364263;
+				border-radius: 6px;
+				color: $color-white;
+				margin-bottom: 5px;
+				transition: background 100ms ease-in-out;
+
+				&:focus {
+					color: rgba($color-white, 0.8);
+					outline: 0;
+				}
+
+				&.project-explorer {
+					background-image: url("../images/project.svg");
+					background-repeat: no-repeat;
+					background-position: center center;
+				}
+
+				&.language-editor {
+					background-image: url("../images/language.svg");
+					background-repeat: no-repeat;
+					background-position: center center;
+					background-size: 12px;
+				}
+
+				&.webform-builder {
+					background-image: url("../images/webform.svg");
+					background-repeat: no-repeat;
+					background-position: center center;
+				}
+			}
+
+			p {
+				font-size: 9px;
+				color: #596084;
+				text-transform: uppercase;
+				transition: color 100ms ease-in-out;
+				font-weight: 600;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			&:not(.disable) {
+				&:hover,
+				&.active {
+					.button {
+						background-color: $color-comet;
+						color: $color-silver;
+						border: none;
+						box-shadow: 0px 9px 13px -9px transparentize($color-white, 0.7);
+
+						&.project-explorer {
+							background-image: url("../images/project-white.svg");
+							background-color: #596084;
+
+							~ p {
+								color: #596084;
+							}
+						}
+
+						&.language-editor {
+							background-image: url("../images/language-white.svg");
+							background-color: #8b735f;
+
+							~ p {
+								color: #8b735f;
+							}
+						}
+
+						&.webform-builder {
+							background-image: url("../images/webform-white.svg");
+							background-color: #a46c86;
+
+							~ p {
+								color: #a46c86;
+							}
+						}
+					}
+				}
+			}
+			&.disable {
+				display: none;
+			}
+		}
+	}
+
+	&-tree {
+		position: absolute;
+		&.left {
+			float: left;
+		}
+		&.right {
+			float: right;
+		}
+		width: calc(100% - #{$sidebar-nav-width});
+		padding: $k-padding-m $k-padding-l;
+		box-sizing: border-box;
+		overflow: auto;
+		height: 100%;
+
+		&.left {
+			left: $sidebar-nav-width;
+		}
+
+		&.right {
+			right: $sidebar-nav-width;
+		}
+
+		&::-webkit-scrollbar-track {
+			@extend .scroll-bar-track;
+		}
+
+		&::-webkit-scrollbar {
+			@extend .scroll-bar;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			@extend .scroll-bar-thumb;
+		}
+
+		&::-webkit-scrollbar-corner {
+			@extend .scroll-bar-corner;
+		}
+
+		.title {
+			color: #fff;
+			font-size: 11px;
+			border-bottom: 1px solid #868686;
+			padding-bottom: 5px;
+			margin: 10px 0 5px;
+		}
+
+		.search-box {
+			margin: 10px 0;
+
+			.input-group {
+				position: relative;
+
+				.focus-border {
+					display: none;
+				}
+
+				input[type="text"] {
+					width: 100%;
+					box-sizing: border-box;
+					border: 1px solid $color-raven;
+					border-radius: 3px;
+					padding: 8px;
+					background: $color-dove-gray;
+					font-size: 0.7rem;
+					color: $color-white;
+					outline: none;
+					font-family: "Roboto", sans-serif;
+
+					&::placeholder {
+						color: $color-silver-chalice;
+					}
+
+					&:focus {
+						border-color: #8b8b8b;
+					}
+				}
+
+				input.form-control ~ .focus-border:before,
+				input.form-control ~ .focus-border:after {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 50%;
+					width: 0;
+					height: 1px;
+					background-color: $color-wild-sand;
+					transition: 0.4s;
+				}
+				input.form-control ~ .focus-border:after {
+					top: auto;
+					bottom: 0;
+				}
+				input.form-control ~ .focus-border i:before,
+				input.form-control ~ .focus-border i:after {
+					content: "";
+					position: absolute;
+					top: 50%;
+					left: 0;
+					width: 1px;
+					height: 0;
+					background-color: $color-wild-sand;
+					transition: 0.6s;
+				}
+				input.form-control ~ .focus-border i:after {
+					left: auto;
+					right: 0;
+				}
+				input.form-control:focus ~ .focus-border:before,
+				input.form-control:focus ~ .focus-border:after {
+					left: 0;
+					width: 100%;
+					transition: 0.4s;
+				}
+				input.form-control:focus ~ .focus-border i:before,
+				input.form-control:focus ~ .focus-border i:after {
+					top: 0;
+					height: 100%;
+					transition: 0.6s;
+				}
+			}
+		}
+
+		.project-files {
+			ul {
+				background: $color-dove-gray !important;
+
+				div {
+					width: 100%;
+
+					&.folder-parent {
+						color: $color-white !important;
+						font-size: 12px;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+				}
+
+				> li > div:hover {
+					background: $color-river-bed;
+				}
+			}
+
+			.node-active {
+				background: $color-mine-shaft-light;
+			}
+
+			.search-highlight {
+				background: $color-flamingo;
+			}
+
+			.project-root {
+    			color: $color-white;
+			}
+
+			.toggle-wrapper {
+				height: 8px;
+				width: 6px;
+
+				svg {
+					position: absolute;
+				}
+			}
+		}
+
+		.schema-list,
+		.system-schema-list {
+			&-intro {
+				.schema-logo {
+					//background: url('../images/language-white.svg') $color-ebony-clay-dark no-repeat center;
+					background: $color-ebony-clay-dark;
+					width: $sidebar-logo-width;
+					height: $sidebar-logo-width;
+					display: block;
+					border-radius: $sidebar-logo-width/2;
+					text-align: center;
+					color: #ffffff4d;
+					font-weight: 600;
+					padding-top: 17px;
+					font-size: 40px;
+					margin: 10px auto 15px;
+				}
+
+				.webform-logo {
+					background: $color-ebony-clay-dark
+						url("../images/webform-white-light.svg") no-repeat center;
+					background-size: 40px;
+				}
+
+				h2 {
+					color: $color-white;
+					text-align: center;
+					margin-bottom: $k-padding-m;
+				}
+				p,
+				.intro-text {
+					color: $color-raven;
+					font-size: 0.813em;
+					margin-bottom: $k-padding-xl;
+					text-align: center;
+					line-height: 1.3;
+				}
+
+				.new-schema.btn {
+					background: $color-comet;
+					padding: 10px;
+					margin: 0 auto 10px;
+					display: block;
+					color: #fff;
+					width: 100%;
+					max-width: 300px;
+					font-size: 0.75em;
+					outline-color: transparent;
+					opacity: 0.9;
+					&:hover {
+						opacity: 1;
+					}
+				}
+			}
+			li {
+				display: flex;
+				align-items: center;
+				padding: 10px 5px;
+				cursor: pointer;
+
+				&:hover {
+					background: $color-river-bed;
+				}
+
+				img {
+					width: 10px;
+				}
+
+				span {
+					margin-left: 10px;
+					font-size: 13px;
+					color: $color-white;
+				}
+			}
+		}
+	}
+}
+.treebeard-box {
+	background-color: transparent;
+}
+
+.resizer {
+	width: 8px; //If this needs to be changed, also remember to change it in `config.js`.
+	position: relative;
+
+	&:before {
+		content: "";
+		width: 4px;
+		height: 20px;
+		border-left: 1px solid $color-cadet-blue;
+		border-right: 1px solid $color-cadet-blue;
+		position: absolute;
+		top: 50%;
+		left: 2px;
+		cursor: col-resize;
+		pointer-events: none;
+		z-index: 30;
+		opacity: 0.5;
+		transition: opacity 100ms ease-in-out;
+	}
+
+	&:hover:before {
+		opacity: 1;
+	}
+
+	.handle {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: inherit;
+		background: $color-comet;
+		cursor: col-resize;
+	}
+}
+
+/*Animation for skeleton loader*/

@@ -1,0 +1,153 @@
+﻿<!-- Delete Modal For Arrays Start -->
+<k-modal modal-title="delete"
+         save-text="yes"
+         cancel-text="no"
+         size="md"
+         :save-action="deleteConfirm"
+         :cancel-action="hideAllModals"
+         v-if="modalShowStatus.delete"
+         :close-modal="hideAllModals">
+    <div slot="modal-body">
+        <div class="container">
+            are you sure you want to delete {{currentModel}} #{{deleteElementIndex}} ?
+        </div>
+    </div>
+</k-modal>
+<!-- Delete Modal For Arrays End -->
+<!-- Delete Modal For Image/Object in Property Start -->
+<k-modal modal-title="delete"
+         save-text="yes"
+         cancel-text="no"
+         size="md"
+         :save-action="deleteProperty"
+         :cancel-action="cancelPropertyDelete"
+         v-if="modalShowStatus.deleteObject"
+         :close-modal="cancelPropertyDelete">
+    <div slot="modal-body">
+        <div class="container">
+            are you sure you want to delete this {{formatPropertyName(propertyToDelete.displayText || propertyToDelete._propertyName)}} ?
+        </div>
+    </div>
+</k-modal>
+<!-- Delete Modal For Image/Object in Property End -->
+<!-- Pending Changes Start -->
+<k-modal modal-title="Pending Changes"
+         save-text="yes"
+         cancel-text="no"
+         size="md"
+         v-if="modalShowStatus.update"
+         :save-action="saveUnsavedChanges"
+         :cancel-action="discardUnsavedChanges"
+         :close-modal="hideAllModals">
+    <div slot="modal-body">
+        <div class="container">
+            You might be having unsaved changes for {{modelNameForUpdate}}. Do you want to save any pending changes?
+        </div>
+    </div>
+</k-modal>
+<!-- Pending Changes End -->
+<!-- Rich Text Editor Start -->
+<k-modal v-cloak
+         modal-title="Edit"
+         save-text="Save changes"
+         size="md"
+         :save-action="onRichTextModalSave"
+         :cancel-action="onRichTextModalCancel"
+         v-if="modalShowStatus.showRichTextEditorModal"
+         :mounted-callback="intializeFroala"
+         :close-modal="hideAllModals">
+    <div slot="modal-body">
+        <textarea id="froalaEditor">    
+        </textarea>
+    </div>
+</k-modal>
+<!-- Rich Text Editor End -->
+
+<!-- Text Area Start -->
+<k-modal v-cloak
+         modal-title="Edit"
+         save-text="Save changes"
+         size="md"
+         :save-action="onTextAreaModalSave"
+         :cancel-action="onTextAreaModalCancel"
+         v-if="modalShowStatus.showTextAreaModal"
+         :close-modal="hideAllModals">
+    <div slot="modal-body">
+        <textarea v-model="textArea.content" class="form-control" rows="10">
+        </textarea>
+    </div>
+</k-modal>
+<!-- Text Area End -->
+
+<!-- Need Help Start -->
+<k-modal v-cloak
+         modal-title="Having Issues ?"
+         save-text="Save changes"
+         size="lg"
+         v-if="modalShowStatus.havingIssues"
+         :close-modal="hideAllModals">
+    <div slot="modal-body">
+        <div class="container">
+            <form>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" readonly v-model="supportEmailForm.subject" class="form-control-plaintext" placeholder="enter the subject" />
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea class="form-control textarea-no-resize" v-model="supportEmailForm.message" rows="6" placeholder="enter your message"></textarea>
+                </div>
+                <div class="form-group" v-if="!isSupportEmailFormValid()">
+                    <label class="modal-error-label">please enter a message</label>
+                </div>
+                <div class="form-group" v-if="!supportEmailForm.image">
+                    <input type="file" id="image-file-input" accept="image/*" class="input-file-upload" v-on:change="processUploadedFile" />
+                    <label for="image-file-input" class="modal-btn-action">Upload an image</label>
+                </div>
+                <div class="form-group" v-else>
+                    <label class="label-attached-image">Attached Image: {{supportEmailForm.image.name}}</label>
+                    <span v-on:click="supportEmailForm.image = null"><i class="fa fa-times"></i></span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div slot="modal-footer">
+        <button class="modal-btn-save modal-footer-btn" v-on:click="sendSupportEmail" v-if="isSupportEmailFormValid()">
+            Send Email
+        </button>
+        <button class="modal-btn-cancel modal-footer-btn" v-on:click="cancelSendSupportEmail">Cancel</button>
+    </div>
+</k-modal>
+<!-- Need Help End -->
+<!-- VMN Update Model Start -->
+<k-modal v-cloak
+         modal-title="Do you want to update all the occurrences of this contact number ?"
+         size="lg"
+         v-if="modalShowStatus.vmnUpdate"
+         :close-modal="hideAllModals">
+    <div slot="modal-body">
+        Do you want to update all occurrences of <b>{{$root.oldModel.contactnumber}}</b> and preserve the assigned calltracker number <b>{{$root.oldModel.calltrackernumber}}</b> ?
+        You can also update this phonenumber alone and generate a new calltracker number .
+    </div>
+    <div slot="modal-footer">
+        <button class="modal-btn-cancel modal-footer-btn" v-on:click="hideAllModals">Cancel</button>
+        <button class="modal-btn-save modal-footer-btn" v-on:click="updateAllVMN">Update all</button>
+        <button class="modal-btn-save modal-footer-btn" v-on:click="updateThisVMNAndGetNewCallTracker">Update only this number</button>
+    </div>
+</k-modal>
+<!-- VMN Update Model End -->
+<!-- START: Array property max length reached  -->
+<k-modal v-cloak
+         :modal-title="'You cannot add more items to ' + $root.arrayPropertyMaxCountModal.propertyName"
+         size="md"
+         v-if="modalShowStatus.maxArrayCountForProperty"
+         :close-modal="hideAllModals">
+    <div slot="modal-body">
+        You have already added the maximum count of {{$root.arrayPropertyMaxCountModal.maxLength}} {{$root.arrayPropertyMaxCountModal.className}}(s)
+        to {{$root.arrayPropertyMaxCountModal.propertyName}}. You can remove an existing {{$root.arrayPropertyMaxCountModal.className}} and add a new one.
+    </div>
+    <div slot="modal-footer">
+        <button class="modal-btn-cancel modal-footer-btn" v-on:click="hideAllModals">Close</button>
+    </div>
+</k-modal>
+<!-- END: Array property max length reached  -->

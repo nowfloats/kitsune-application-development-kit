@@ -1,0 +1,23 @@
+.btn {
+	background-color: transparent; /* Green */
+	border: none;
+	transition: background .2s ease-in-out;
+	color: $color-flamingo;
+	padding: 6px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	margin: 0px 8px;
+	cursor: pointer;
+	border-radius: 2px;
+}
+
+.btn.disabled {
+	pointer-events: none;
+	cursor: not-allowed;
+}
+
+button:focus {
+	outline: $color-flamingo auto 1px;
+}

@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BEC55BAE-F341-4E82-B6AF-4CE1824AD917}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kitsune.Models</RootNamespace>
+    <AssemblyName>Kitsune.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DnsClient, Version=1.0.7.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DnsClient.1.0.7\lib\net45\DnsClient.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MongoDB.Bson.2.7.0\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MongoDB.Driver.2.7.0\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MongoDB.Driver.Core.2.7.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.3.7.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\protobuf-net.2.3.7\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Buffers.4.3.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityModels\KitsuneActivityLog.cs" />
+    <Compile Include="AmazonSQSModels.cs" />
+    <Compile Include="AWSModels\SQSModels.cs" />
+    <Compile Include="BuildAndRunModels\BuildStatsModel.cs" />
+    <Compile Include="BuildAndRunModels\KitsuneBuildStatsCollection.cs" />
+    <Compile Include="Cloud\AWSCloudConfiguration.cs" />
+    <Compile Include="Cloud\CloudProvider.cs" />
+    <Compile Include="CollectionModels\KitsuneWordPressModel.cs" />
+    <Compile Include="CompilerModel.cs" />
+    <Compile Include="CrawledLinks.cs" />
+    <Compile Include="CrawledStats.cs" />
+    <Compile Include="DashboardModel.cs" />
+    <Compile Include="EmailRequest.cs" />
+    <Compile Include="GetThemeModel.cs" />
+    <Compile Include="KitsuneAdminModel\KitsuneAdminSDkModels.cs" />
+    <Compile Include="KitsunePage.cs" />
+    <Compile Include="KLM\KLMResponseModel.cs" />
+    <Compile Include="KStringQueueModel.cs" />
+    <Compile Include="MetaInfoModels.cs" />
+    <Compile Include="MonthlyInvoiceModel.cs" />
+    <Compile Include="KitsuneBillingModel.cs" />
+    <Compile Include="KitsuneProjects.cs" />
+    <Compile Include="KLM\KLMModel.cs" />
+    <Compile Include="Krawler\AssetModel.cs" />
+    <Compile Include="Krawler\KitsuneKrawlerStatsCollection.cs" />
+    <Compile Include="Krawler\KrawlSQSModel.cs" />
+    <Compile Include="Language\LanguageModel.cs" />
+    <Compile Include="MongoEntity.cs" />
+    <Compile Include="Nodes\BlockNode.cs" />
+    <Compile Include="Nodes\ExpressionNode.cs" />
+    <Compile Include="Nodes\INode.cs" />
+    <Compile Include="Nodes\KHideNode.cs" />
+    <Compile Include="Nodes\KNoRepeatNode.cs" />
+    <Compile Include="Nodes\KScriptNode.cs" />
+    <Compile Include="Nodes\KShowNode.cs" />
+    <Compile Include="Nodes\KRepeatNode.cs" />
+    <Compile Include="Nodes\TextNode.cs" />
+    <Compile Include="OptimizationReports.cs" />
+    <Compile Include="ProjectConfigModels\CustomSourceSynModel.cs" />
+    <Compile Include="Project\AuditKitsuneProject.cs" />
+    <Compile Include="Project\AuditKitsuneResource.cs" />
+    <Compile Include="Project\BaseKitsuneProject.cs" />
+    <Compile Include="Project\BaseKitsuneResource.cs" />
+    <Compile Include="Project\KitsuneProject.cs" />
+    <Compile Include="Project\KitsuneResource.cs" />
+    <Compile Include="Project\ProductionKitsuneProject.cs" />
+    <Compile Include="Project\ProductionKitsuneResource.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublishModels\PublishProjectModel.cs" />
+    <Compile Include="PublishModels\PublishSQSModel.cs" />
+    <Compile Include="ReportGeneratorModels\ReportGeneratorSQSModel.cs" />
+    <Compile Include="SearchModel.cs" />
+    <Compile Include="SitemapModel.cs" />
+    <Compile Include="SubmitRequest.cs" />
+    <Compile Include="Theme\BasePageModel.cs" />
+    <Compile Include="Theme\BaseThemeModel.cs" />
+    <Compile Include="Theme\DraftPageModel.cs" />
+    <Compile Include="Theme\DraftThemeModel.cs" />
+    <Compile Include="Theme\PendingPageModel.cs" />
+    <Compile Include="Theme\PendingThemeModel.cs" />
+    <Compile Include="Theme\ProductionPageModel.cs" />
+    <Compile Include="Theme\ProductionThemeModel.cs" />
+    <Compile Include="TranspilerModel.cs" />
+    <Compile Include="UserModel.cs" />
+    <Compile Include="WebActionsModel.cs" />
+    <Compile Include="WebformsModel.cs" />
+    <Compile Include="WebsiteModels\KitsuneBalanceAlertCollection.cs" />
+    <Compile Include="WebsiteModels\KitsuneUsagePredictionCollection.cs" />
+    <Compile Include="Project\KitsuneCloudProviderCollectionModel.cs" />
+    <Compile Include="WebsiteModels\KitsuneWebsiteCollection.cs" />
+    <Compile Include="ZipServiceModels\AmazonSQSZipServiceModel.cs" />
+    <Compile Include="ZipServiceModels\ZipFolderStatsCollection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kitsune.Language\Kitsune.Language.csproj">
+      <Project>{99409052-B7F9-4B7C-BDCF-9998D29DE87F}</Project>
+      <Name>Kitsune.Language</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ReferenceGraphModels\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

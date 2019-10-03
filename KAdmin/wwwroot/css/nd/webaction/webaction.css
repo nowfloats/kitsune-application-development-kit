@@ -1,0 +1,173 @@
+﻿.schema-container { 
+    width: 100%;
+    background-color: white;
+}
+
+/* Adding spaces between cards */
+.wrapper > .card.obj-border {
+    margin-top: 20px;
+}
+
+.vue-form-generator {
+    padding: 0 2em;
+    color: #949494;
+}
+
+.card-body {
+    padding: .938em .5em 0 .938em;
+}
+
+.webaction-card:hover .invisible {
+    visibility: visible !important;
+}
+
+.btn {
+    font-size: 14px;
+}
+
+.background-red {
+    background-color: red;
+}
+
+.color-white {
+    color: white;
+}
+
+/* Displaying Fields correctly */
+.form-group.field-input,
+.form-group.field-switch,
+.form-group.field-label {
+    display: flex !important;
+    padding: 15px;
+}
+
+.form-group.field-input > label,
+.form-group.field-switch > label,
+.form-group.field-label > label {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    width: 22%;
+    color: #949494 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+}
+
+label {
+    color: #949494;
+    font-style: normal !important;
+}
+
+.form-group.field-label .field-wrap {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.form-group.field-label .field-wrap span {
+    margin: 0 !important;
+    border-bottom: 1px solid lightgray;
+    padding-top: 7px;
+    width: 94%;
+}
+
+.form-group.disabled.field-label label:after {
+    content: ':';
+    padding-left: 5px;
+}
+
+.form-group.disabled.field-input input {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 1px solid lightgray;
+    padding: 0;
+    width: 98%;
+    box-shadow: none;
+    outline: none;
+}
+
+.form-group.field-input > .field-wrap,
+.form-group.field-switch > .field-wrap {
+    width: 95%;
+}
+
+.form-group.field-object .wrapper {
+    width: 10%;
+}
+
+.form-group.field-object legend {
+    border-bottom: 0 !important;
+}
+
+.form-group.field-object .card.panel-gray.panel-shadow {
+    margin: 0;
+    border: 0;
+    box-shadow: none !important;
+}
+
+.form-group.field-object .card-body {
+    padding: 0;
+}
+
+input[type="text"]:disabled,
+input[type="date"]:disabled,
+input[type="number"]:disabled,
+input[type="select"]:disabled {
+    border: 0;
+    cursor: default;
+    color: #949494;
+}
+
+.vue-form-generator .form-control {
+    height: 31px;
+}
+
+.save-btn-container {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 13%;
+    padding-top: 0.5%;
+}
+
+/* Bread Crumbs */
+
+.breadcrumb {
+    background: #FFF;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+}
+
+
+.schema-outer-container {
+    background: #FFF;
+}
+
+#app {
+    height: 100vh;
+}
+
+
+.zeroth-case {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6rem;
+}
+
+.zeroth-case img {
+    max-height: 30vh;
+    margin: 0 auto;
+}
+
+.details-container {
+    min-height: 3.5em;
+}

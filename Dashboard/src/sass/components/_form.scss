@@ -1,0 +1,90 @@
+@import "../base";
+@import "../variables";
+
+.k-form {
+	margin-left: -1rem;
+	padding-top: $padding-beta/2;
+
+	.disabled {
+		opacity: 0.3;
+		font-weight: $font-weight-normal;
+	}
+
+	.no-padding {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+
+	.override-margin {
+		margin-bottom: 2em !important;
+	}
+
+	@include for-tablet-portrait-up {
+		margin-left: unset;
+
+	}
+	.k-form-field {
+		position: relative;
+
+		&> .col-xs-12 {
+			margin-bottom: $padding-alpha/2;
+			min-height: 60px;
+		}
+
+		.error-image{
+			position: absolute;
+			background: url("../../assets/icons/Validation.svg") no-repeat center center;
+			background-size: 0.85em;
+			padding: 1em;
+			bottom: 0;
+			right: 1em;
+			visibility: hidden;
+
+			&.state {
+				bottom: 1.5rem;
+				right: 0;
+			}
+
+			&.active{
+				visibility: visible;
+			}
+
+		}
+
+		@include floatingLabel(1.5em, -1.3em, 0.65em, $gray);
+
+		& input, & textarea {
+			width: 100%;
+			font-size: 0.8em;
+			color: $dove-gray;
+			font-weight: $font-weight-medium;
+			border-radius: $border-radius;
+			border: 1px solid rgba(141, 141, 141, 0.25);
+			padding: 0.6rem;
+			outline: 0;
+
+			&:focus {
+				border: 1px solid $kitsune-orange;
+				outline: 0;
+			}
+
+			@include placeholder(1em, auto, $silver);
+		}
+
+		& textarea {
+			height: $textarea-height;
+			resize: none;
+			line-height: 1.3;
+		}
+
+		#address {
+			width: 100%;
+		}
+
+		.pincode-wrapper {
+			&>div {
+				margin-bottom: 1.8em !important;
+			}
+		}
+	}
+}

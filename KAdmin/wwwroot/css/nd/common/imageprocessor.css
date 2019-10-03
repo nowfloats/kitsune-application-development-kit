@@ -1,0 +1,165 @@
+﻿.img-container {
+    min-width: 500px;
+    min-height: 500px;
+}
+
+/*.action-btns {
+
+}*/
+
+#imgz {
+    /*max-height: 500px;
+    max-width: 500px;*/
+    /*max-width: 100%;*/
+    /*max-height: 700px;*/
+    /*max-height: inherit;*/
+    /*max-width: 700px;*/
+    /*max-height: 500px;*/
+    max-width: 100%;
+    max-height: inherit;
+}
+
+#image-processor-container {
+    max-height: none;
+    display: flex;
+    justify-content: space-between;
+    min-height: calc(80vh - 200px);
+    max-height: calc(80vh - 250px);
+}
+
+.action-btns {
+    margin-top: 20px;
+    min-width: 20%;
+    margin: 0 20px 0 20px;
+    overflow: auto;
+}
+
+.action-btns-label {
+
+}
+
+.action-btns-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.action-btns-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.action-btns-buttons .btn {
+    margin-top: 10px;
+}
+
+.edit-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 60%;
+    /*margin-left: 15%;*/
+    margin: auto;
+    max-height: inherit;
+    overflow: hidden;
+}
+
+/*resize action area css*/
+.resize-container {
+    width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.resize-label {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    min-width: 20%;
+}
+
+.jcrop-tracker {
+    width: 100% !important;
+}
+
+.dz-error-message {
+    font-size: 14px;
+    color: red;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+/*modal form uploading files*/
+
+
+.upload-position {
+    width: 100%;
+    height: 100%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.file-upload {
+    height: 300px;
+    border: 1px dashed lightgray;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dz-details {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+.dz-filename {
+    margin-top: 24px;
+}
+
+.action-buttons .btn {
+    margin-left: 10px;
+}
+
+
+.placeholder {
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+}
+
+#drpz-data {
+    height: 50%;
+    width: 100%;
+    justify-content: center;
+}
+
+.action-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 90px;
+    margin-right: 30px;
+}
+
+.modal-backdrop {
+    z-index: 1049;
+}
+
+.action-containers {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px dashed lightgray;
+}
+
+.action-container-label:after {
+    content: ':';
+    margin-left: 5px;
+}

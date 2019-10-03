@@ -1,0 +1,28 @@
+﻿.padding-10 {
+    padding: 10px;
+}
+
+.margin-left-5per {
+    margin-left: 5%;
+}
+
+.cursor-pointer {
+    cursor : pointer;
+}
+
+.no-outline {
+    outline: none;
+}
+
+.white-color {
+    color: #FFF !important;
+}
+
+.btn {
+    outline: none;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}

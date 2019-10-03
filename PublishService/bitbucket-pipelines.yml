@@ -1,0 +1,55 @@
+image: python:3.5.1
+
+options:
+  docker: true
+  
+pipelines:
+  branches:
+    ci-integrate:
+      - step:
+          caches:
+            - pip
+          script: # Modify the commands below to build your repository.
+            - pip install -r requirements.txt
+      - step:
+            name: Deploy to Testing
+            caches:
+              - pip
+            deployment: test
+            script:
+              # Download the necessary tools to deploy to AWS
+              - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD
+              - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD
+              - apt-get update
+              - python --version
+              - apt-get -y install python-dev
+              - apt-get -y install python-pip
+              - pip install awscli
+              - pip --help
+              - aws --version
+              - mkdir ~/bin/
+              - wget https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+              - mv jq-linux64 ~/bin/jq
+              - chmod +x ~/bin/jq
+              - export PATH=~/bin:$PATH
+              # Login ECR 
+              - eval $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+              # Build and tag image
+              - curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+              - chmod +x /usr/local/bin/docker-compose
+              - docker-compose --version
+              - docker-compose build
+              - docker tag $IMAGE_NAME_PROD:latest $REPO_URL_PROD:latest
+              #Rename remote latest image to old-stable and save a copy
+              - MANIFEST=$(aws ecr batch-get-image --repository-name $REPO_NAME_PROD --image-ids imageTag=latest --query images[].imageManifest --output text)
+              - aws ecr put-image --repository-name $REPO_NAME_PROD --image-tag old-stable --image-manifest "$MANIFEST"
+              # Push the new Docker image to the Docker registry
+              - docker push $REPO_URL_PROD:latest
+              # Update Task Revision
+              - aws ecs describe-task-definition --task-definition $TASK_NAME_PROD | jq -c "{containerDefinitions:.taskDefinition.containerDefinitions}" > task_def.json
+              # register the ECS task definition and capture the version
+              - export TASK_VERSION=$(aws ecs register-task-definition --family $TASK_NAME_PROD --cli-input-json file://./task_def.json --region $AWS_DEFAULT_REGION | jq --raw-output '.taskDefinition.revision')
+              - echo "Registered ECS Task Definition:" $TASK_VERSION
+              # Update the ECS service to use the updated Task versions
+              - aws ecs update-service --cluster $CLUSTER_PROD --service $SERVICE_NAME_PROD --task-definition $TASK_NAME_PROD:$TASK_VERSION
+        

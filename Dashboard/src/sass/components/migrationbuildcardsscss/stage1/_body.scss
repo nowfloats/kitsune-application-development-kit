@@ -1,0 +1,31 @@
+@import '../../../variables';
+@import '../../../base';
+
+.body-container {
+	padding: 5em 3em;
+	background: $white;
+	color: $kitsune-orange;
+
+	.stage-name {
+		font-size: 44px;
+		font-weight: 100;
+		padding-bottom: 0.5em;
+		display: block;
+
+		&.dots-loading{
+			@include dots-loading('stage-name-loader',$kitsune-orange);
+			@include k-keyframes('stage-name-loader',$kitsune-orange);
+		}
+
+
+	}
+
+	.stage-description {
+		font-weight: 300;
+		font-size: 14px;
+		color: $tundora;
+		display: block;
+		line-height: $line-height-stage-description;
+	}
+
+}

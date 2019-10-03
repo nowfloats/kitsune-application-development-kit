@@ -1,0 +1,74 @@
+@import "../variables";
+@import "../base";
+
+.project-action-bar {
+	border: 1px solid $project-card-border-color;
+	border-left: 0;
+	border-right: 0;
+	padding: 1.4em 0em 1em 1.2em;
+	overflow: hidden;
+	font-size: 13px;
+	font-weight: 400;
+	border-bottom: 0;
+
+	.project-created {
+		display: flex;
+		vertical-align: middle;
+		padding: 0.36em 0 0;
+		font-size: 12px;
+
+		@include  for-phone-only{
+			padding-left: 0.6em;
+		}
+
+		@include for-tablet-portrait-up{
+			padding-left: 0.6em;
+		}
+
+		@include for-tablet-landscape-up{
+			padding-left: 0;
+		}
+
+	}
+
+	.project-context-menu-trigger {
+		background: url("../../assets/icons/dots-vertical.svg") no-repeat center;
+		background-size: 1.6em;
+		padding: 1em;
+		margin: 0 1em 0 .5em;
+		outline: none;
+		border: 1px solid $nobel;
+		transition: all 200ms ease-in-out;
+		transform: rotate(90deg);
+
+		&:hover{
+			background: $nobel url("../../assets/icons/dots-vertical-light.svg") no-repeat center;
+			background-size: 1.6em;
+		}
+
+	}
+
+	.project-btn-primary {
+		color: $kitsune-orange;
+		background-color: $white;
+		border: 1px solid $kitsune-orange;
+		border-radius: 3px;
+		padding: 0.4em 0.6em;
+		outline: none;
+		transition: all 0.2s;
+
+		&.live-site {
+			margin-right: 1.2em;
+			padding: 0.4em 1.3em;
+		}
+
+		&:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+			background-color: $kitsune-orange;
+			color: $white;
+		}
+
+	}
+
+}

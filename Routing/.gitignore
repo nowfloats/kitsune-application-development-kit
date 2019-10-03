@@ -1,0 +1,8 @@
+/data
+.idea/
+.archive/
+ENV_PROD
+ENV_DEV
+bin/
+.serverless/
+temp/

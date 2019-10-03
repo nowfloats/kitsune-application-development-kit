@@ -1,0 +1,39 @@
+@import '../variables';
+@import "../base";
+
+.projects-content {
+	font-size: 14px;
+	position: relative;
+
+	@include for-phone-only {
+		padding-bottom: 2em;
+	}
+
+	.list {
+		position: relative;
+
+		&-move{
+			transition: transform 0.3s;
+		}
+
+		.list-item {
+			display: inline-block;
+		}
+
+		.list-item {
+			transition: all 0.3s;
+			display: inline-block;
+		}
+
+		.list-enter, .list-leave-to{
+			opacity: 0;
+			transform: translateY(30px);
+		}
+
+		.list-leave-active {
+			position: absolute;
+		}
+
+	}
+
+}

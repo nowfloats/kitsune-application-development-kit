@@ -1,0 +1,163 @@
+.PROJECT_NONE,
+.FILE_NONE,
+.PROJECT_CLOSED {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+
+	.k-indicator {
+		position: absolute;
+		left: 80px;
+		top: 15px;
+		height: 52%;
+		opacity: 0.3;
+
+		img {
+			height: 95%;
+			@include media-min-width(1130px) {
+				height: 100%;
+			}
+		}
+	}
+
+	.k-message {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		color: rgba( $color-white, .3 );
+		position: relative;
+		bottom: 25px;
+	}
+}
+
+.PROJECT_NONE {
+	.k-message {
+		img {
+			height: 70px;
+			margin-bottom: 20px;
+			@include media-min-width(1130px) {
+				height: 100px;
+				margin-bottom: 25px;
+			}
+		}
+
+		h1 {
+			font-size: 20px;
+			margin-bottom: 12px;
+			@include media-min-width(1130px) {
+				font-size: 24px;
+				margin-bottom: 15px;
+			}
+		}
+
+		p {
+			max-width: 270px;
+			text-align: center;
+			line-height: 150%;
+			font-size: 14px;
+
+			@include media-min-width(1130px) {
+				font-size: 16px;
+			}
+		}
+	}
+}
+
+.FILE_NONE {
+	transition: all 100ms ease-in-out;
+
+	.k-message {
+		img {
+			height: 100px;
+			margin-bottom: 20px;
+		}
+
+		h1 {
+			margin-bottom: 5px;
+		}
+	}
+}
+
+.PROJECT_CLOSED {
+	.k-message {
+		img {
+			height: 100px;
+			margin-bottom: 25px;
+		}
+
+		h1 {
+			font-size: 24px;
+			margin-bottom: 15px;
+		}
+
+		p {
+			line-height: 160%;
+			max-width: 340px;
+			text-align: center;
+		}
+	}
+}
+
+.page-not-found {
+	background: linear-gradient( 90deg, $color-trout, $color-ebony-clay);
+	display: flex;
+	align-items: center;
+	min-height: 24em;
+	justify-content: center;
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+
+	h1 {
+		color:$color-white;
+		font-weight: bold;
+		font-size: 3em;
+	}
+
+	.not-found-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		
+		img {
+			height: 120px;
+			margin-bottom: 10px;
+		}
+	
+		h2 {
+			font-weight: 400;
+			font-size: 22px;
+			color: $color-white;
+		}
+	
+		p {
+			font-weight: 300;
+			font-size: 14px;
+			color: $color-athens-gray;
+		}
+	
+		button {
+			height: 30px;
+			width: 75px;
+			margin-top: 20px;
+			background-color: $color-flamingo;
+			border: 0;
+			color: $color-white;
+			font-family: 'Source Sans Pro', sans-serif;
+			font-weight: 600;
+			border-radius: 3px;
+		}
+	}
+
+	.ocean {
+		height: 5%;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+
+		@include waves(4);
+	}
+}
+

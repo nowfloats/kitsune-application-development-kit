@@ -1,0 +1,31 @@
+@import "../variables";
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: #000;
+	z-index: 103;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0.5;
+}
+
+.overlay-modal {
+	background-color: $mine-shaft;
+	opacity: 0.95;
+	z-index: 101;
+}
+
+.overlay-billing-info {
+	background-color: #313131;
+	opacity: 0.95;
+	z-index: 104;
+}
+
+.overlay-profile {
+	opacity: 0.1;
+}

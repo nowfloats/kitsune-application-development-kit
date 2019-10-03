@@ -1,0 +1,154 @@
+html,
+body {
+	height: 100%;
+	min-height: 100%;
+	min-width: 1024px;
+	overflow-y: hidden;
+}
+
+body {
+	overflow-y: hidden;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+input,
+textarea {
+	caret-color: $color-flamingo;
+
+	&:focus {
+		box-shadow: 0 0 4px $color-flamingo !important;
+		border: 1px solid $color-flamingo !important;
+	}
+}
+
+#root {
+	height: 100%;
+	background: $color-ebony-clay-light;
+
+	div[data-reactroot] > div {
+		height: 100%;
+	}
+}
+
+#playground {
+	display: flex;
+	background: $color-mine-shaft;
+	transition: all 100ms ease-in-out;
+	min-height: $playground-minheight;
+	max-height: calc(100% - #{$footer-collapsedheight} - #{$header-height});
+
+	&.active {
+		max-height: calc(100% - #{$footer-minheight} - #{$header-height} - #{$resizer-height});
+	}
+}
+
+.hide {
+	display: none !important;
+}
+
+.animated-hide {
+	opacity: 0 !important;
+	visibility: hidden !important;
+	pointer-events: none !important;
+	transition: all 100ms ease-in-out;
+}
+
+.pointer-none {
+	pointer-events: none;
+}
+
+.disable {
+	cursor: default !important;
+
+	* {
+		cursor: default !important;
+	}
+
+	&.disable-menu {
+		color: #959595 !important;
+
+		* {
+			color: #959595 !important;
+		}
+	}
+
+	&.disable-submenu {
+		color: #D3D3D3 !important;
+
+		* {
+			color: #D3D3D3 !important;
+		}
+	}
+
+	&.disable-icon {
+		background: $color-ebony-clay;
+	}
+}
+
+.notransition {
+	-webkit-transition: none !important;
+	-moz-transition: none !important;
+	-o-transition: none !important;
+	transition: none !important;
+}
+
+.scroll-bar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: $color-dove-gray;
+}
+
+.scroll-bar {
+	background-color: $color-dove-gray;
+	width: 8px;
+	height: 8px;
+}
+
+.autocomplete-scroll-bar {
+	background-color: $color-dove-gray;
+	width: 15px;
+	height: 8px;
+}
+
+.editor-scroll-bar-thumb {
+	background-color: $color-ebony-clay;
+}
+
+.scroll-bar-thumb {
+	background-color: $color-mine-shaft-light;
+}
+
+.scroll-bar-corner {
+	background-color: $color-dove-gray;
+}
+
+.schema-creator-container,
+.web-form-container {
+	width: 100%;
+}
+
+a.edit-schema {
+	color: $color-white;
+	font-weight: 300;
+	font-size: 0.8em;
+	text-decoration: none;
+
+	&.btn{
+		background: $color-ebony-clay;
+		padding: 10px;
+		margin: 0 auto;
+		display: block;
+	}
+}
+
+/*Contexify overides*/
+
+.react-contexify {
+	z-index: 100 !important;
+}

@@ -1,0 +1,151 @@
+@import '../variables';
+@import "../base";
+
+.billing-form-base-container {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	top:0;
+	left:0;
+
+	.billing-form-container{
+		position: fixed;
+		background: white;
+		border-radius: $border-radius;
+		z-index: 105;
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 0;
+		font-size: 20px;
+
+		@include for-phone-only {
+			width: 100%;
+			min-width: 100%;
+			font-size: 16px;
+		}
+
+		@include for-tablet-landscape-up{
+			min-width: 400px;
+		}
+
+		.form-group {
+			margin-bottom: 0.5em;
+		}
+
+		.k-form-field{
+			margin-bottom: 1em;
+			margin-top: 0.5em;
+		}
+
+		.header {
+			width: 100%;
+			position: relative;
+			padding: 1em 2em 1em 1em;
+			font-size: 24px;
+			text-align: left;
+			background: $modal-header-gradient;
+			margin-bottom: 1em;
+			border-radius: $border-radius $border-radius 0 0;
+
+			@include for-phone-only{
+				padding: 1em;
+				font-size: 16px;
+			}
+
+			.heading {
+				background: url("../../assets/icons/account-dark.svg") no-repeat center left;
+				background-size: 1.2em;
+				padding-left: 1.6em;
+
+				@include for-phone-only{
+					padding-left: 1.2em;
+				}
+			}
+
+			.kclose{
+				position: absolute;
+				background: url("../../assets/icons/close_black.svg") no-repeat center;
+				padding: 1em;
+				background-size: 1.2em;
+				top: 0;
+				right: 0;
+				cursor: pointer;
+				border: 0;
+				outline: none;
+
+				&:hover{
+					background: url("../../assets/icons/close_black_hover.svg") no-repeat center;
+				}
+
+			}
+
+		}
+
+		.content {
+			margin: 0 auto;
+			min-width: 700px;
+			padding: 0 $padding-alpha;
+
+			@include for-phone-only{
+				overflow: auto;
+				max-height: 300px;
+				min-width: $update-container-width-phone-only;
+				margin-bottom: 1em;
+				padding: 0 0 0 $padding-alpha/2;
+			}
+
+			.no-padding{
+				padding: 0;
+			}
+
+			.no-padding-right{
+				padding-right: 0;
+			}
+
+			.no-padding-left{
+				padding-left: 0;
+			}
+
+			.no-margin-bottom{
+				margin-bottom: 0;
+			}
+
+			.k-form{
+				@include for-phone-only{
+					width: 100%;
+					padding-left: 2em;
+				}
+			}
+
+			.floating-label{
+				font-size: 0.6em;
+			}
+
+		}
+
+		.footer {
+			width: 100%;
+			display: flex;
+			justify-content: flex-end;
+			color: $white;
+			padding: 0 1.5em 1em 0;
+			border-radius: 0 0 $border-radius $border-radius;
+
+			@include for-phone-only{
+				padding-right: $padding-beta/2;
+			}
+
+			.proceed {
+				width: 105px;
+			}
+
+			.loader-active {
+				position: relative;
+				padding: 1.1em 2.2em;
+			}
+		}
+	}
+}

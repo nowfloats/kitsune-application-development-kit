@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>radio-on-button</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Publishing-Site-(Webform-Zeroth-/-welcome)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-1341.000000, -343.000000)">
+        <g id="IDE" transform="translate(-8.000000, -165.000000)" fill="#a0aac1" fill-rule="nonzero">
+            <g id="Webforms" transform="translate(7.000000, 0.000000)">
+                <g id="Webform-Checkbox-field" transform="translate(1.000000, 204.000000)">
+                    <g id="Web-forms-drag-build-(+action-bar)" transform="translate(302.000000, 98.000000)">
+                        <g id="Elements-group" transform="translate(999.000000, 85.000000)">
+                            <g id="Elements">
+                                <g id="radio-on-button" transform="translate(40.000000, 121.200000)">
+                                    <path d="M7.5,3.75 C5.4,3.75 3.75,5.4 3.75,7.5 C3.75,9.6 5.4,11.25 7.5,11.25 C9.6,11.25 11.25,9.6 11.25,7.5 C11.25,5.4 9.6,3.75 7.5,3.75 Z M7.5,0 C3.375,0 0,3.375 0,7.5 C0,11.625 3.375,15 7.5,15 C11.625,15 15,11.625 15,7.5 C15,3.375 11.625,0 7.5,0 Z M7.5,13.5 C4.2,13.5 1.5,10.8 1.5,7.5 C1.5,4.2 4.2,1.5 7.5,1.5 C10.8,1.5 13.5,4.2 13.5,7.5 C13.5,10.8 10.8,13.5 7.5,13.5 Z" id="Shape"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,16 @@
+
+@import "../variables";
+
+.full-loader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: transparentize($black, .7);
+    font-size: 2em;
+    color: $white;
+    z-index: 110;
+    text-align: center;
+    line-height: 100vh;
+}

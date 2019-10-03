@@ -1,0 +1,99 @@
+﻿<div>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="" onclick="return false;">
+                    <i class="fa fa-bars sidebar-collapse-icon" aria-hidden="true" onclick="toggleSidebarCollapse()"></i>
+                    <span>K Admin</span>
+                </a>
+            </li>
+
+            <!-- START: DASHBOARD -->
+            <li class="menu-group">Dashboard</li>
+            <li class="@((ViewBag.Title == "Analytics") ? "sidebar-active" : "")" title="Analytics" data-tippy>
+                <a href="@Url.Action("Index", "Home")">
+                    <i class="fa fa-line-chart sidebar-icon" aria-hidden="true"></i>
+                    <span>Analytics</span>
+                </a>
+            </li>
+            <!-- END: DASHBOARD -->
+
+            <!-- START: MANAGE -->
+            <li class="menu-group">Manage</li>
+            <li class="@((ViewBag.Title == "Manage Website Content") ? "sidebar-active" : "")" title="Manage Content" data-tippy>
+                <a href="@Url.Action("Index", "Schema")">
+                    <i class="fa fa-file-o sidebar-icon" aria-hidden="true"></i>
+                    <span>Manage Content</span>
+                </a>
+            </li>
+
+            <li class="@((ViewBag.Title == "Orders") ? "sidebar-active" : "")" title="Orders" data-tippy>
+                <a href="@Url.Action("Index", "Transactions")">
+                    <i class="fa fa-credit-card sidebar-icon" aria-hidden="true"></i>
+                    <span>Orders</span>
+                </a>
+            </li>
+
+            <li class="@((ViewBag.Title == "CallTrackerLog") ? "sidebar-active" : "")" title="Call Tracker" data-tippy>
+                <a href="@Url.Action("Index", "CallTracker")">
+                    <i class="fa fa-phone sidebar-icon" aria-hidden="true"></i>
+                    <span>Call Tracker</span>
+                </a>
+            </li>
+
+            <li class="@((ViewBag.Title == "Inbox") ? "sidebar-active" : "")" title="Inbox" data-tippy>
+                <a href="@Url.Action("Index", "Webaction")">
+                    <i class="fa fa-envelope-o sidebar-icon" aria-hidden="true"></i>
+                    <span>Inbox</span>
+                </a>
+            </li>
+            <!-- START: MANAGE -->
+        </ul>
+
+        @if (ViewBag.Title == "Manage Website Content")
+         {
+            <div class="help-item" onclick="showHavingIssueModal()" data-placement="right" data-toggle="tooltip" title="Need Help ?">
+                <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                <span>Need Help ?</span>
+            </div>
+         }
+
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <!-- sidebar - mobile -->
+    <nav class="navbar navbar-expand-sm navbar-light bg-faded sidebar-mobile show d-block d-sm-none d-none d-sm-block d-md-none">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">K Admin</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="nav-content">
+            <ul class="navbar-nav">
+                <li class="@((ViewBag.Title == "Analytics") ? "nav-item sidebar-active" : "nav-item")">
+                    <a class="nav-link" href="@Url.Action("Index", "Home")">Analytics</a>
+                </li>
+                <li class="@((ViewBag.Title == "Manage Website Content") ? "nav-item sidebar-active" : "nav-item")">
+                    <a class="nav-link" href="@Url.Action("Index", "Schema")">Manage Content</a>
+                </li>
+                <li class="@((ViewBag.Title == "Orders") ? "nav-item sidebar-active" : "nav-item")">
+                    <a class="nav-link" href="@Url.Action("Index", "Transactions")">Orders</a>
+                </li>
+                <li class="@((ViewBag.Title == "CallTrackerLog") ? "nav-item sidebar-active" : "nav-item")">
+                    <a class="nav-link" href="@Url.Action("Index", "CallTracker")">Call Tracker</a>
+                </li>
+                <li class="@((ViewBag.Title == "Inbox") ? "nav-item sidebar-active" : "nav-item")">
+                    <a class="nav-link" href="@Url.Action("Index", "Webaction")">Inbox</a>
+                </li>
+                <li class="@((ViewBag.Title == "Settings") ? "nav-item sidebar-active" : "nav-item")">
+                    <a class="nav-link" href="@Url.Action("Index", "Settings")">Settings</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <!-- /#sidebar - mobile -->
+</div>

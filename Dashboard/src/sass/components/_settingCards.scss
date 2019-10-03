@@ -1,0 +1,105 @@
+@import "../variables";
+@import "../base";
+
+.account-cards {
+
+	.settings-card {
+		box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.24);
+		border-radius: $border-radius;
+		cursor: pointer;
+
+		&:hover{
+			&:not(.coming-soon) {
+				box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.24);
+			}
+			&.coming-soon {
+				cursor: auto;
+			}
+		}
+	}
+
+	.settings-card-content {
+		z-index: 0;
+		min-height: 6.7rem;
+		padding: $padding-alpha;
+
+		@include for-tablet-portrait-up {
+			padding: $padding-alpha;
+		}
+
+		&.profile {
+			background: url("../../assets/icons/swirls.svg") no-repeat center;
+			background-size: cover;
+			position: relative;
+			color: $white;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			border-radius: $border-radius;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				background-image: linear-gradient(#fff,#fff);
+				opacity: .3;
+				z-index: -1;
+			}
+		}
+
+		&>.user-details {
+
+			&>p {
+				font-size: 0.7em;
+
+				&:first-child {
+					font-size: 1.4em;
+					margin-bottom: 0.25rem;
+				}
+			}
+		}
+
+		&>img {
+			width: 3.5em;
+			border-radius: 50%;
+		}
+	}
+
+	.settings-card-footer {
+		padding: $padding-alpha/1.5 $padding-alpha;
+		box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);
+		background: url("../../assets/icons/arrow-right-orange.svg") no-repeat right 0.6rem center;
+		background-size: 1.3em;
+		margin-bottom: $padding-beta/2;
+		color: $kitsune-orange;
+
+		&.coming-soon {
+			color: $black;
+		}
+
+		&>span {
+			font-size: 0.9em;
+		}
+	}
+}
+
+.account-activities {
+	box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.24);
+	border-radius: $border-radius;
+	min-height: 40vh;
+
+	&>.header {
+		padding: $padding-alpha $padding-alpha;
+		box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);
+	}
+
+	&>.content {
+		padding: $padding-beta/2;
+		text-align: center;
+	}
+}

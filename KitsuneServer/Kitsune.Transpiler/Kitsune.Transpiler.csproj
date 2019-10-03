@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <AWSProjectType>Lambda</AWSProjectType>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Amazon.Lambda.Core" Version="1.0.0" />
+    <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="1.3.0" />
+    <PackageReference Include="Amazon.Lambda.SQSEvents" Version="1.0.0" />
+    <PackageReference Include="Antlr4.Runtime" Version="4.6.4" />
+    <PackageReference Include="AWSSDK.SQS" Version="3.3.3.11" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.6.16" />
+    <PackageReference Include="NUglify" Version="1.5.11" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Amazon.Lambda.Tools" Version="2.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AmazonAWSHelpers\AmazonAWSHelpers.csproj" />
+    <ProjectReference Include="..\AntlrLibrary\AntlrLibrary.csproj" />
+    <ProjectReference Include="..\Common\Kitsune.Helper\Kitsune.Helper.csproj" />
+    <ProjectReference Include="..\Common\Kitsune.Models\Kitsune.Models.csproj" />
+    <ProjectReference Include="..\Kitsune.API.Model\Kitsune.API.Model.csproj" />
+  </ItemGroup>
+</Project>

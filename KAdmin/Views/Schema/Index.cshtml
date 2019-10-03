@@ -1,0 +1,243 @@
+﻿@using KitsuneAdminDashboard.Web.IRazorPageExtensions
+
+@{
+    ViewData["Title"] = "Manage Website Content";
+}
+
+@section Styles {
+    <link href="/k-admin/css/libs/flatpickr.css" rel="stylesheet">
+
+    <!-- Include Editor style. -->
+    <link href="/k-admin/css/libs/froala_editor.pkgd.min.css" rel='stylesheet' type='text/css' />
+
+
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/helper.css")" />
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/js/vue-form-generator/vfg.css")" />
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/slidingpanel.css")" />
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/common/imageprocessor.css")" />
+    <link rel="stylesheet" href="@this.AddFileVersionToPath("/k-admin/css/nd/schema/main.css")" />
+}
+
+<div id="wrapper" class="toggled">
+
+    @{
+        if (ViewBag.LoginMode == null || ViewBag.LoginMode != "data_console_mode")
+        {
+            @Html.Partial("~/Views/Shared/Sidebar.cshtml")
+        } else
+        {
+            @Html.Partial("~/Views/Shared/ConsoleModeHeader.cshtml")
+
+        }
+    }
+
+    <div class="container-fluid" id="app" v-cloak>
+        @{
+            if (ViewBag.LoginMode == null || ViewBag.LoginMode != "data_console_mode")
+            {
+                <div class="row pd-t0">
+                    <k-header></k-header>
+                </div>
+            }
+            else
+            {
+                <k-console-mode-header></k-console-mode-header>
+            }
+        }
+
+        <div class="row pd-t0" id="schemaContainer" v-if="hasSchema">
+
+            <!-- gorups list start -->
+            <div class="col-lg-2 col-xs-12 col-md-12 col-sm-12 d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none property-groups-parent">
+                <ul class="submenu property-groups" id="style-scroll">
+                    <li v-for="(groupName, index) in propertyGroups" class="cursor-pointer"
+                        v-on:click="setCurrentGroup(groupName, index)">
+                        <span :title="groupName"
+                              v-bind:class="{ 'submenu-active' : isCurrentGroup(groupName) }">
+                            {{groupName}}
+                        </span>
+                    </li>
+
+                    <li class="cursor-pointer" v-on:click="setCurrentGroup('_advanced', -1)">
+                        <span title="Advanced"
+                              v-bind:class="{ 'submenu-active' : isCurrentGroup('_advanced') }">
+                            Advanced
+                        </span>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- gorups list end -->
+            <!-- groups list responsive start -->
+            <!-- <div class="dropdown dropdown-full-width show d-block d-sm-none d-none d-sm-block d-md-none">
+            <a class="btn dropdown-toggle col-xs-12 col-sm-12" href="index.html" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Home Page
+            </a>
+
+            <div class="dropdown-menu col-xs-12 col-sm-12" aria-labelledby="dropdownMenuLink">
+                <span class="dropdown-item" href="about.html">
+                    About Us
+                </span>
+            </div>
+        </div> -->
+            <!-- groups list responsive end -->
+
+            <div class="col-lg-10 col-md-12 col-sm-12 form-generator-parent-container">
+                @*<div class="row invisible">
+                    <div class="input-group col-lg-7 offset-lg-5">
+                        <input class="form-control search-bar" type="text" placeholder="search website content">
+                    </div>
+                </div>*@
+
+                <div class="submenu-content">
+                    <div class="container">
+                        <div class="row btn-padding">
+                            <!--<label class="col-sm-4 col-form-label submenu-active">
+                            {{formatPropertyName(currentGroupName)}}
+                        </label>
+                            -->
+                            <div class="col-sm-4">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item history-breadcrumb"
+                                        v-if="schemaNavigationPathForRender.length > maxNavigationItemNumber"
+                                        v-on:click="showRemainingBreadCrumbs = !showRemainingBreadCrumbs">
+                                        ..
+                                    </li>
+                                    <li class="list-inline-item history-breadcrumb"
+                                        v-for="(segment, index) in getSchemaNavigationItemsWihoutPopover"
+                                        v-on:click="goToPathInDataNavigation(index, schemaNavigationPathForRender.length > maxNavigationItemNumber)" 
+                                        v-if ="schemaNavigationPathForRender.length > 1">{{segment.displayText}}</li>
+                                </ul>
+                                <div class="history-breadcrumb-popover arrow_box" v-if="showRemainingBreadCrumbs">
+                                    <ul class="list-unstyled">
+                                        <li class="dropdown-breadcrumb"
+                                            v-for="(segment, index) in getPopoverSchemaNavigationItems"
+                                            v-on:click="goToPathInDataNavigation(index); showRemainingBreadCrumbs = !showRemainingBreadCrumbs">{{segment.displayText}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-8 btn-container">
+                                @*Cancel Button*@
+                                <button v-if="areFieldsEditable && showButtonsForEditing"
+                                        v-on:click="resetFieldsToNonEditable"
+                                        class="btn-preview">
+                                    cancel
+                                </button>
+
+                                @*Edit Button*@
+                                <button v-if="!areFieldsEditable && showButtonsForEditing && !isRenderingNativeArray"
+                                        v-on:click="editAllButton"
+                                        class="btn-edit-save">
+                                    Edit
+                                </button>
+
+                                @*Save Button*@
+                                <button v-show="saveBtnShow"
+                                        v-on:click="updateDataForSchema()"
+                                        class="btn-edit-save">
+                                    Save
+                                </button>
+
+                                <context-popover-menu v-show="isContextMenuVisible && !isDataConsoleMode"
+                                                      isopen="false"
+                                                      :menuitems="getContextMenu"></context-popover-menu>
+                                <button type="button" style="display:none" id="uploadFileInit" class="btn btn-primary" data-toggle="modal" data-target="#fileupload">
+                                    upload file
+                                </button>
+                            </div>
+                        </div>
+                        <div class="schema-container" id="style-scroll">
+                            <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-if="!hasSchema" class="zeroth-case-container">
+            <div class="zeroth-content">
+                <img src="/k-admin/images/manage_content_zeroth_case.svg" />
+                <span class="font zeroth-case-text">
+                    Uh-oh! Looks like you've got a static website.
+                </span>
+                <span class="zeroth-case-text">Get in touch with your developer to make it dynamic, so you can manage your content, and get discovered online!</span>
+            </div>
+        </div>
+
+        <sliding-panel v-if="!isForReverseReference"
+                       :classlist="getReferenceClassNames"
+                       :itemlist="getPropertyNamesByClassName"
+                       :getdataforclassbyclasstype="getDataForClassByClassType"
+                       :itemaction="itemActions"
+                       :setslidingpanellevel="setSlidingPanelLevel"
+                       :level="referenceData.level"
+                       :cancelaction="referenceCancelAction"
+                       :getdataforclassandproperty="getDataForClassAndProperty"
+                       :getpropertiestodisplay="getPropertiesToDisplay"
+                       :classname="referenceData.requestedClassName"
+                       :saveaction="referenceSaveAction"
+                       :getreferenceheadertext="getReferenceHeaderText"
+                       :isforreversereference="isForReverseReference"
+                       :systemproperties="getSystemProperties"
+                       :isfetchingdata="referenceData.isfetchingData"
+                       :ismultiselect="referenceData.forwardReference.isMultipleSelect">
+        </sliding-panel>
+
+        <sliding-panel v-if="isForReverseReference"
+                       :classlist="getReferenceClassNames"
+                       :itemlist="referenceData.reverseReference.items"
+                       :itemaction="itemActions"
+                       :setslidingpanellevel="setSlidingPanelLevel"
+                       :level="referenceData.level"
+                       :cancelaction="referenceCancelAction"
+                       :getpropertiestodisplay="getPropertiesToDisplay"
+                       :classname="referenceData.requestedClassName"
+                       :saveaction="referenceSaveAction"
+                       :getreferenceheadertext="getReferenceHeaderText"
+                       :isforreversereference="isForReverseReference"
+                       :systemproperties="getSystemProperties"
+                       :isfetchingdata="referenceData.isfetchingData"
+                       :ismultiselect="true">
+        </sliding-panel>
+
+        @Html.Partial("~/Views/Schema/_modals.cshtml")
+
+        @Html.Partial("~/Views/Shared/_upload.cshtml")
+
+    </div>
+
+</div>
+
+@Html.Partial("~/Views/Shared/ContextMenu.cshtml")
+
+@Html.Partial("~/Views/Shared/Modal.cshtml")
+
+@Html.Partial("~/Views/Schema/_sliding_panel.cshtml")
+
+@Html.Partial("~/Views/Shared/Header.cshtml")
+
+<!--JS files-->
+@section scripts {
+    <script>
+        var isConsoleMode = ('@ViewBag.LoginMode' == 'data_console_mode');
+    </script>
+    <script src="/k-admin/js/vue-tippy.min.js"></script>
+    <script src="/k-admin/js/libs/froala_editor.pkgd.min.js"></script>
+    <script src="/k-admin/js/dropzone.min.js"></script>
+    <script src="/k-admin/js/jquery.Jcrop.min.js"></script>
+    <script src="/k-admin/js/caman.min.js"></script>
+    <script src="/k-admin/js/libs/moment.min.js"></script>
+
+
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/modal.js")"></script>
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/components.js")"></script>
+
+    <script src="@this.AddFileVersionToPath("/k-admin/js/vue-form-generator/vfg.js")"></script>
+    <script src="@this.AddFileVersionToPath("/k-admin/js/schema/froala.js")"></script>
+    <script src="@this.AddFileVersionToPath("/k-admin/js/schema.js")"></script>
+
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/dropzone.js")"></script>
+    <script type="text/javascript" src="@this.AddFileVersionToPath("/k-admin/js/imageprocessor.js")"></script>
+
+}

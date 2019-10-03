@@ -1,0 +1,33 @@
+﻿<!-- Details Modal Start -->
+<k-modal modal-title="Buyer Details"
+         size="md"
+         :save-action="hideAllModals"
+         :cancel-action="hideAllModals"
+         v-if="modalShowStatus.transactionDetails"
+         :close-modal="hideAllModals">
+    <div slot="modal-body">
+        <div class="container buyer-details">
+            <div>
+                <label>Name :</label>{{selectedTransaction.buyer_name ? selectedTransaction.buyer_name : "-- -- --"}}
+            </div>
+            <div>
+                <label>Email :</label>{{selectedTransaction.buyer_email ? selectedTransaction.buyer_email : "-- -- --"}}
+            </div>
+            <div>
+                <label>Phone :</label>{{selectedTransaction.buyer_phone ? selectedTransaction.buyer_phone : "-- --- --"}}
+            </div>
+            <div>
+                <label>Address :</label>{{selectedTransaction.buyer_address ? selectedTransaction.buyer_address : "-- --- --"}}
+            </div>
+            <div>
+                <label>Description :</label>{{selectedTransaction.description ? selectedTransaction.description : "-- --- --"}}
+            </div>
+        </div>
+    </div>
+    <div slot="modal-footer">
+        <button class="modal-btn-save" v-on:click="hideAllModals">
+            ok
+        </button>
+    </div>
+</k-modal>
+<!-- Details Modal End -->

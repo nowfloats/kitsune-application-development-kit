@@ -1,4 +1,5 @@
 **/bin
+!IDE/bin
 **/obj
 **/Publish
 KitsuneServer/packages/

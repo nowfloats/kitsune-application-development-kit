@@ -6,6 +6,8 @@ This project aims to be a standalone interface custom built to provide easy acce
 
 The latest release is deployed to the kit-cloud: [Live editor](https://ide.kitsune.tools)
 
+![basic interface](/../screenshots/IDE/IDE-interface.png)
+
 # Contribution
 This project aims to provide developers a single source for building, maintaining, and visualizing their *serverless* application workflows using the *Kitsune language extensions*.
 

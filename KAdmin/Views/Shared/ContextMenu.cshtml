@@ -1,8 +1,0 @@
-﻿<template id="context-popover-menu">
-    <div class="context-menu-container">
-        <span value="isOpen" v-on:click="toggleMenuOpen()"><img src="/k-admin/images/icons/more_vertical.svg" /></span>
-        <ul v-if="isContextMenuOpen" class="content-menu-bottom" v-on:mouseleave="toggleMenuOpen()">
-            <li v-for="item in menuitems" v-on:click="onMenuItemClick(item)">{{item.name}}</li>
-        </ul>
-    </div>
-</template>

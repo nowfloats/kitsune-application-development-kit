@@ -1,8 +1,0 @@
-version: '3'
-
-services:
-  background:
-    image: kitsune_publish
-    build: .
-    env_file:
-      - ENV_DEV

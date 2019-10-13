@@ -14,10 +14,6 @@ This repository has all the projects/modules required to build applications with
     - [kit App Services](#deployment)
     - [Application Development Process with kitsune](#application-development-process-with-kitsune)
 1. [Installation](#installation)
-    - [Configuration](#configuration)
-    - [Globals](#globals)
-    - [Styles](#styles)
-    - [Production Optimization](#production-optimization)
 1. [License](#license)
 1. [Acknowledgments](#acknowledgments)
 
@@ -46,13 +42,16 @@ kitsune compiler can be easily customised to align to an enterprise SDLC process
 > to implement a secure and compliant cloud native culture across all
 > teams.
 
+NOTE: *The kitsune application runtime no browser footprint. No application logic (written in kitsune's language) is emitted in the output, this makes any downstream integrations (using k-script) absolutely secure.*
+
 ## The application-development-kit
-kitsune application-development-kit contains the following modules:
-| Module | Description | Live Environment <br/><small>(managed by kitsune team)</small> |
+kitsune application-development-kit contains the following modules: 
+
+| kitsune Module | Description | Live Environment |
 |--|--|--|
-| kitsune **Dashboard** | An enterprise ready dashboard which enables developers and teams to Build, Manage and Deploy their cloud-native applications. | https://dashboard.kitsune.tools |
-| kitsune **IDE** | A browser based IDE, optimised for developing full stack cloud-native apps with kitsune. | https://ide.kitsune.tools |
-| kitsune **App Services** | This is a suite of micro-services like the compiler, publishing service, code optimiser, storage management etc. | https://api2.kitsune.tools
+| **Dashboard** | An enterprise ready dashboard which enables developers and teams to Build, Manage and Deploy their cloud-native applications. | https://dashboard.kitsune.tools |
+| **IDE** | A browser based IDE, optimised for developing full stack cloud-native apps with kitsune. | https://ide.kitsune.tools |
+| **App Services** | A suite of micro-services (like the compiler, publishing service, code optimiser, storage manager etc) that enable various aspects of application development & deployment in kitsune. | https://api2.kitsune.tools |
 
 ### Repository Structure
 *Note: Currently this single repository contains all the modules of the kitsune application-development-kit. As the project matures, it would be split into appropriate individual repositories.*
@@ -67,8 +66,47 @@ kitsune application-development-kit contains the following modules:
 └── Routing               # Routing-tree creator and manager. Built with GO
 ```
 ### kitsune Dashboard
-The dashboard enables development teams to build and manage multiple serverless applications in one single place. 
-![kitsune dashboard](/screenshots/kit-dashboard.png)
+The dashboard enables development teams to build and manage multiple serverless applications in one single place.
 
+<p align="center"><img src="/screenshots/kit-dashboard.png" width="510" title="kit dashboard"/></p>
 
-......dd.......
+You can experience the hosted version of the dashboard - https://dashboard.kitsune.tools
+
+### kitsune IDE
+This a browser based IDE which has the provides the best tools to build a full stack serverless web application with kitsune.
+
+<p align="center"><img src="/screenshots/kit-ide.png" width="510" title="kit ide"/></p>
+
+You can experience the hosted version of the IDE - https://ide.kitsune.tools
+
+### kitsune App Services
+A suite of micro-services that enable various aspects of application development & deployment in kitsune. It includes the following projects:
+
+ - kitsuneServer
+ This contains the compiler (lexical parser, syntax parser, IL code generator), `k-string` (AI based content summarisation) handler, existing application crawl service, DNS validator and application Build service. 
+ - Optimiser
+ This module takes care of the load time optimisation of the application. For web applications, it automatically identifies the static assets (like .js, .css, .jpg, .png etc) and creates a compressed and minified version. Optimiser also maintains the version of each file so that as a developer you do not have to worry about cache invalidation etc when you publish a new version of your application.
+ - Routing
+ This module is responsible to build a route-tree, each time a project is built. Routing module creates a unique regex tree for every kitsune projects and ensures that no two path lead to the same asset. This ensures that any potential URL conflict is identified during the Build process itself.
+ - PublishService
+ This module is responsible to deploy your application to the selected infrastructure provider. 
+ - KAdmin
+ When you build a new dynamic web application with kitsune, the framework enables a CMS `(<your_project_url>/k-admin)` to manage the dynamic properties of the application. This enables developers to quickly test multiple scenarios by entering test data into the database via the CMS. 
+
+### Application Development Process with kitsune
+<p align="center"><img src="/screenshots/kit-sdlc.png" height="480" title="kit sdlc"/></p>
+
+ 1. Import your design/html files into a kitsune project. Each html file representing a user-view of your application.
+ 2. Create/Import your data-model (the dynamic properties of your application)
+ 3. Use the kitsune's declarative syntax to map the properties and the business logic on to the html files. 
+ 4. As you write your application logic with kitsune, you can Build the project and check/review the serverless architecture built for your application.
+ 5. You can also enter test data against the data-model using the `k-admin` 
+ 6. Once your application development and testing is complete, you can publish your application to the appropriate cloud infrastructure of your choice.
+
+## Installation
+
+## License
+This project is licensed under the Apache License 2.0 - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Acknowledgements
+kitsune is an initiative by [NowFloats Technologies Pvt. Ltd](https://www.nowfloats.com). The aim behind this initiative is to jump start organisations who today do not have the cloud genes, to a cloud native culture - with ease.

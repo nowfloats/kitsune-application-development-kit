@@ -2,7 +2,7 @@
   <a href="https://www.getkitsune.com"><img src="https://kit-cdn.com/5a7df3773e2b28051a7c0c03/v121/assets/images/logos/Orange.png?v=121"></a>
 </p>
 
-Serverless for the HTML world
+The Architecture for a Serverless Web
 =============================
 The Kitsune application development toolkit is an **open-source suite of web development, content management, and serverless deployment tools**, which enable web developers to build full stack **serverless / cloud-native** applications without having to learn how to program, configure or deploy *cloud components*. Our aim is to simplify cloud application development by enabling developers focus on the user experience and business logic, and not worry about the cloud architecture.
 

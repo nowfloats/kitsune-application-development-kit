@@ -23,7 +23,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import AceEditor from 'react-ace';
 import { connect } from 'react-redux';
-import { addKitsuneErrors, codeChange, fileChanged, fileSourceCompile, fileSourceUpdate } from '../../actions/editor';
+import { addKitsuneErrors, codeChange, fileChanged, fileSourceCompile, fileSourceUpdate, singleFileSourceUpdate } from '../../actions/editor';
 import { footerUpdate } from '../../actions/footer';
 import { schemaFetchDetails } from '../../actions/schema';
 import { config } from '../../config';
@@ -256,6 +256,12 @@ class Editor extends Component {
 					{
 						name: 'save',
 						bindKey: { win: 'Ctrl-S', mac: 'Command-S' },
+						exec: () => this.props.dispatch(singleFileSourceUpdate()),
+						readOnly: true
+					},
+					{
+						name: 'saveAll',
+						bindKey: { win: 'Ctrl-Shift-K', mac: 'Command-Shit-K' },
 						exec: () => this.props.dispatch(fileSourceUpdate()),
 						readOnly: true
 					}

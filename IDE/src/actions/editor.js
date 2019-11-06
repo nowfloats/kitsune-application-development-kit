@@ -304,7 +304,7 @@ const checkKitsuneTags = (IsStatic, name, code) => {
 	} else return IsStatic;
 };
 
-//action for updating kitsune page source
+//action for updating kitsune page source(All files)
 export const fileSourceUpdate = () => (dispatch, getState) => {
 	const { editorReducer, login, projectTreeReducer } = getState();
 	const { activeTabs } = editorReducer;
@@ -358,6 +358,59 @@ export const fileSourceUpdate = () => (dispatch, getState) => {
 	return Promise.all(allSaves).finally(() => dispatch(hideLoading()));
 };
 
+//action for updating single kitsune page source
+export const singleFileSourceUpdate = () => (dispatch, getState) => {
+	const { editorReducer, login, projectTreeReducer } = getState();
+	const { activeTabs, visibleIndex } = editorReducer;
+	const allSaves = [];
+	console.log("editorReducer", visibleIndex);
+	let tab = activeTabs[visibleIndex];
+	const isUpdateValid = checkUpdateValidation(dispatch, tab);
+	if (tab.fileChanged && isUpdateValid) {
+		const { userID } = login;
+		const { ProjectId: projectId } = projectTreeReducer.data;
+		const { name, path, code, fileConfig } = tab;
+		const { IsStatic } = fileConfig;
+		const decryptedCode = Base64.decode(code);
+		const isStatic = checkKitsuneTags(IsStatic, name, decryptedCode);
+
+		dispatch(fileSourceUpdating());
+
+		// if(!isStatic)
+		// 	dispatch(fileSourceCompile(path, decryptedCode));
+
+		let header = {
+			'UserEmail': userID,
+			'FileContent': code,
+			'SourcePath': path,
+			'IsStatic': isStatic
+		};
+
+		allSaves.push(
+			axios.post(`${config.API.project}/${projectId}/resource`, header)
+				.then(function (response) {
+					if (path === '/kitsune-settings.json') {
+						dispatch(checkActiveGateway());
+					}
+					if (isStatic !== IsStatic)
+						dispatch(fileTypeUpdate(isStatic));
+					dispatch(addKitsuneErrors(response.data.ErrorMessages, path))
+					dispatch(singleFileSourceUpdated());
+					dispatch(fileChanged(false, visibleIndex));
+					dispatch(isSaved({ isSaved: true, lastSave: new Date() }));
+					toastr.success('file has been saved', `${name} has been saved successfully.`);
+					localStorage.setItem(`initialCode-${path}`, decryptedCode);
+				})
+				.catch(function (error) {
+					dispatch(fileSourceUpdateError(error));
+				})
+		);
+	}
+
+
+	return Promise.all(allSaves).finally(() => dispatch(hideLoading()));
+};
+
 //action to indicate updating of kitsune page source
 export const fileSourceUpdating = () => {
 	return {
@@ -366,8 +419,16 @@ export const fileSourceUpdating = () => {
 	};
 };
 
-//action to indicate kistune page is updated
+//action to indicate kistune pages is updated
 export const fileSourceUpdated = () => {
+	return {
+		type: editor.FILESOURCE_UPDATED,
+		payload: { isFetching: false, lastUpdateTimeStamp: Date.now() }
+	};
+};
+
+//action to indicate kistune pages is updated
+export const singleFileSourceUpdated = () => {
 	return {
 		type: editor.FILESOURCE_UPDATED,
 		payload: { isFetching: false, lastUpdateTimeStamp: Date.now() }

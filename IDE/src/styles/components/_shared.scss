@@ -1,3 +1,7 @@
+/* The default section on IDE */
+::selection{
+    background-color: $color-kitsune-light;
+}
 /* The container */
 .kt-radio-label {
     display: block;

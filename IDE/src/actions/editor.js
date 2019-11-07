@@ -304,57 +304,101 @@ const checkKitsuneTags = (IsStatic, name, code) => {
 	} else return IsStatic;
 };
 
-//action for updating kitsune page source
-export const fileSourceUpdate = () => (dispatch, getState) => {
+//action for updating kitsune page source(All files)
+export const fileSourceUpdate = (isSingleFileUpdate) => (dispatch, getState) => {
 	const { editorReducer, login, projectTreeReducer } = getState();
 	const { activeTabs } = editorReducer;
 	const allSaves = [];
+	if (!isSingleFileUpdate) {
+		for (let i = 0; i < activeTabs.length; i++) {
+			let tab = activeTabs[i];
+			const isUpdateValid = checkUpdateValidation(dispatch, tab);
+			if (tab.fileChanged && isUpdateValid) {
+				const { userID } = login;
+				const { ProjectId: projectId } = projectTreeReducer.data;
+				const { name, path, code, fileConfig } = tab;
+				const { IsStatic } = fileConfig;
+				const decryptedCode = Base64.decode(code);
+				const isStatic = checkKitsuneTags(IsStatic, name, decryptedCode);
 
-	for (let i = 0; i < activeTabs.length; i++) {
-		let tab = activeTabs[i];
-		const isUpdateValid = checkUpdateValidation(dispatch, tab);
-		if (tab.fileChanged && isUpdateValid) {
-			const { userID } = login;
-			const { ProjectId: projectId } = projectTreeReducer.data;
-			const { name, path, code, fileConfig } = tab;
-			const { IsStatic } = fileConfig;
-			const decryptedCode = Base64.decode(code);
-			const isStatic = checkKitsuneTags(IsStatic, name, decryptedCode);
+				dispatch(fileSourceUpdating());
 
-			dispatch(fileSourceUpdating());
+				// if(!isStatic)
+				// 	dispatch(fileSourceCompile(path, decryptedCode));
 
-			// if(!isStatic)
-			// 	dispatch(fileSourceCompile(path, decryptedCode));
+				let header = {
+					'UserEmail': userID,
+					'FileContent': code,
+					'SourcePath': path,
+					'IsStatic': isStatic
+				};
 
-			let header = {
-				'UserEmail': userID,
-				'FileContent': code,
-				'SourcePath': path,
-				'IsStatic': isStatic
-			};
-
-			allSaves.push(
-				axios.post(`${config.API.project}/${projectId}/resource`, header)
-					.then(function (response) {
-						if (path === '/kitsune-settings.json') {
-							dispatch(checkActiveGateway());
-						}
-						if (isStatic !== IsStatic)
-							dispatch(fileTypeUpdate(isStatic));
-						dispatch(addKitsuneErrors(response.data.ErrorMessages, path))
-						dispatch(fileSourceUpdated());
-						dispatch(fileChanged(false, i));
-						dispatch(isSaved({ isSaved: true, lastSave: new Date() }));
-						toastr.success('file has been saved', `${name} has been saved successfully.`);
-						localStorage.setItem(`initialCode-${path}`, decryptedCode);
-					})
-					.catch(function (error) {
-						dispatch(fileSourceUpdateError(error));
-					})
-			);
+				allSaves.push(
+					axios.post(`${config.API.project}/${projectId}/resource`, header)
+						.then(function (response) {
+							if (path === '/kitsune-settings.json') {
+								dispatch(checkActiveGateway());
+							}
+							if (isStatic !== IsStatic)
+								dispatch(fileTypeUpdate(isStatic));
+							dispatch(addKitsuneErrors(response.data.ErrorMessages, path))
+							dispatch(fileSourceUpdated());
+							dispatch(fileChanged(false, i));
+							dispatch(isSaved({ isSaved: true, lastSave: new Date() }));
+							toastr.success('file has been saved', `${name} has been saved successfully.`);
+							localStorage.setItem(`initialCode-${path}`, decryptedCode);
+						})
+						.catch(function (error) {
+							dispatch(fileSourceUpdateError(error));
+						})
+				);
+			}
 		}
+		return Promise.all(allSaves).finally(() => dispatch(hideLoading()));
 	}
+	const { visibleIndex } = editorReducer;
+	const tab = activeTabs[visibleIndex];
+	const isUpdateValid = checkUpdateValidation(dispatch, tab);
+	if (tab.fileChanged && isUpdateValid) {
+		const { userID } = login;
+		const { ProjectId: projectId } = projectTreeReducer.data;
+		const { name, path, code, fileConfig } = tab;
+		const { IsStatic } = fileConfig;
+		const decryptedCode = Base64.decode(code);
+		const isStatic = checkKitsuneTags(IsStatic, name, decryptedCode);
 
+		dispatch(fileSourceUpdating());
+
+		// if(!isStatic)
+		// 	dispatch(fileSourceCompile(path, decryptedCode));
+
+		let header = {
+			'UserEmail': userID,
+			'FileContent': code,
+			'SourcePath': path,
+			'IsStatic': isStatic
+		};
+
+		allSaves.push(
+			axios.post(`${config.API.project}/${projectId}/resource`, header)
+				.then(function (response) {
+					if (path === '/kitsune-settings.json') {
+						dispatch(checkActiveGateway());
+					}
+					if (isStatic !== IsStatic)
+						dispatch(fileTypeUpdate(isStatic));
+					dispatch(addKitsuneErrors(response.data.ErrorMessages, path))
+					dispatch(fileSourceUpdated());
+					dispatch(fileChanged(false, visibleIndex));
+					dispatch(isSaved({ isSaved: true, lastSave: new Date() }));
+					toastr.success('file has been saved', `${name} has been saved successfully.`);
+					localStorage.setItem(`initialCode-${path}`, decryptedCode);
+				})
+				.catch(function (error) {
+					dispatch(fileSourceUpdateError(error));
+				})
+		);
+	}
 	return Promise.all(allSaves).finally(() => dispatch(hideLoading()));
 };
 

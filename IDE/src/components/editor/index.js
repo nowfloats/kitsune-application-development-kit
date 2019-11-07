@@ -256,7 +256,15 @@ class Editor extends Component {
 					{
 						name: 'save',
 						bindKey: { win: 'Ctrl-S', mac: 'Command-S' },
-						exec: () => this.props.dispatch(fileSourceUpdate()),
+						exec: () => this.props.dispatch(fileSourceUpdate(true)),
+						readOnly: true
+					},
+					//Ace editor is not allowing us to have Ctrl-Shift-S or Command-Shift-S
+					//Issue has been reported https://github.com/ajaxorg/ace/issues/4110
+					{
+						name: 'saveAll',
+						bindKey: { win: 'Ctrl-Shift-K', mac: 'Command-Shit-K' },
+						exec: () => this.props.dispatch(fileSourceUpdate(false)),
 						readOnly: true
 					}
 				];

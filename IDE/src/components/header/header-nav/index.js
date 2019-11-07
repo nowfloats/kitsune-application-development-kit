@@ -15,7 +15,7 @@ import { buildProject } from "../../../actions/build";
 import CustomerList, { customerListLabel } from "../../modals/customer-list";
 import ReportBug, { MODAL_LABEL } from "../../modals/report-bug";
 import { toastr } from "react-redux-toastr";
-import { checkFileChanged, editorClear, fileSourceUpdate, setHelper } from "../../../actions/editor";
+import { checkFileChanged, editorClear, fileSourceUpdate, singleFileSourceUpdate, setHelper } from "../../../actions/editor";
 import ace from "brace/index";
 import { previewPage, updateProjectData } from "../../../actions/projectTree";
 import UploadFile, { uploadFileLabel, uploadApplicationLabel } from "../../modals/upload-file";
@@ -41,6 +41,7 @@ class HeaderNav extends Component {
 
 		this.helper = {
 			saveFile: this.props.updateSource,
+			saveAllFiles: this.props.saveAllFiles,
 			buildProject: this.buildProject
 		};
 		props.setHelpers(this.helper);
@@ -48,6 +49,7 @@ class HeaderNav extends Component {
 		this.state = {
 			openCommand: `${controlKey}O`,
 			saveCommand: `${controlKey}S`,
+			saveAllFilesCommand: `${controlKey}${shiftKey}K`,
 			findCommand: `${controlKey}F`,
 			replaceCommand: `${controlKey}H`,
 			buildCommand: `${controlKey}B`,
@@ -270,6 +272,7 @@ class HeaderNav extends Component {
 			openApplicationZipUploader,
 			projectStatus,
 			updateSource,
+			saveAllFiles,
 			deleteFile,
 			isProjectOpen,
 			reportBug,
@@ -278,6 +281,7 @@ class HeaderNav extends Component {
 		const {
 			openCommand,
 			saveCommand,
+			saveAllFilesCommand,
 			findCommand,
 			replaceCommand,
 			buildCommand,
@@ -291,11 +295,11 @@ class HeaderNav extends Component {
 		const noProjectTitle = isFileNoneState ? '' : 'try opening a project first';
 		const publishStatus = projectStatus === 1;
 		const buildClass = (projectStatus <= 0) && !publishStatus ? '' : 'disable disable-submenu';
-		const isFileOpen = fileName !== '';
+		const isFileOpen = fileName ? true : false;
 		const isAceActive = (visibleTab && document.querySelector(`#kitsune-editor-${visibleTab.path.replace(/\//g, '-')}`) !== null);
 		const noFileClassName = isFileOpen ? '' : 'disable disable-submenu';
-
 		const isFileOpenTitle = isFileOpen ? '' : 'try opening a file first';
+
 		return (
 			<ul className='header-nav'>
 				<li>
@@ -380,8 +384,9 @@ class HeaderNav extends Component {
 							<p>save file</p>
 							<span>{saveCommand}</span>
 						</li>
-						<li className='disable disable-submenu' title='this feature is currently under construction'>
+						<li className={noFileClassName} onClick={isFileOpen ? saveAllFiles : ''} title={isFileOpenTitle}>
 							<p>save all files</p>
+							<span>{saveAllFilesCommand}</span>
 						</li>
 						<li className='line-separator'>
 							<hr />
@@ -489,6 +494,7 @@ HeaderNav.propTypes = {
 	closeProject: PropTypes.func,
 	closeTab: PropTypes.func,
 	updateSource: PropTypes.func,
+	saveAllFiles: PropTypes.func,
 	deleteFile: PropTypes.func,
 	previewProject: PropTypes.func,
 	toggleComponent: PropTypes.func,
@@ -541,7 +547,8 @@ const mapDispatchToProps = dispatch => {
 		publishToAll: () => dispatch(modalOpen(<PromptMessage promptItem={PUBLISH_ALL} />, promptMessageLabel, null)),
 		closeProject: () => dispatch(modalOpen(<PromptMessage promptItem={CLOSE_PROJECT} />, promptMessageLabel, null)),
 		buildNeeded: () => dispatch(modalOpen(<BuildRequired />, buildRequiredLabel, null)),
-		updateSource: () => dispatch(fileSourceUpdate()),
+		updateSource: () => dispatch(fileSourceUpdate(true)),
+		saveAllFiles: () => dispatch(fileSourceUpdate(false)),
 		closeTab: index => dispatch(editorClear(index)),
 		deleteFile: () => dispatch(modalOpen(<PromptMessage promptItem={DELETE_FILE} />, promptMessageLabel, null)),
 		previewProject: props => dispatch(checkFileChanged(() => {

@@ -547,8 +547,8 @@ const mapDispatchToProps = dispatch => {
 		publishToAll: () => dispatch(modalOpen(<PromptMessage promptItem={PUBLISH_ALL} />, promptMessageLabel, null)),
 		closeProject: () => dispatch(modalOpen(<PromptMessage promptItem={CLOSE_PROJECT} />, promptMessageLabel, null)),
 		buildNeeded: () => dispatch(modalOpen(<BuildRequired />, buildRequiredLabel, null)),
-		updateSource: () => dispatch(singleFileSourceUpdate()),
-		saveAllFiles: () => dispatch(fileSourceUpdate()),
+		updateSource: () => dispatch(fileSourceUpdate(true)),
+		saveAllFiles: () => dispatch(fileSourceUpdate(false)),
 		closeTab: index => dispatch(editorClear(index)),
 		deleteFile: () => dispatch(modalOpen(<PromptMessage promptItem={DELETE_FILE} />, promptMessageLabel, null)),
 		previewProject: props => dispatch(checkFileChanged(() => {

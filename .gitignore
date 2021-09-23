@@ -10,3 +10,4 @@ IDE/yarn.lock
 KitsuneServer/.vs/
 PublishService/deploy.bat
 Dashboard/my_known_hosts
+/.vs

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Hosting;
 
 namespace KitsuneAdminDashboard.Web
 {
@@ -29,7 +30,7 @@ namespace KitsuneAdminDashboard.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddControllersWithViews();
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddSession(options =>
@@ -50,7 +51,7 @@ namespace KitsuneAdminDashboard.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -97,11 +98,11 @@ namespace KitsuneAdminDashboard.Web
             ////Handles all routing coming from forwarded loadbalancer
             //app.UseMiddleware<RouteHandlerMiddleware>();
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "k-admin/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(name: "default",
+                pattern: "k-admin/{controller=Home}/{action=Index}/{id?}");
             });
         }
 

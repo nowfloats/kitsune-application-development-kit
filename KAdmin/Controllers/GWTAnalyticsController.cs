@@ -22,9 +22,14 @@ namespace KitsuneAdminDashboard.Web.Controllers
             try
             {
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId")?.Value;
-                var day = data["day"];
-                var month = data["day"];
-                var year = data["year"];
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetDetailedAnalyticsForDate");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                var day = dataObject["day"];
+                var month = dataObject["day"];
+                var year = dataObject["year"];
 
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(string.Format(Constants.KitsuneSearchAnalyticsEndpoints.GetDetailedSearchAnalyticsForDate,
                     Constants.RiaWithfloatsServerUrl, websiteId, year, month, day)));
@@ -50,8 +55,13 @@ namespace KitsuneAdminDashboard.Web.Controllers
             try
             {
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId")?.Value;
-                var startDate = data["startDate"];
-                var endDate = data["endDate"];
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetDetailedAnalyticsForDateRange");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                var startDate = dataObject["startDate"];
+                var endDate = dataObject["endDate"];
 
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(string.Format(Constants.KitsuneSearchAnalyticsEndpoints.GetDetailedSearchAnalyticsForDateRange,
                     Constants.RiaWithfloatsServerUrl, websiteId, startDate.ToString("yyyy-MM-dd"), endDate.ToString("yyyy-MM-dd"))));
@@ -77,8 +87,13 @@ namespace KitsuneAdminDashboard.Web.Controllers
             try
             {
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId")?.Value;
-                var year = data["year"];
-                var month = data["month"];
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetDailySearchAnalytics");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                var year = dataObject["year"];
+                var month = dataObject["month"];
 
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(string.Format(Constants.KitsuneSearchAnalyticsEndpoints.GetDailySearchAnalytics,
                     Constants.RiaWithfloatsServerUrl, websiteId, year, month)));
@@ -103,7 +118,12 @@ namespace KitsuneAdminDashboard.Web.Controllers
             try
             {
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId")?.Value;
-                var year = data["year"];
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetMonthlySearchAnalytics");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                var year = dataObject["year"];
 
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(string.Format(Constants.KitsuneSearchAnalyticsEndpoints.GetMonthlySearchAnalytics,
                     Constants.RiaWithfloatsServerUrl, websiteId, year)));
@@ -136,10 +156,14 @@ namespace KitsuneAdminDashboard.Web.Controllers
                 request.Method = "POST";
                 request.ContentType = "application/json";
 
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetKitsunePaymentsData");
+                }
+
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    string jsonData = JsonConvert.SerializeObject(data);
-                    streamWriter.Write(jsonData);
+                    streamWriter.Write(data.ToString());
                 }
 
                 var httpResponse = (HttpWebResponse)request.GetResponse();

@@ -10,6 +10,7 @@ COPY ["KitsuneAdminDashboard.Web.csproj", "."]
 RUN dotnet restore "./KitsuneAdminDashboard.Web.csproj"
 COPY . .
 WORKDIR "/src/."
+ENV CLOUD_PROVIDER=ALICLOUD
 RUN dotnet build "KitsuneAdminDashboard.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish

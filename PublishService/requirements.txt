@@ -3,5 +3,5 @@ dnspython==1.15.0
 boto3==1.4.6
 awscli==1.11.133
 watchtower==0.4.0
-requests==2.18.4
+requests==2.20.0
 python-dotenv==0.6.5

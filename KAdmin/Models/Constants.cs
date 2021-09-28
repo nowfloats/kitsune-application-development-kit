@@ -22,10 +22,11 @@ namespace KitsuneAdminDashboard.Web.Models
 
         public static string KitsuneServerUrl = "https://api2.kitsune.tools";
         public static string WebActionServerUrl = "https://webactions.kitsune.tools";
-        
-        
+
+        public static string RiaWithfloatsServerUrl = "http://riamemory.withfloats.com";
         public static string KPaymentsServerUrl = "https://payments.kitsune.tools";
-    
+        public static string NFServerUrl = "https://api2.withfloats.com";
+
 
         public static string KitsunePaymentsWebactionName = "kpay_transactions_prod";
 

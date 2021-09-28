@@ -339,8 +339,13 @@ namespace KitsuneAdminDashboard.Web.Controllers
         {
             try
             {
-                var webactionName = data["webactionName"];
-                var authId = data["authId"];
+                if (data == null)
+                {
+                    throw new ArgumentNullException("AddDataToSystemWebaction");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                var webactionName = dataObject["webactionName"];
+                var authId = dataObject["authId"];
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(Constants.WebactionsEndpoints.AddWebActionDataEndpoint, Constants.WebActionServerUrl, webactionName.Value)));
                 request.Method = "POST";
                 request.ContentType = "application/json";
@@ -348,7 +353,7 @@ namespace KitsuneAdminDashboard.Web.Controllers
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    string jsonData = JsonConvert.SerializeObject(data["webactionData"]);
+                    string jsonData = JsonConvert.SerializeObject(dataObject["webactionData"]);
                     streamWriter.Write(jsonData);
                 }
                 var httpResponse = (HttpWebResponse)request.GetResponse();
@@ -369,10 +374,15 @@ namespace KitsuneAdminDashboard.Web.Controllers
         {
             try
             {
-                var startDate = data["startDate"];
-                var endDate = data["endDate"];
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetWebActionDataCount");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                var startDate = dataObject["startDate"];
+                var endDate = dataObject["endDate"];
                 var authId = User.Claims.FirstOrDefault(x => x.Type == "UserAuthId").Value;
-                var type = data["type"];
+                var type = dataObject["type"];
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId");
 
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(Constants.WebactionsEndpoints.GetWebActionDataCount,
@@ -383,17 +393,17 @@ namespace KitsuneAdminDashboard.Web.Controllers
                 var httpResponse = (HttpWebResponse)request.GetResponse();
                 StreamReader sr = new StreamReader(httpResponse.GetResponseStream());
                 var response = sr.ReadToEnd().ToString();
-                if (!String.IsNullOrEmpty(response))
+                if (String.IsNullOrWhiteSpace(response))
                 {
-                    var output = JsonConvert.DeserializeObject<dynamic>(response);
-                    return new JsonResult(output);
+                    response = "{ 'Actions':[]}";
                 }
+                var output = JsonConvert.DeserializeObject<dynamic>(response);
+                return new JsonResult(output);
             }
             catch (Exception e)
             {
                 return BadRequest(e.ToString());
             }
-            return null;
         }
 
         [Route("GetWebActionListWithConfig")]
@@ -442,8 +452,8 @@ namespace KitsuneAdminDashboard.Web.Controllers
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    string jsonData = JsonConvert.SerializeObject(data);
-                    streamWriter.Write(jsonData);
+                    //string jsonData = JsonConvert.SerializeObject(data);
+                    streamWriter.Write(data.ToString());
                 }
 
                 var httpResponse = (HttpWebResponse)request.GetResponse();

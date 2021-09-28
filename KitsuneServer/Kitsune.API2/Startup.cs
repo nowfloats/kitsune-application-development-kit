@@ -21,13 +21,16 @@ using System.IO;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Kitsune.API2
 {
     public class Startup
     {
         public IConfigurationRoot Configuration { get; set; }
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                .SetBasePath(env.ContentRootPath)
@@ -65,11 +68,10 @@ namespace Kitsune.API2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
-                .AddJsonOptions(options =>
-                {
-                    options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
-                });
+            services.AddControllers()
+               .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver())
+               .AddNewtonsoftJson(options => options.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat);
+
             services.Configure<FormOptions>(x =>
             {
                 x.ValueLengthLimit = int.MaxValue;
@@ -113,7 +115,7 @@ namespace Kitsune.API2
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) //, ILoggerFactory loggerFactory
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) //, ILoggerFactory loggerFactory
         {
             if (env.IsDevelopment())
             {
@@ -134,7 +136,10 @@ namespace Kitsune.API2
 
 #endif
 
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+            });
             //loggerFactory.AddSerilog();
         }
     }

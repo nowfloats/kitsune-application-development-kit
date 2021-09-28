@@ -115,23 +115,29 @@ namespace KitsuneAdminDashboard.Web.Controllers
             {
                 var entityName = User.Claims.FirstOrDefault(x => x.Type == "EntityName");
                 var authId = User.Claims.FirstOrDefault(x => x.Type == "UserAuthId");
-                
+
+                if (data == null)
+                {
+                    throw new ArgumentNullException("AddDataForSchema");
+                }
+
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId");
 
-                data["WebsiteId"] = websiteId.Value; 
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                dataObject["WebsiteId"] = websiteId.Value;
 
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(Constants.SchemaEndpoints.AddDataForSchemaEndpoint, Constants.KitsuneServerUrl, entityName.Value)));
                 request.Method = "POST";
                 request.ContentType = "application/json";
                 request.Headers.Add(HttpRequestHeader.Authorization, authId.Value);
 
-                var obj = (Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(data.ToString());
-                var dataObj = (Newtonsoft.Json.Linq.JObject)obj.Property("Data").Value;
+                //var obj = (Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(data.ToString());
+                //var dataObj = (Newtonsoft.Json.Linq.JObject)obj.Property("Data").Value;
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    string jsonData = JsonConvert.SerializeObject(obj);
-                    streamWriter.Write(jsonData);
+                    //string jsonData = JsonConvert.SerializeObject(obj);
+                    streamWriter.Write(data.ToString());
                 }
                 var httpResponse = (HttpWebResponse)request.GetResponse();
                 StreamReader sr = new StreamReader(httpResponse.GetResponseStream());
@@ -155,7 +161,12 @@ namespace KitsuneAdminDashboard.Web.Controllers
                 // var websiteId = User.Claims.FirstOrDefault(x => x.Type == "KitsuneUrl");
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId");
 
-                data["WebsiteId"] = websiteId.Value;
+                if (data == null)
+                {
+                    throw new ArgumentNullException("UpdateDataForSchema");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                dataObject["WebsiteId"] = websiteId.Value;
 
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(Constants.SchemaEndpoints.UpdateDataForSchemaEndpoint, Constants.KitsuneServerUrl, entityName.Value)));
                 request.Method = "POST";
@@ -164,8 +175,8 @@ namespace KitsuneAdminDashboard.Web.Controllers
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    string jsonData = JsonConvert.SerializeObject(data);
-                    streamWriter.Write(jsonData);
+                    //string jsonData = JsonConvert.SerializeObject(data);
+                    streamWriter.Write(data.ToString());
                 }
                 var httpResponse = (HttpWebResponse)request.GetResponse();
 
@@ -196,7 +207,12 @@ namespace KitsuneAdminDashboard.Web.Controllers
                 // var websiteId = User.Claims.FirstOrDefault(x => x.Type == "KitsuneUrl");
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId");
 
-                data["WebsiteId"] = websiteId.Value;
+                if (data == null)
+                {
+                    throw new ArgumentNullException("DeleteDataForSchema");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                dataObject["WebsiteId"] = websiteId.Value;
 
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(Constants.SchemaEndpoints.DeleteDataForSchemaEndpoint, Constants.KitsuneServerUrl, entityName.Value)));
                 request.Method = "POST";
@@ -205,8 +221,8 @@ namespace KitsuneAdminDashboard.Web.Controllers
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    string jsonData = JsonConvert.SerializeObject(data);
-                    streamWriter.Write(jsonData);
+                    //string jsonData = JsonConvert.SerializeObject(data);
+                    streamWriter.Write(data.ToString());
                 }
                 var httpResponse = (HttpWebResponse)request.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
@@ -231,10 +247,16 @@ namespace KitsuneAdminDashboard.Web.Controllers
                 // var websiteId = User.Claims.FirstOrDefault(x => x.Type == "KitsuneUrl");
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId");
 
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetDataWithReferenceId");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+
                 var fpDataRequest = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(
                     Constants.SchemaEndpoints.GetDataForSchemaWithReferenceId, 
                     Constants.KitsuneServerUrl, entityName.Value, websiteId.Value,
-                    data["_parentClassName"], data["_propertyName"], data["_parentClassId"])));
+                    dataObject["_parentClassName"], dataObject["_propertyName"], dataObject["_parentClassId"])));
 
                 fpDataRequest.Method = "GET";
                 fpDataRequest.ContentType = "application/json";
@@ -390,7 +412,12 @@ namespace KitsuneAdminDashboard.Web.Controllers
                 var authId = User.Claims.FirstOrDefault(x => x.Type == "UserAuthId");
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId");
 
-                String classType = data["classType"];
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetRelatedClassesByType");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                String classType = dataObject["classType"];
 
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(
                     String.Format(Constants.SchemaEndpoints.GetClassesByClassType, Constants.KitsuneServerUrl, schemaId.Value, classType, websiteId.Value)));
@@ -427,7 +454,13 @@ namespace KitsuneAdminDashboard.Web.Controllers
                 var entityName = User.Claims.FirstOrDefault(x => x.Type == "EntityName");
                 var authId = User.Claims.FirstOrDefault(x => x.Type == "UserAuthId");
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId");
-                String classType = data["classType"];
+                
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetDataByClassType");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                String classType = dataObject["classType"];
 
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(
                     String.Format(Constants.SchemaEndpoints.GetDataByClassName, Constants.KitsuneServerUrl, entityName.Value, websiteId.Value, classType)));
@@ -460,7 +493,12 @@ namespace KitsuneAdminDashboard.Web.Controllers
             try
             {
                 var authId = User.Claims.FirstOrDefault(x => x.Type == "UserAuthId");
-                var clientId = data["clientId"];
+                if (data == null)
+                {
+                    throw new ArgumentNullException("SendEmail");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                var clientId = dataObject["clientId"];
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(Constants.InternalEndpoints.SendEmail, Constants.KitsuneServerUrl, clientId)));
                 request.Method = "POST";
                 request.ContentType = "application/json";
@@ -468,8 +506,8 @@ namespace KitsuneAdminDashboard.Web.Controllers
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    string jsonData = JsonConvert.SerializeObject(data);
-                    streamWriter.Write(jsonData);
+                    //string jsonData = JsonConvert.SerializeObject(data);
+                    streamWriter.Write(data.ToString());
                 }
                 var httpResponse = (HttpWebResponse)request.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
@@ -490,8 +528,12 @@ namespace KitsuneAdminDashboard.Web.Controllers
             try
             {
                 var authId = User.Claims.FirstOrDefault(x => x.Type == "UserAuthId");
-                var developerID = data["developerId"];
-                var request = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(Constants.DeveloperEndPoints.GetDeveloperDetails, Constants.KitsuneServerUrl, developerID.Value)));
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetDevloperDetails");
+                }
+                string developerID = JsonConvert.DeserializeObject(data.ToString())["developerId"];
+                var request = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(Constants.DeveloperEndPoints.GetDeveloperDetails, Constants.KitsuneServerUrl, developerID)));
                 request.Method = "GET";
                 request.ContentType = "application/json";
                 request.Headers.Add(HttpRequestHeader.Authorization, authId.Value);
@@ -520,7 +562,12 @@ namespace KitsuneAdminDashboard.Web.Controllers
             try
             {
                 var authId = User.Claims.FirstOrDefault(x => x.Type == "UserAuthId");
-                var websiteId = data["websiteId"];
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetWebsiteDetails");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                var websiteId = dataObject["websiteId"];
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(Constants.CustomerEndpoints.GetWebsiteDetails, 
                     Constants.KitsuneServerUrl, websiteId.Value, Constants.KadminClientId)));
                 request.Method = "GET";
@@ -584,7 +631,12 @@ namespace KitsuneAdminDashboard.Web.Controllers
                 var schemaId = User.Claims.FirstOrDefault(x => x.Type == "SchemaId");
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId");
 
-                data["WebsiteId"] = websiteId.Value;
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetDataByProperty");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                dataObject["WebsiteId"] = websiteId.Value;
 
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(Constants.SchemaEndpoints.GetDataByProperty,
                     Constants.KitsuneServerUrl, schemaId.Value)));
@@ -594,8 +646,8 @@ namespace KitsuneAdminDashboard.Web.Controllers
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    string jsonData = JsonConvert.SerializeObject(data);
-                    streamWriter.Write(jsonData);
+                    //string jsonData = JsonConvert.SerializeObject(data);
+                    streamWriter.Write(data.ToString());
                 }
                 var httpResponse = (HttpWebResponse)request.GetResponse();
                 StreamReader sr = new StreamReader(httpResponse.GetResponseStream());
@@ -624,7 +676,12 @@ namespace KitsuneAdminDashboard.Web.Controllers
                 var schemaId = User.Claims.FirstOrDefault(x => x.Type == "SchemaId");
                 var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId");
 
-                data["WebsiteId"] = websiteId.Value;
+                if (data == null)
+                {
+                    throw new ArgumentNullException("GetDataByPropertyBulk");
+                }
+                var dataObject = JsonConvert.DeserializeObject(data.ToString());
+                dataObject["WebsiteId"] = websiteId.Value;
 
                 var request = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(Constants.SchemaEndpoints.GetDataByPropertyBulk,
                     Constants.KitsuneServerUrl, schemaId.Value)));
@@ -634,8 +691,8 @@ namespace KitsuneAdminDashboard.Web.Controllers
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    string jsonData = JsonConvert.SerializeObject(data);
-                    streamWriter.Write(jsonData);
+                    //string jsonData = JsonConvert.SerializeObject(data);
+                    streamWriter.Write(data.ToString());
                 }
 
                 var httpResponse = (HttpWebResponse)request.GetResponse();

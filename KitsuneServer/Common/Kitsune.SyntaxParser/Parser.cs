@@ -1,5 +1,5 @@
-﻿using AntlrLibrary;
-using AntlrLibrary.Model;
+﻿using Kitsune.AntlrLibrary;
+using Kitsune.AntlrLibrary.Model;
 using Kitsune.SyntaxParser.Models;
 using System;
 using System.Collections.Generic;

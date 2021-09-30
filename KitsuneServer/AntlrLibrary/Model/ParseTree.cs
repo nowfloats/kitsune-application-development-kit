@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AntlrLibrary.Model
+namespace Kitsune.AntlrLibrary.Model
 {
     public enum ACTIONS { OperandEval, NegativeNumberEval, PostfixUnaryEval, PostfixUnaryWithArgEval, PrefixUnaryEval, Arithmatic, ConjunctionalEval, ArrayEval, Ternary, Loop, InLoop, View, ViewProperty, ViewFunction, KObject }
     public class Node

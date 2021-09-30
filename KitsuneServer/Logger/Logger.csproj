@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>1.0.1</Version>
+    <Version>3.0.2</Version>
     <Authors>Devesh Kumar</Authors>
     <Company>Kitsune</Company>
     <Copyright>Copyright ©  2021</Copyright>
@@ -22,10 +22,11 @@
     <LangVersion>default</LangVersion>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>bin\Debug\Logger.xml</DocumentationFile>
-    <RepositoryUrl>https://github.com/nowfloats/kitsune-application-development-kit</RepositoryUrl>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>bin\Release\Logger.xml</DocumentationFile>
+    <RepositoryUrl>git@github.com:nowfloats/kitsune-application-development-kit.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

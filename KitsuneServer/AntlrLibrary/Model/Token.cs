@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AntlrLibrary.Model
+namespace Kitsune.AntlrLibrary.Model
 {
     public enum TOKENTYPE { Integer, String, Array, Delimiter, Comparator, Arithmatic, Object, BitOperator, Keyword, Double, Long, Float, ERROR, Boolean, Expression, Ternary, Function, NoData };
     public class Token

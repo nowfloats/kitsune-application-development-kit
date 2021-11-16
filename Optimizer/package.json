@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "async": "^2.6.0",
-    "aws-sdk": "^2.76.0",
+    "aws-sdk": "^2.814.0",
     "cheerio": "^1.0.0-rc.2",
     "dotenv": "^4.0.0",
     "download": "^6.2.5",

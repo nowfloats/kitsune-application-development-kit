@@ -9,7 +9,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "async": "^2.6.0",
+    "async": "^2.6.4",
     "aws-sdk": "^2.76.0",
     "cheerio": "^1.0.0-rc.2",
     "dotenv": "^4.0.0",

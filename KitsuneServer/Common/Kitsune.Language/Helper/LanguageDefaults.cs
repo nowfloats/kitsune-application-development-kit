@@ -1021,6 +1021,20 @@ namespace Kitsune.Language.Helper
                                      },
                                      new KProperty
                                      {
+                                         Name = "NOSERVICESLOT",
+                                         DataType = new DataType("BOOLEAN"),
+                                         Description = "Does service not have a time slot",
+                                         Type = PropertyType.boolean,
+                                     },
+                                     new KProperty
+                                     {
+                                         Name = "sameServiceSlot",
+                                         DataType = new DataType("BOOLEAN"),
+                                         Description = "Does service has same timings as business hour",
+                                         Type = PropertyType.boolean,
+                                     },
+                                     new KProperty
+                                     {
                                          Name = "TIMINGS",
                                          DataType = new DataType("TIMING"),
                                          Type = PropertyType.array,

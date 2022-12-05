@@ -1028,7 +1028,7 @@ namespace Kitsune.Language.Helper
                                      },
                                      new KProperty
                                      {
-                                         Name = "sameServiceSlot",
+                                         Name = "SAMESERVICESLOT",
                                          DataType = new DataType("BOOLEAN"),
                                          Description = "Does service has same timings as business hour",
                                          Type = PropertyType.boolean,

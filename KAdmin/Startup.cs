@@ -77,18 +77,7 @@ namespace KitsuneAdminDashboard.Web
             app.Use((context, next) =>
             {
                 context.Response.Headers.Add("Cache-Control", "max-age=0");
-                if (IsHostedOnAlicloud()) {
-                    try {
-                        StringValues aliHost = "";
-                        context.Request.Headers.TryGetValue("Ali-Swift-Log-Host", out aliHost);
-                        if (!String.IsNullOrEmpty(aliHost.ToString())) {
-                            context.Request.Headers.Remove("Host");
-                            context.Request.Headers.Add("Host", aliHost.ToString());
-                        }
-                    } catch (ArgumentNullException ex) {
-                        Console.WriteLine(JsonConvert.SerializeObject(ex));
-                    }
-                }
+              
                 return next();
             });
 

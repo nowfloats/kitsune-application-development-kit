@@ -136,8 +136,8 @@ namespace KitsuneAdminDashboard.Web.Controllers
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    //string jsonData = JsonConvert.SerializeObject(obj);
-                    streamWriter.Write(data.ToString());
+                    string jsonData = JsonConvert.SerializeObject(dataObject);
+                    streamWriter.Write(jsonData.ToString());
                 }
                 var httpResponse = (HttpWebResponse)request.GetResponse();
                 StreamReader sr = new StreamReader(httpResponse.GetResponseStream());
@@ -175,8 +175,8 @@ namespace KitsuneAdminDashboard.Web.Controllers
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    //string jsonData = JsonConvert.SerializeObject(data);
-                    streamWriter.Write(data.ToString());
+                    string jsonData = JsonConvert.SerializeObject(dataObject);
+                    streamWriter.Write(jsonData.ToString());
                 }
                 var httpResponse = (HttpWebResponse)request.GetResponse();
 
@@ -221,8 +221,8 @@ namespace KitsuneAdminDashboard.Web.Controllers
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    //string jsonData = JsonConvert.SerializeObject(data);
-                    streamWriter.Write(data.ToString());
+                    string jsonData = JsonConvert.SerializeObject(dataObject);
+                    streamWriter.Write(jsonData.ToString());
                 }
                 var httpResponse = (HttpWebResponse)request.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
@@ -625,11 +625,12 @@ namespace KitsuneAdminDashboard.Web.Controllers
         [Authorize, HttpPost]
         public IActionResult GetDataByProperty([FromBody] dynamic data)
         {
+            var authId = User.Claims.FirstOrDefault(x => x.Type == "UserAuthId");
+            var schemaId = User.Claims.FirstOrDefault(x => x.Type == "SchemaId");
+            var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId");
             try
             {
-                var authId = User.Claims.FirstOrDefault(x => x.Type == "UserAuthId");
-                var schemaId = User.Claims.FirstOrDefault(x => x.Type == "SchemaId");
-                var websiteId = User.Claims.FirstOrDefault(x => x.Type == "CustomerId");
+               
 
                 if (data == null)
                 {
@@ -646,8 +647,8 @@ namespace KitsuneAdminDashboard.Web.Controllers
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    //string jsonData = JsonConvert.SerializeObject(data);
-                    streamWriter.Write(data.ToString());
+                    string jsonData = JsonConvert.SerializeObject(dataObject);
+                    streamWriter.Write(jsonData.ToString());
                 }
                 var httpResponse = (HttpWebResponse)request.GetResponse();
                 StreamReader sr = new StreamReader(httpResponse.GetResponseStream());
@@ -661,7 +662,7 @@ namespace KitsuneAdminDashboard.Web.Controllers
             }
             catch(Exception e)
             {
-                return BadRequest(e.ToString());
+                return BadRequest(e.ToString()+ schemaId.Value + websiteId.Value+ authId.Value);
             }
             return null;
         }
@@ -691,8 +692,8 @@ namespace KitsuneAdminDashboard.Web.Controllers
 
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                 {
-                    //string jsonData = JsonConvert.SerializeObject(data);
-                    streamWriter.Write(data.ToString());
+                    string jsonData = JsonConvert.SerializeObject(dataObject);
+                    streamWriter.Write(jsonData.ToString());
                 }
 
                 var httpResponse = (HttpWebResponse)request.GetResponse();

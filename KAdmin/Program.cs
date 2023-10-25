@@ -24,7 +24,6 @@ namespace KitsuneAdminDashboard.Web
                 .ConfigureLogging(logging =>
                     logging.AddFilter("System", LogLevel.Trace)
                     .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Trace))
-                .UseKestrel(o => { o.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(10); })
                 .Build();
     }
 }

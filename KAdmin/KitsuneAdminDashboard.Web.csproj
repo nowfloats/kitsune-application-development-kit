@@ -14,6 +14,7 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+    <UserSecretsId>f28bda89-aa55-436d-b61c-823a2de4ff18</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

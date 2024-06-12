@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AntlrLibrary;
-using AntlrLibrary.Model;
+using Kitsune.AntlrLibrary;
+using Kitsune.AntlrLibrary.Model;
 using HtmlAgilityPack;
 using Kitsune.Compiler.Helpers;
 using Kitsune.Helper;

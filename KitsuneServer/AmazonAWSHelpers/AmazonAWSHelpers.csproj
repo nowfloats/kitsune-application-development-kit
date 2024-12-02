@@ -31,7 +31,7 @@
   <ItemGroup>
     <PackageReference Include="AWSSDK.Core" Version="3.7.2.7" />
     <PackageReference Include="AWSSDK.SQS" Version="3.7.0.56" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
 </Project>

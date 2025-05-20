@@ -50,14 +50,14 @@ namespace KitsuneAdminDashboard.Web.Controllers
         {
 
             var kitsuneStatus = Helpers.KitsuneApiStatusCheck(TempData);
-            if (kitsuneStatus.Success && kitsuneStatus.IsDown)
-            {
-                return RedirectToAction("Maintenance", "Home");
-            }
-            else
-            {
-                return View();
-            }
+            //if (kitsuneStatus.Success && kitsuneStatus.IsDown)
+            //{
+            //    return RedirectToAction("Maintenance", "Home");
+            //}
+            //else
+            //{
+               return View();
+            //}
             
         }
 

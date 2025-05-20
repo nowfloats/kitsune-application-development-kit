@@ -277,8 +277,8 @@ namespace KitsuneAdminDashboard.Web.Utils
         public static KitsuneStatusResponse KitsuneApiStatusCheck(ITempDataDictionary TempData)
         {
             var response = new KitsuneStatusResponse() {
-                IsDown = true,
-                Success = true,
+                IsDown = false,
+                Success = false,
                 IsApiDown = false,
                 IsMaintenanceBreak = true,
                 Detail =  new KitsuneDowntimeDescription() {
